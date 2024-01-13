@@ -25,7 +25,6 @@ apt install nala -y
 cd $builddir
 mkdir -p /home/$username/.fonts
 
-
 # Update repositories
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf 
 "deb https://deb.debian.org/debian/ buster main contrib non-free
@@ -69,13 +68,10 @@ unzip Meslo.zip -d /home/$username/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 chown $username:$username /home/$username/.fonts/*
 
-
 # Reloading Font
 fc-cache -vf
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
-
-
 
 # Enable graphical login and change target from CLI to GUI
 systemctl enable gdm3
