@@ -26,8 +26,7 @@ cd $builddir
 mkdir -p /home/$username/.fonts
 
 # Update repositories
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf 
-"deb https://deb.debian.org/debian/ buster main contrib non-free
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
 deb https://security.debian.org/debian-security bookworm/updates main contrib non-free
 deb https://deb.debian.org/debian/ stable-updates main contrib non-free
 deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
