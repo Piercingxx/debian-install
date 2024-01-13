@@ -9,10 +9,6 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-# Update packages list and update system
-apt update
-apt upgrade -y
-
 
 # Making and Moving background to Pictures
 cd $builddir
@@ -30,10 +26,6 @@ cd $builddir
 mkdir -p /home/$username/.fonts
 
 
-# Installing Essential Programs 
-nala install gdm3 gnome-core network-manager-gnome nautilus flatpak gnome-software-plugin-flatpak unzip wget tilix -y
-
-
 # Update repositories
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf 
 "deb https://deb.debian.org/debian/ buster main contrib non-free
@@ -42,15 +34,16 @@ deb https://deb.debian.org/debian/ stable-updates main contrib non-free
 deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
-
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
 wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-debian12-12-3-local_12.3.1-545.23.08-1_amd64.deb
 dpkg -i cuda-repo-debian12-12-3-local_12.3.1-545.23.08-1_amd64.deb\
 cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 add-apt-repository contrib
-
 apt -y dist-upgrade
+
+
+# Installing Essential Programs 
+nala install gdm3 gnome-core network-manager-gnome nautilus flatpak gnome-software-plugin-flatpak unzip wget tilix -y
 
 
 # Installing Other less important Programs
@@ -87,31 +80,6 @@ rm ./FiraCode.zip ./Meslo.zip
 # Enable graphical login and change target from CLI to GUI
 systemctl enable gdm3
 systemctl set-default graphical.target
-
-
-
-
-# Bash Menu Microsoft Surface Stuffs - the password is surface
-items=(1 "Yes"
-       2 "No")
-
-while choice=$(dialog --title "$TITLE" \
-                 --menu "Is This A Microsoft Surface Device?" 10 40 3 "${items[@]}" \
-                 2>&1 >/dev/tty)
-    do
-    case $choice in
-        1) ;; wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
-         | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
-echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
-	| sudo tee /etc/apt/sources.list.d/linux-surface.list
-apt update
-apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
-apt install linux-surface-secureboot-mok
-update-grub
-        2) ;; clear
-    esac
-done
-clear # clear after user pressed Cancel
 
 
 
