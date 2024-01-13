@@ -14,21 +14,12 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
-# Making and Moving background to Pictures
-cd $builddir
-mkdir -p /home/$username/Pictures
-mkdir -p /home/$username/Pictures/backgrounds
-cp -R dotconfig/* /home/$username/.config/
-cp bg.jpg /home/$username/Pictures/backgrounds/
-
-
-# Install nala
+# Install software to get started
 apt install nala wget unzip flatpak gnome-software-plugin-flatpak dpkg -y
 
-# Making .config and Moving config files and background to Pictures
+# Making dir
 cd $builddir
 mkdir -p /home/$username/.fonts
-
 
 
 # Update repositories
