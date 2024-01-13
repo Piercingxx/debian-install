@@ -45,3 +45,8 @@ deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | s
 
 
 apt reboot
+    
+
+
+# Use nala
+bash scripts/usenala
