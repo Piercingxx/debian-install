@@ -44,8 +44,65 @@ deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware
 deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
 
-apt reboot
+apt update
+apt upgrade -y
+apt full-upgrade -y
     
+
+add-apt-repository contrib
+apt -y dist-upgrade
+
+# Installing Essential Programs 
+nala install gnome-core network-manager-gnome gdm3 -y 
+
+
+# Installing Other less important Programs
+nala install nautilus tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms gnome-tweaks htop nvtop-y
+flatpak install flathub com.visualstudio.code -y --assume-yes
+flatpak install flathub md.obsidian.Obsidian -y --assume-yes
+flatpak install flathub com.synology.SynologyDrive -y --assume-yes
+flatpak install flathub com.valvesoftware.Steam -y --assume-yes
+flatpak install flathub com.discordapp.Discord -y --assume-yes
+flatpak install flathub com.obsproject.Studio -y --assume-yes
+flatpak install flathub com.mattjakeman.ExtensionManager -y --assume-yes
+flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y --assume-yes
+flatpak run org.gimp.GIMP//beta -y --assume-yes
+# the only app that I use and can not install via script is Davinci Resolve Studio
+
+
+# Enable graphical login and change target from CLI to GUI
+systemctl enable gdm3
+systemctl set-default graphical.target
+    
+# Installing fonts
+cd $builddir 
+nala install fonts-font-awesome fonts-noto-color-emoji -y
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+unzip FiraCode.zip -d /home/$username/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip Meslo.zip -d /home/$username/.fonts
+mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
+chown $username:$username /home/$username/.fonts/*
+
+# Reloading Font
+fc-cache -vf
+# Removing zip Files
+rm ./FiraCode.zip ./Meslo.zip
+
+
+##Gnome-extensions 
+wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
+gnome-extensions install aztaskbar-main.zip
+gh repo clone ubuntu/gnome-shell-extension-appindicator
+gnome-extensions install gnome-shell-extension-appindicator
+gh repo clone velitasali/gnome-shell-extension-awesome-tiles
+gnome-extensions install gnome-shell-extension-awesome-tiles
+gh repo clone aunetx/blur-my-shell
+gnome-extensions install blur-my-shell
+gh repo clone Schneegans/Burn-My-Windows
+gnome-extensions install Burn-My-Windows
+gh repo clone corecoding/Vitals
+gnome-extensions install Vitals
 
 
 # Use nala
