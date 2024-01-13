@@ -9,6 +9,9 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
+# Update packages list and update system
+apt update
+apt upgrade -y
 
 # Making and Moving background to Pictures
 cd $builddir
