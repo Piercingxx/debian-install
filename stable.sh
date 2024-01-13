@@ -85,15 +85,20 @@ rm ./FiraCode.zip ./Meslo.zip
 ##Gnome-extensions 
 wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
 gnome-extensions install aztaskbar-main.zip
-gh repo clone ubuntu/gnome-shell-extension-appindicator
+
+wget https://codeload.github.com/ubuntu/gnome-shell-extension-appindicator/zip/refs/heads/master
 gnome-extensions install gnome-shell-extension-appindicator
-gh repo clone velitasali/gnome-shell-extension-awesome-tiles
+
+wget https://codeload.github.com/velitasali/gnome-shell-extension-awesome-tiles/zip/refs/heads/main
 gnome-extensions install gnome-shell-extension-awesome-tiles
-gh repo clone aunetx/blur-my-shell
+
+https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
 gnome-extensions install blur-my-shell
-gh repo clone Schneegans/Burn-My-Windows
+
+wget https://codeload.github.com/Schneegans/Burn-My-Windows/zip/refs/heads/main
 gnome-extensions install Burn-My-Windows
-gh repo clone corecoding/Vitals
+
+wget https://codeload.github.com/corecoding/Vitals/zip/refs/heads/main
 gnome-extensions install Vitals
 
 
