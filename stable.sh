@@ -82,7 +82,7 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 
-##Gnome-extensions 
+# Gnome-extensions 
 wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
 gnome-extensions install aztaskbar-main.zip
 
