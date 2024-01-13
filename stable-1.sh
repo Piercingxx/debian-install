@@ -23,7 +23,7 @@ cp bg.jpg /home/$username/Pictures/backgrounds/
 
 
 # Install nala
-apt install nala wget unzip flatpak gnome-software-plugin-flatpak -y
+apt install nala wget unzip flatpak gnome-software-plugin-flatpak dpkg-y
 
 # Making .config and Moving config files and background to Pictures
 cd $builddir
