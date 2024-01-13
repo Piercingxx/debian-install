@@ -14,16 +14,12 @@ apt update
 apt upgrade -y
 
 
-# Making .config and Moving config files and background to Pictures
+# Making and Moving background to Pictures
 cd $builddir
-mkdir -p /home/$username/.config
-mkdir -p /home/$username/.fonts
 mkdir -p /home/$username/Pictures
 mkdir -p /home/$username/Pictures/backgrounds
 cp -R dotconfig/* /home/$username/.config/
 cp bg.jpg /home/$username/Pictures/backgrounds/
-mv user-dirs.dirs /home/$username/.config
-chown -R $username:$username /home/$username
 
 
 # Install nala
