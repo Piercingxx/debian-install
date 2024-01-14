@@ -12,9 +12,6 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 
-# Update packages list and update system
-apt update
-apt upgrade -y
 
 # Option to choose testing or stable
 PS3='Install Stable or Testing Branch?: '
@@ -44,6 +41,8 @@ deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | 
         esac
     done
 
+# Update packages list and update system
+apt update && upgrade -y
 
 # Making dir
 cd $builddir
@@ -52,8 +51,7 @@ mkdir -p /var/lib/usbmux/.config
 
 
 # Install Essentials
-apt install nala -y
-nala install wget flatpak gnome-software-plugin-flatpak -y 
+apt install nala wget flatpak gnome-software-plugin-flatpak -y 
 
 
 # Add additional repositories
@@ -61,13 +59,12 @@ flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 dpkg -i cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
-nala update && upgrade -y
+apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
 sudo dpkg --configure -a
-nala install --fix-broken
-apt update
-apt upgrade
+apt install --fix-broken
+apt update && upgrade -y
 flatpak update
 
 
@@ -164,10 +161,6 @@ sudo dpkg --configure -a
 systemctl enable gdm
 systemctl enable gdm3
 systemctl set-default graphical.target
-apt update && upgrade -y
-flatpak update -y
-flatpak upgrade -y
-apt autoremove -y
 
 
 # Installing other less important but still important Programs and drivers
@@ -218,6 +211,10 @@ rm ./FiraCode.zip ./Meslo.zip
 # Use nala
 bash scripts/usenala
 
+apt update && upgrade -y
+flatpak update -y
+flatpak upgrade -y
+apt autoremove -y
 
 # Is this a Microsoft Surface Device?
 PS3='Is this A Microsoft Surface Device?: '
@@ -247,13 +244,10 @@ select fav in "${isSurface[@]}"; do
 done
 
 
-apt update
-apt upgrade -y
+apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
 sudo dpkg --configure -a
-apt update
-apt upgrade
 flatpak update
 apt autoremove
 sudo reboot
