@@ -1,7 +1,7 @@
 # Debian-install
 This script will automate the install of all the GUI stuff needed in Debian 12. All the drivers/fonts/apps that I use on my Daily Driver and my laptop & tablet (both Surface devices).
 
-Still a Beta, one day I'll polish it, still need to add the Gnome extensions and figure out a way to automate Devinci Resolve Studio.
+Still a Beta, one day I'll polish it, still need to add the Gnome extensions I use and figure out a way to automate Devinci Resolve Studio install.
 
 
 
