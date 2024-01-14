@@ -18,6 +18,7 @@ apt upgrade -y
 cd $builddir
 mkdir -p /home/$username/.fonts
 mkdir -p /var/lib/usbmux/.config
+mkdir -p /var/run/nvpd/.config
 
 
 # Install Essential Programs part 1of2
@@ -46,9 +47,9 @@ nala update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
 sudo dpkg --configure -a
+nala install --fix-broken
 apt update
 apt upgrade
-nala install --fix-broken
 flatpak update
 
 
@@ -153,22 +154,21 @@ flatpak upgrade -y
 apt autoremove -y
 
 # Installing other less important but still important Programs and drivers
-nala install tilix -y --install-suggests
+nala install tilix -y
 nala install gh -y
 nala install build-essential -y
 nala install lua5.4 -y
 nala install neofetch -y
 nala install neovim -y
 nala install nvidia-driver -y
-nala install nvidia-opencl-icd -y
-nala install cuda-toolkit-12-3 cuda-drivers -y --install-suggests
+nala install cuda-toolkit-12-3 cuda-drivers -y
 nala install blender -y
-nala install freecad  -y --install-suggests
-nala install inkscape  -y --install-suggests
-nala install gparted  -y --install-suggests
-nala install scribus  -y --install-suggests
-nala install librecad  -y --install-suggests
-nala install gnome-tweaks  -y --install-suggests
+nala install freecad  -y
+nala install inkscape  -y
+nala install gparted  -y
+nala install scribus  -y
+nala install librecad  -y
+nala install gnome-tweaks  -y
 nala install htop -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
