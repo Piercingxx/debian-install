@@ -2,7 +2,7 @@
 
 # Check if Script is Run as Root
 if [[ $EUID -ne 0 ]]; then
-  echo "You must be a root user to run this script, please run sudo ./install.sh" 2>&1
+  echo "You must be a root user to run this script, please run sudo su then try again" 2>&1
   exit 1
 fi
 
@@ -14,15 +14,13 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
-# Install software to get started
-apt install nala wget unzip flatpak gnome-software-plugin-flatpak dpkg -y
+# Install Essential Programs
+apt install nala -y
+nala install gnome-core network-manager-gnome wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
 
-# Making dir
-cd $builddir
-mkdir -p /home/$username/.fonts
-
-
-
+# Enable graphical login and change target from CLI to GUI
+systemctl enable gdm3
+systemctl set-default graphical.target
 
 # Add additional repositories
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -31,7 +29,7 @@ dpkg -i cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 
 
-# Ensure all repositories are up to date
+# Esure all repositories are up to date
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
 deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
 deb https://deb.debian.org/debian/ stable-updates main contrib non-free
@@ -43,31 +41,23 @@ deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | s
 apt update
 apt upgrade -y
 apt full-upgrade -y
-add-apt-repository contrib
-apt update
-
-# Installing Essential Programs 
-nala install gnome-core network-manager-gnome gdm3 -y 
-
 
 # Installing Other less important Programs
-nala install nautilus tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms gnome-tweaks htop nvtop -y
-flatpak install flathub com.visualstudio.code -y --assume-yes
-flatpak install flathub md.obsidian.Obsidian -y --assume-yes
-flatpak install flathub com.synology.SynologyDrive -y --assume-yes
-flatpak install flathub com.valvesoftware.Steam -y --assume-yes
-flatpak install flathub com.discordapp.Discord -y --assume-yes
-flatpak install flathub com.obsproject.Studio -y --assume-yes
-flatpak install flathub com.mattjakeman.ExtensionManager -y --assume-yes
-flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y --assume-yes
-flatpak run org.gimp.GIMP//beta -y --assume-yes
+nala install tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers gnome-tweaks htop nvtop -y 
+flatpak install flathub com.visualstudio.code -y
+flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub com.synology.SynologyDrive -y
+flatpak install flathub com.valvesoftware.Steam -y
+flatpak install flathub com.discordapp.Discord -y
+flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 # the only app that I use and can not install via script is Davinci Resolve Studio
 
+# Making dir
+cd $builddir
+mkdir -p /home/$username/.fonts
 
-# Enable graphical login and change target from CLI to GUI
-systemctl enable gdm3
-systemctl set-default graphical.target
-    
 # Installing fonts
 cd $builddir 
 nala install fonts-font-awesome fonts-noto-color-emoji -y
@@ -83,21 +73,22 @@ fc-cache -vf
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
 
-
-# Gnome-extensions 
-wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
-gnome-extensions install aztaskbar-main.zip
-wget https://codeload.github.com/ubuntu/gnome-shell-extension-appindicator/zip/refs/heads/master
-gnome-extensions install gnome-shell-extension-appindicator
-wget https://codeload.github.com/velitasali/gnome-shell-extension-awesome-tiles/zip/refs/heads/main
-gnome-extensions install gnome-shell-extension-awesome-tiles
-https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
-gnome-extensions install blur-my-shell
-wget https://codeload.github.com/Schneegans/Burn-My-Windows/zip/refs/heads/main
-gnome-extensions install Burn-My-Windows
-wget https://codeload.github.com/corecoding/Vitals/zip/refs/heads/main
-gnome-extensions install Vitals
-
+apt update
+apt upgrade
+apt autoremove
 
 # Use nala
 bash scripts/usenala
+
+
+
+
+
+# To switch from legacy to open nvidia drivers:
+# sudo apt-get --purge remove nvidia-kernel-dkms
+# sudo apt-get install --verbose-versions nvidia-kernel-open-dkms
+# sudo apt-get install --verbose-versions cuda-drivers-XXX
+
+# To switch from open to legacy nvidia drivers:
+# sudo apt-get remove --purge nvidia-kernel-open-dkms
+# sudo apt-get install --verbose-versions cuda-drivers-XXX
