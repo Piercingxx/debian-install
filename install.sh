@@ -238,7 +238,8 @@ select fav in "${isSurface[@]}"; do
         apt update
         apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
         apt install linux-surface-secureboot-mok
-        update-grub            
+        update-grub
+	    exit
             ;;
 	"No")
 	    echo "Not A Surface Device"
