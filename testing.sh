@@ -14,13 +14,21 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
-# Install Essential Programs
+# Making dir
+cd $builddir
+mkdir -p /home/$username/.fonts
+mkdir -p /var/lib/usbmux/.config
+
+
+# Install Essential Programs part 1of2
 apt install nala -y
-nala install gnome-core network-manager-gnome wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
+nala install gnome-core -y
 
 
 
 # Enable graphical login and change target from CLI to GUI
+
+# First admend the .gdm3 to add Intall section
 sudo rm /lib/systemd/system/gdm3.service && sudo touch /lib/systemd/system/gdm3.service && sudo chmod +rwx /lib/systemd/system/gdm3.service && sudo printf "[Unit]
 Description=GNOME Display Manager
 
@@ -58,10 +66,58 @@ KeyringMode=shared
 [Install]
 WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm3.service
 
+
+# And then the .gdm to add Intall section
+sudo rm /lib/systemd/system/gdm.service && sudo touch /lib/systemd/system/gdm.service && sudo chmod +rwx /lib/systemd/system/gdm.service && sudo printf "[Unit]
+Description=GNOME Display Manager
+
+# replaces the getty
+Conflicts=getty@tty1.service
+After=getty@tty1.service
+
+# replaces plymouth-quit since it quits plymouth on its own
+Conflicts=plymouth-quit.service
+After=plymouth-quit.service
+
+# Needs all the dependencies of the services it's replacing
+# pulled from getty@.service and plymouth-quit.service
+# (except for plymouth-quit-wait.service since it waits until
+# plymouth is quit, which we do)
+After=rc-local.service plymouth-start.service systemd-user-sessions.service
+
+# GDM takes responsibility for stopping plymouth, so if it fails
+# for any reason, make sure plymouth still stops
+OnFailure=plymouth-quit.service
+
+[Service]
+ExecStartPre=/usr/share/gdm/generate-config
+ExecStart=/usr/sbin/gdm3
+KillMode=mixed
+Restart=always
+RestartSec=1s
+IgnoreSIGPIPE=no
+BusName=org.gnome.DisplayManager
+EnvironmentFile=-/etc/default/locale
+ExecReload=/usr/share/gdm/generate-config
+ExecReload=/bin/kill -SIGHUP $MAINPID
+KeyringMode=shared
+
+[Install]
+WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
+
+
+
+# Actually enabling the admends just made
+
+systemctl enable gdm
 systemctl enable gdm3
 systemctl set-default graphical.target
 
+apt update
+apt upgrade -y
 
+# adding more essentials part 2of2
+nala install wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
 
 # Add additional repositories
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -72,19 +128,27 @@ cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 
 # Esure all repositories are up to date
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
-deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
-deb https://deb.debian.org/debian/ stable-updates main contrib non-free
-deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
-deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
-deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
+deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
+deb https://deb.debian.org/debian/ testing-updates main contrib non-free
+deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
+deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
+deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
 
 apt update
 apt upgrade -y
 apt full-upgrade -y
+sudo apt install -f
+sudo dpkg --configure -a
+apt update
+apt upgrade --fix-broken
+flatpak update
 
-# Installing Other less important Programs
-nala install tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers gnome-tweaks htop nvtop -y 
+
+# Installing other less important but still important Programs y drivers
+nala install tilix gh pulseaudio pavucontrol build-essential -y --fix-broken
+nala install lua5.4 libxinerama-dev neofetch neovim nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers -y --fix-broken
+nala install blender freecad inkscape gparted scribus librecad gnome-tweaks htop nvtop -y --fix-broken
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
@@ -95,9 +159,6 @@ flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 # the only app that I use and can not install via script is Davinci Resolve Studio
 
-# Making dir
-cd $builddir
-mkdir -p /home/$username/.fonts
 
 # Installing fonts
 cd $builddir 
@@ -115,7 +176,13 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 apt update
-apt upgrade
+apt upgrade -y
+apt full-upgrade -y
+sudo apt install -f
+sudo dpkg --configure -a
+apt update
+apt upgrade --fix-broken
+flatpak update
 apt autoremove
 
 # Use nala
