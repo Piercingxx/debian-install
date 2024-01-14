@@ -27,6 +27,7 @@ deb https://deb.debian.org/debian/ stable-updates main contrib non-free
 deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
 deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
+                exit
                 ;;
             "Testing")
             echo "Changing to Testing branch repositories"
@@ -34,8 +35,8 @@ sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod 
 deb https://deb.debian.org/debian/ testing-updates main contrib non-free
 deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
-deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free"
-sudo tee -a /etc/apt/sources.list
+deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
+                exit
                 ;;
             *) echo "invalid option $REPLY";;
         esac
