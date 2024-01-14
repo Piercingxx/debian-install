@@ -7,24 +7,17 @@ This script will install Gnome-core and the apps I use as well as drivers and fo
 ### To install:
 
 ```
-sudo apt update
-
-sudo apt install git -y
+sudo apt update && install git -y
 
 git clone https://github.com/Piercing666/debian-install
 
 cd debian-install
 
-chmod u+x stable.sh
-
-chmod u+x testing.sh
+chmod u+x ***.sh
 
 sudo su
 
-./stable.sh
-or
-./testing.sh
+./***.sh
 
 
-```
 
