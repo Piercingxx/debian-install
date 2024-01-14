@@ -30,7 +30,8 @@ deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | s
                 ;;
             "2:Testing")
             echo "Changing to Testing branch repositories"
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
+deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
 deb https://deb.debian.org/debian/ testing-updates main contrib non-free
 deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
@@ -51,7 +52,7 @@ mkdir -p /var/lib/usbmux/.config
 
 
 # Install Essentials
-apt install nala wget flatpak gnome-software-plugin-flatpak -y 
+apt install nala wget flatpak gnome-software-plugin-flatpak nala nvidia-driver nvidia-opencl-icd -y
 
 
 # Add additional repositories
@@ -70,8 +71,7 @@ apt update && upgrade -y
 flatpak update
 
 
-nala install nvidia-driver -y 
-nala install nvidia-opencl-icd -y
+
 nala install gnome-core -y
 
 
