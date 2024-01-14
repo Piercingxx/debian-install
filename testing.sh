@@ -14,9 +14,15 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
-# Install Essential Programs
+# Making dir
+cd $builddir
+mkdir -p /home/$username/.fonts
+mkdir -p /var/lib/usbmux/.config
+
+
+# Install Essential Programs part 1of2
 apt install nala -y
-nala install gnome-core network-manager-gnome wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
+nala install gnome-core network-manager-gnome -y
 
 
 
@@ -61,7 +67,8 @@ WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm3.service
 systemctl enable gdm3
 systemctl set-default graphical.target
 
-
+# adding more essentials part 2of2
+nala install wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
 
 # Add additional repositories
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -82,9 +89,16 @@ deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | 
 apt update
 apt upgrade -y
 apt full-upgrade -y
+sudo apt install -f
+sudo dpkg --configure -a
+apt update
+apt upgrade --fix-broken
+flatpak update
 
-# Installing Other less important Programs
-nala install tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers gnome-tweaks htop nvtop -y 
+# Installing other less important but still important Programs y drivers
+nala install tilix gh pulseaudio pavucontrol build-essential -y --fix-broken
+nala install lua5.4 libxinerama-dev neofetch neovim nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers -y --fix-broken
+nala install blender freecad inkscape gparted scribus librecad gnome-tweaks htop nvtop -y --fix-broken
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
@@ -95,9 +109,6 @@ flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 # the only app that I use and can not install via script is Davinci Resolve Studio
 
-# Making dir
-cd $builddir
-mkdir -p /home/$username/.fonts
 
 # Installing fonts
 cd $builddir 
@@ -115,21 +126,14 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 apt update
-apt upgrade
+apt upgrade -y
+apt full-upgrade -y
+sudo apt install -f
+sudo dpkg --configure -a
+apt update
+apt upgrade --fix-broken
+flatpak update
 apt autoremove
 
 # Use nala
 bash scripts/usenala
-
-
-
-
-
-# To switch from legacy to open nvidia drivers:
-# sudo apt-get --purge remove nvidia-kernel-dkms
-# sudo apt-get install --verbose-versions nvidia-kernel-open-dkms
-# sudo apt-get install --verbose-versions cuda-drivers-XXX
-
-# To switch from open to legacy nvidia drivers:
-# sudo apt-get remove --purge nvidia-kernel-open-dkms
-# sudo apt-get install --verbose-versions cuda-drivers-XXX
