@@ -3,6 +3,9 @@ Install as a headless system, no DE at all.
 Install your GRUB though.
 
 This script will install Gnome-core and the apps I use as well as drivers and fonts, no bloat. 
+
+### Notes:
+There are a couple sections that will ask questions, one at the beginning to choose Stable or Testing branches. Another at the end to apply necessary drivers and kernal update if you're installing on a Microsoft Surface Device.
  
 ### To install:
 
@@ -19,7 +22,5 @@ cd debian-install
 
 chmod u+x ***.sh
 
-./***.sh
-
-
-
+./install.sh
+'''
