@@ -59,6 +59,8 @@ flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 dpkg -i cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
+add-apt-repository contrib
+
 apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
@@ -68,7 +70,10 @@ apt update && upgrade -y
 flatpak update
 
 
+nala install nvidia-driver -y 
+nala install nvidia-opencl-icd -y
 nala install gnome-core -y
+
 
 
 # Enable graphical login and change target from CLI to GUI
@@ -110,6 +115,7 @@ KeyringMode=shared
 
 [Install]
 WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm3.service
+
 
 
 # And then the .gdm to add Intall section
@@ -157,29 +163,21 @@ sudo apt install -f
 sudo dpkg --configure -a
 
 
-# Actually enabling the admends just made
-systemctl enable gdm
-systemctl enable gdm3
-systemctl set-default graphical.target
-
-
 # Installing other less important but still important Programs and drivers
 nala install tilix -y
-nala install gh -y
 nala install build-essential -y
 nala install lua5.4 -y
 nala install neofetch -y
 nala install neovim -y
-nala install nvidia-driver -y
-nala install cuda-toolkit-12-3 cuda-drivers -y
-nala install blender -y
-nala install freecad  -y
-nala install inkscape  -y
-nala install gparted  -y
-nala install scribus  -y
-nala install librecad  -y
-nala install gnome-tweaks  -y
+nala install gparted -y
+nala install gnome-tweaks -y
 nala install htop -y
+flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+flatpak install flathub net.scribus.Scribus -y
+flatpak install flathub org.freecadweb.FreeCAD -y
+flatpak install flathub org.blender.Blender -y
+flatpak install flathub org.librecad.librecad -y
+flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
@@ -187,8 +185,12 @@ flatpak install flathub com.valvesoftware.Steam -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
-flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 nala install nvtop -y 
+nala install gh -y
+nala install cuda-toolkit-12-3 cuda-drivers -y
+nala install -y nvidia-kernel-open-dkms -y
+apt update && upgrade -y
+flatpak update -y
 
 
 # Installing fonts
@@ -208,12 +210,26 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 
+
+# Finalizing graphical login
+systemctl enable gdm
+systemctl enable gdm3
+# Assign correct video driver
+sudo rm /etc/modprobe.d/blacklist-nouveau.conf && sudo touch /etc/modprobe.d/blacklist-nouveau.conf && sudo chmod +rwx /etc/modprobe.d/blacklist-nouveau.conf && sudo printf "# You need to run "update-initramfs -u" after editing this file.
+
+# see #580894
+blacklist nouveau
+options nouveau modeset=0" | sudo tee -a /etc/modprobe.d/blacklist-nouveau.conf
+update-initramfs -u
+systemctl set-default graphical.target
+
+
+
 # Use nala
 bash scripts/usenala
 
 apt update && upgrade -y
 flatpak update -y
-flatpak upgrade -y
 apt autoremove -y
 
 # Is this a Microsoft Surface Device?
@@ -242,6 +258,7 @@ select fav in "${isSurface[@]}"; do
         *) echo "invalid option $REPLY";;
     esac
 done
+
 
 
 apt update && upgrade -y
