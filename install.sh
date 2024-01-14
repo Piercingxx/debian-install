@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # https://github.com/Piercing666
+# multiple nvidia drivers will be installed and can be switched between 
 
 # Check if Script is Run as Root
 if [[ $EUID -ne 0 ]]; then
@@ -60,7 +61,7 @@ flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 dpkg -i cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
-add-apt-repository contrib
+add-apt-repository contrib -y
 
 apt update && upgrade -y
 apt full-upgrade -y
