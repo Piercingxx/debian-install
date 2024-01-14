@@ -14,15 +14,9 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
-# Making dir
-cd $builddir
-mkdir -p /home/$username/.fonts
-mkdir -p /var/lib/usbmux/.config
-
-
-# Install Essential Programs part 1of2
+# Install Essential Programs
 apt install nala -y
-nala install gnome-core network-manager-gnome -y
+nala install gnome-core network-manager-gnome wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
 
 
 
@@ -67,8 +61,7 @@ WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm3.service
 systemctl enable gdm3
 systemctl set-default graphical.target
 
-# adding more essentials part 2of2
-nala install wget dpkg unzip flatpak gnome-software-plugin-flatpak -y 
+
 
 # Add additional repositories
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -79,26 +72,19 @@ cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 
 # Esure all repositories are up to date
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
-deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
-deb https://deb.debian.org/debian/ testing-updates main contrib non-free
-deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
-deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
-deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
+deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
+deb https://deb.debian.org/debian/ stable-updates main contrib non-free
+deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
+deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
+deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
 
 apt update
 apt upgrade -y
 apt full-upgrade -y
-sudo apt install -f
-sudo dpkg --configure -a
-apt update
-apt upgrade --fix-broken
-flatpak update
 
-# Installing other less important but still important Programs y drivers
-nala install tilix gh pulseaudio pavucontrol build-essential -y --fix-broken
-nala install lua5.4 libxinerama-dev neofetch neovim nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers -y --fix-broken
-nala install blender freecad inkscape gparted scribus librecad gnome-tweaks htop nvtop -y --fix-broken
+# Installing Other less important Programs
+nala install tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers gnome-tweaks htop nvtop -y 
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
@@ -109,6 +95,9 @@ flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 # the only app that I use and can not install via script is Davinci Resolve Studio
 
+# Making dir
+cd $builddir
+mkdir -p /home/$username/.fonts
 
 # Installing fonts
 cd $builddir 
@@ -126,13 +115,7 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 apt update
-apt upgrade -y
-apt full-upgrade -y
-sudo apt install -f
-sudo dpkg --configure -a
-apt update
-apt upgrade --fix-broken
-flatpak update
+apt upgrade
 apt autoremove
 
 # Use nala
