@@ -173,7 +173,8 @@ nala install neovim -y
 nala install gparted -y
 nala install gnome-tweaks -y
 nala install htop -y
-flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+apt update && upgrade -y
+flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
@@ -187,8 +188,10 @@ flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 nala install nvtop -y 
+apt update && upgrade -y
 nala install gh -y
 nala install cuda-toolkit-12-3 cuda-drivers -y
+apt update && upgrade -y
 nala install -y nvidia-kernel-open-dkms -y
 apt update && upgrade -y
 flatpak update -y
@@ -231,7 +234,6 @@ bash scripts/usenala
 
 apt update && upgrade -y
 flatpak update -y
-apt autoremove -y
 
 # Is this a Microsoft Surface Device?
 PS3='Is this A Microsoft Surface Device?: '
@@ -267,5 +269,4 @@ apt full-upgrade -y
 sudo apt install -f
 sudo dpkg --configure -a
 flatpak update
-apt autoremove
 sudo reboot
