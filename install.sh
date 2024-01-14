@@ -51,7 +51,7 @@ mkdir -p /home/$username/.fonts
 mkdir -p /var/lib/usbmux/.config
 
 
-# Install Essential Programs part 1of2
+# Install Essentials
 apt install nala -y
 nala install wget flatpak gnome-software-plugin-flatpak -y 
 
@@ -196,7 +196,6 @@ flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 nala install nvtop -y 
-# the only app that I use and can not install via script is Davinci Resolve Studio
 
 
 # Installing fonts
