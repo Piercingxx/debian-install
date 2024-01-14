@@ -16,10 +16,10 @@ apt upgrade -y
 
 # Option to choose testing or stable
 PS3='Install Stable or Testing Branch?: '
-branch=("Stable" "Testing")
+branch=("1:Stable" "2:Testing")
     select fav in "${branch[@]}"; do
         case $fav in
-            "Stable")
+            "1:Stable")
                 echo "Applying Stable branch repositories"
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
 deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
@@ -27,16 +27,16 @@ deb https://deb.debian.org/debian/ stable-updates main contrib non-free
 deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
 deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
-                exit
+                break
                 ;;
-            "Testing")
+            "2:Testing")
             echo "Changing to Testing branch repositories"
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
 deb https://deb.debian.org/debian/ testing-updates main contrib non-free
 deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
 deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
 deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
-                exit
+                break
                 ;;
             *) echo "invalid option $REPLY";;
         esac
@@ -162,12 +162,11 @@ sudo dpkg --configure -a
 systemctl enable gdm
 systemctl enable gdm3
 systemctl set-default graphical.target
-
-
 apt update && upgrade -y
 flatpak update -y
 flatpak upgrade -y
 apt autoremove -y
+
 
 # Installing other less important but still important Programs and drivers
 nala install tilix -y
@@ -198,7 +197,6 @@ nala install nvtop -y
 # the only app that I use and can not install via script is Davinci Resolve Studio
 
 
-
 # Installing fonts
 cd $builddir 
 nala install fonts-font-awesome fonts-noto-color-emoji -y
@@ -210,7 +208,6 @@ mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 chown $username:$username /home/$username/.fonts/*
 
 
-
 # Reloading Font
 fc-cache -vf
 # Removing zip Files
@@ -219,7 +216,6 @@ rm ./FiraCode.zip ./Meslo.zip
 
 # Use nala
 bash scripts/usenala
-
 
 
 # Is this a Microsoft Surface Device?
@@ -239,11 +235,11 @@ select fav in "${isSurface[@]}"; do
         apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
         apt install linux-surface-secureboot-mok
         update-grub
-	    exit
+	    break
             ;;
 	"No")
 	    echo "Not A Surface Device"
-	    exit
+	    break
 	    ;;
         *) echo "invalid option $REPLY";;
     esac
