@@ -1,5 +1,5 @@
 # Debian-install
-Install as a headless system, no DE at all
+Install as a headless system, no DE at all.
 Install your GRUB though.
 
 This script will install Gnome-core and the apps I use as well as drivers and fonts, no bloat. 
