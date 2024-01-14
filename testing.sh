@@ -14,13 +14,12 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
-# Install software to get started
-apt install nala wget unzip flatpak gnome-software-plugin-flatpak dpkg -y
+# Install Essential Programs
+apt install nala wget unzip flatpak gnome-software-plugin-flatpak dpkg gnome-core network-manager-gnome gdm3 -y 
 
-# Making dir
-cd $builddir
-mkdir -p /home/$username/.fonts
-
+# Enable graphical login and change target from CLI to GUI
+systemctl enable gdm3
+systemctl set-default graphical.target
 
 # Add additional repositories
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -41,12 +40,6 @@ deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | 
 apt update
 apt upgrade -y
 apt full-upgrade -y
-add-apt-repository contrib
-apt update
-
-# Installing Essential Programs 
-nala install gnome-core network-manager-gnome gdm3 -y 
-
 
 # Installing Other less important Programs
 nala install nautilus tilix gh pulseaudio pavucontrol build-essential lua5.4 libxinerama-dev neofetch neovim blender freecad inkscape gparted scribus librecad nvidia-driver nvidia-opencl-icd cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms gnome-tweaks htop nvtop -y 
@@ -61,11 +54,10 @@ flatpak install --user https://flathub.org/beta-repo/appstream/org.gimp.GIMP.fla
 flatpak run org.gimp.GIMP//beta -y --assume-yes
 # the only app that I use and can not install via script is Davinci Resolve Studio
 
+# Making dir
+cd $builddir
+mkdir -p /home/$username/.fonts
 
-# Enable graphical login and change target from CLI to GUI
-systemctl enable gdm3
-systemctl set-default graphical.target
-    
 # Installing fonts
 cd $builddir 
 nala install fonts-font-awesome fonts-noto-color-emoji -y
@@ -80,9 +72,6 @@ chown $username:$username /home/$username/.fonts/*
 fc-cache -vf
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
-
-
-
 
 # Use nala
 bash scripts/usenala
