@@ -20,7 +20,7 @@ git clone https://github.com/Piercing666/debian-install
 
 cd debian-install
 
-chmod u+x ***.sh
+chmod u+x install.sh
 
 ./install.sh
 '''
