@@ -34,12 +34,11 @@ cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 
 
 # Esure all repositories are up to date
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
-deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
-deb https://deb.debian.org/debian/ stable-updates main contrib non-free
-deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
-deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
-deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
+deb https://deb.debian.org/debian/ testing-updates main contrib non-free
+deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
+deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
+deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
 
 
 nala update && upgrade -y
