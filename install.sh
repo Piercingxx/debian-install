@@ -14,17 +14,43 @@ builddir=$(pwd)
 apt update
 apt upgrade -y
 
+# Option to choose testing or stable
+PS3='Install Stable or Testing Branch?: '
+branch=("Stable" "Testing")
+    select fav in "${branch[@]}"; do
+        case $fav in
+            "Stable")
+                echo "Applying Stable branch repositories"
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
+deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
+deb https://deb.debian.org/debian/ stable-updates main contrib non-free
+deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
+deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
+deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
+                ;;
+            "Testing")
+            echo "Changing to Testing branch repositories"
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb http://security.debian.org/debian-security testing-security/updates main contrib non-free
+deb https://deb.debian.org/debian/ testing-updates main contrib non-free
+deb https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main
+deb-src https://deb.debian.org/debian/ testing contrib non-free non-free-firmware main 
+deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free"
+sudo tee -a /etc/apt/sources.list
+                ;;
+            *) echo "invalid option $REPLY";;
+        esac
+    done
+
+
 # Making dir
 cd $builddir
 mkdir -p /home/$username/.fonts
 mkdir -p /var/lib/usbmux/.config
-mkdir -p /var/run/nvpd/.config
 
 
 # Install Essential Programs part 1of2
-apt install nala 
+apt install nala -y
 nala install wget flatpak gnome-software-plugin-flatpak -y 
-
 
 
 # Add additional repositories
@@ -32,17 +58,6 @@ flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 dpkg -i cuda-repo-debian12-12-3-local_12.3.2-545.23.08-1_amd64.deb
 cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
-
-
-# Esure all repositories are up to date
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ buster main contrib non-free
-deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
-deb https://deb.debian.org/debian/ stable-updates main contrib non-free
-deb https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main
-deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
-deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
-
-
 nala update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
@@ -201,6 +216,37 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 
+# Use nala
+bash scripts/usenala
+
+
+
+# Is this a Microsoft Surface Device?
+PS3='Is this A Microsoft Surface Device?: '
+isSurface=("Yes" "No")
+select fav in "${isSurface[@]}"; do
+    case $fav in
+        "Yes")
+            echo "Installing Surface Stuffs!"
+	    apt update && upgrade -y
+        wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc
+        gpg --dearmor 
+        dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
+        echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main"
+	    tee /etc/apt/sources.list.d/linux-surface.list
+        apt update
+        apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
+        apt install linux-surface-secureboot-mok
+        update-grub            
+            ;;
+	"No")
+	    echo "Not A Surface Device"
+	    exit
+	    ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
 
 apt update
 apt upgrade -y
@@ -211,10 +257,4 @@ apt update
 apt upgrade
 flatpak update
 apt autoremove
-
-
-
-# Use nala
-bash scripts/usenala
-
 sudo reboot
