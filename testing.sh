@@ -218,4 +218,4 @@ apt autoremove
 # Use nala
 bash scripts/usenala
 
-apt reboot
+sudo reboot
