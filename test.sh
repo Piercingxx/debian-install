@@ -149,6 +149,7 @@ flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.librecad.librecad -y
 flatpak install flathub org.inkscape.Inkscape -y
+flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
