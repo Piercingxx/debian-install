@@ -17,7 +17,7 @@ deb http://security.debian.org/debian-security stable-security/updates main cont
 deb https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
 deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
 
-flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 
 
 # Update packages list and update system
@@ -32,7 +32,7 @@ mkdir -p /var/lib/usbmux/.config
 # Install Essentials
 apt install nala wget flatpak gnome-software-plugin-flatpak -y
 
-
+flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
