@@ -31,6 +31,6 @@ git clone https://github.com/Piercing666/debian-install
 
 cd debian-install
 
-chmod u+x install.sh
+chmod u+x 1.sh
 
-./install.sh
+./1.sh
