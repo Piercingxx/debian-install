@@ -12,12 +12,6 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
-deb http://security.debian.org/debian-security stable-security/updates main contrib non-free
-deb https://deb.debian.org/debian/ stable-updates main contrib non-free
-deb-src https://deb.debian.org/debian/ stable contrib non-free non-free-firmware main 
-deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free" | sudo tee -a /etc/apt/sources.list
-
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 
@@ -39,11 +33,7 @@ apt install nala linux-headers-amd64 nvidia-driver firmware-misc-nonfree nvidia-
 apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
-sudo dpkg --configure -a
-apt install --fix-broken
-apt update && upgrade -y
 flatpak update
-
 
 
 nala install gnome-core -y
