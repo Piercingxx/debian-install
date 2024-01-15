@@ -20,7 +20,7 @@ Still a Beta, one day I'll polish it and compile into a single script.
   
 - "testing.sh" will change your Source.list to test branch.
   
-- If you come across any install errors, let me know. 
+- These scrips must be ran in order, any deviation will break you system. If you come across any install errors, let me know. 
 
 ### Credits:
 - The "usenala" script is from https://github.com/ChrisTitusTech/Debian-titus
