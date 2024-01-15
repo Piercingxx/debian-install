@@ -1,17 +1,15 @@
 # Debian-install
-This script will automate the install of all the GUI stuff needed in Debian 12. All the drivers/fonts/apps that I use on my Daily Driver and my laptop & tablet (both Surface devices).
+This script will automate the install of all the GUI stuff needed in Debian 12. All the drivers/fonts/apps that I use on my Daily Driver.
 
-Still a Beta, one day I'll polish it, still need to add the Gnome extensions I use and figure out a way to automate Devinci Resolve Studio install.
-
+Still a Beta, one day I'll polish it and compile into a single script. 
 
 
 ### Notes:
 - I recommend an up-to-date copy of the netinst.iso from their website: https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso
 - Install Debian as a headless system, no DE at all.
 - Do install the GRUB.
-- Reboot onto terminal and follow the To install instructions
-- The script will update your Sources.list Repositories to either Stable or Testing. The stable branch still reaches back to Buster for cuda drivers.
-- There are a couple sections that will ask questions, one at the beginning to choose Stable or Testing branches. Another at the end to apply necessary drivers and kernal update if you're installing on a Microsoft Surface Device.
+- Reboot into terminal and follow the To install instructions
+- The script will update your Sources.list 
 - If you come across any install errors, let me know. 
 
 ### Credits:
