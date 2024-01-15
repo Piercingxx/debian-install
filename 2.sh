@@ -37,8 +37,7 @@ flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 nala install nvtop -y 
-
-
+nala install gh -y
 apt update && upgrade -y
 flatpak update -y
 
@@ -59,16 +58,6 @@ chown $username:$username /home/$username/.fonts/*
 fc-cache -vf
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
-
-
-
-
-
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
-deb http://security.debian.org/debian-security testing-security/updates main contrib non-free non-free-firmware
-deb https://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware
-deb-src https://deb.debian.org/debian/ testing contrib main contrib non-free non-free-firmware 
-deb-src https://deb.debian.org/debian/ testing-updates main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
 
 
 
