@@ -37,11 +37,8 @@ flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 nala install nvtop -y 
-apt update && upgrade -y
-nala install gh -y
-nala install cuda-toolkit-12-3 cuda-drivers -y
-apt update && upgrade -y
-nala install -y nvidia-kernel-open-dkms -y
+
+
 apt update && upgrade -y
 flatpak update -y
 
