@@ -9,7 +9,17 @@ Still a Beta, one day I'll polish it and compile into a single script.
 - Install Debian as a headless system, no DE at all.
 - Do install the GRUB.
 - Reboot into terminal and follow the To install instructions
-- The script will update your Sources.list 
+- 
+- Script "1.sh" to install Gnome-core and a few adjustments.
+  
+- Script "2.sh" will install applications and fonts.
+  
+- Script "3.sh" will install Nvidia drivers.
+  
+- "Surface.sh" will install the necessary drivers to get a Microsoft Surface device running.
+  
+- "testing.sh" will change your Source.list to test branch.
+  
 - If you come across any install errors, let me know. 
 
 ### Credits:
