@@ -12,6 +12,11 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security stable-security/updates main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
+deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
+
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 
@@ -25,9 +30,7 @@ mkdir -p /var/lib/usbmux/.config
 
 
 # Install Essentials
-apt install nala linux-headers-amd64 nvidia-driver firmware-misc-nonfree nvidia-installer-cleanup wget flatpak gnome-software-plugin-flatpak -y
-
-
+apt install nala wget flatpak gnome-software-plugin-flatpak -y
 
 
 apt update && upgrade -y
@@ -37,7 +40,6 @@ flatpak update
 
 
 nala install gnome-core -y
-
 
 
 # Enable graphical login and change target from CLI to GUI
@@ -123,7 +125,7 @@ WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
 # Finalizing graphical login
 systemctl enable gdm
 systemctl enable gdm3 --now
-
+sudo systemctl enable gdm3 --now
 
 nala update && upgrade -y
 apt full-upgrade -y
@@ -183,6 +185,21 @@ rm ./FiraCode.zip ./Meslo.zip
 
 
 
+
+
+
+
+
+# Video card drivers
+# nala install linux-headers-amd64 nvidia-driver firmware-misc-nonfree nvidia-installer-cleanup -y
+
+
+
+
+
+
+
+
 # Use nala
 bash scripts/usenala
 
@@ -193,6 +210,5 @@ sudo apt install -f
 sudo dpkg --configure -a
 
 
-sudo systemctl enable gdm3 --now
 
 sudo reboot
