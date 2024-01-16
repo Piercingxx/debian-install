@@ -16,6 +16,7 @@ builddir=$(pwd)
 # Installing other less important but still important Programs and drivers
 nala install tilix -y
 nala install build-essential -y
+nala install gdebi -y
 nala install lua5.4 -y
 nala install neofetch -y
 nala install neovim -y
@@ -28,11 +29,12 @@ flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.librecad.librecad -y
+flatpak install flathub org.libreoffice.LibreOffice -y
+flatpak install flathub com.google.Chrome
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
-flatpak install flathub com.valvesoftware.Steam -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
@@ -40,6 +42,11 @@ nala install nvtop -y
 nala install gh -y
 apt update && upgrade -y
 flatpak update -y
+# do not install steam via flatpak
+wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
+gdebi steam.deb
+#dependancies for steam on x86, will autoremove later if unneeded 
+nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386
 
 
 
@@ -68,3 +75,7 @@ sudo dpkg --configure -a
 apt install --fix-broken
 apt update && upgrade -y
 flatpak update
+
+
+
+sudo reboot
