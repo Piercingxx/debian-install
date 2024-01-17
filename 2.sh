@@ -43,10 +43,11 @@ nala install nvtop -y
 nala install gh -y
 apt update && upgrade -y
 flatpak update -y
+
 # do not install steam via flatpak
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
 gdebi steam.deb
-#dependancies for steam on x86, will autoremove later if unneeded 
+#dependancies for steam
 nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386
 sudo apt install python3-mako -y
 sudo apt install mangohud -y
