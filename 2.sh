@@ -38,6 +38,7 @@ flatpak install flathub com.synology.SynologyDrive -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub com.leinardi.gwe -y
 nala install nvtop -y 
 nala install gh -y
 apt update && upgrade -y
@@ -47,6 +48,8 @@ wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
 gdebi steam.deb
 #dependancies for steam on x86, will autoremove later if unneeded 
 nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386
+sudo apt install python3-mako -y
+sudo apt install mangohud -y
 
 
 
@@ -79,3 +82,6 @@ flatpak update
 
 
 sudo reboot
+
+
+
