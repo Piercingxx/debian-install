@@ -11,7 +11,8 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-
+# powermode to performance
+echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor performance
 
 # Installing other less important but still important Programs and drivers
 nala install tilix -y
@@ -30,7 +31,7 @@ flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.librecad.librecad -y
 flatpak install flathub org.libreoffice.LibreOffice -y
-flatpak install flathub com.google.Chrome
+flatpak install flathub com.google.Chrome -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
@@ -46,7 +47,7 @@ flatpak update -y
 
 # do not install steam via flatpak
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
-gdebi steam.deb
+gdebi steam.deb -y
 #dependancies for steam
 nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386
 sudo apt install python3-mako -y
@@ -83,6 +84,3 @@ flatpak update
 
 
 sudo reboot
-
-
-
