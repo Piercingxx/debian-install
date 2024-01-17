@@ -44,6 +44,7 @@ nala install nvtop -y
 nala install gh -y
 apt update && upgrade -y
 flatpak update -y
+apt purge firefox -y
 
 # do not install steam via flatpak
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
@@ -78,6 +79,7 @@ apt full-upgrade -y
 sudo apt install -f
 sudo dpkg --configure -a
 apt install --fix-broken
+apt autoremove 
 apt update && upgrade -y
 flatpak update
 
