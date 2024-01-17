@@ -16,7 +16,7 @@ sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod 
 deb http://security.debian.org/debian-security testing-security/updates main non-free-firmware
 deb https://deb.debian.org/debian/ testing-updates main non-free-firmware
 deb-src https://deb.debian.org/debian/ testing main non-free-firmware 
-deb-src https://deb.debian.org/debian/ testing-updates main non-free-firmware
+deb-src https://deb.debian.org/debian/ testing-updates main non-free-firmware" | sudo tee -a /etc/apt/sources.list
 
 
 
