@@ -10,8 +10,10 @@ fi
 
 username=$(id -u -n 1000)
 builddir=$(pwd)
-  
-        
+
+#disable automatic screen brightness
+gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+
 apt update && upgrade -y
 
 wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
@@ -22,10 +24,11 @@ echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
         
 apt update
 
-apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
+apt install linux-image-surface linux-headers-surface libwacom-surface iptsd -y
 
-apt install linux-surface-secureboot-mok
+apt install linux-surface-secureboot-mok -y
 
 update-grub
 
 
+reboot
