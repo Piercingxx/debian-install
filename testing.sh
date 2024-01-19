@@ -17,6 +17,7 @@ deb http://security.debian.org/debian-security testing-security/updates main non
 
 
 
+
 apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
@@ -24,6 +25,6 @@ sudo dpkg --configure -a
 apt install --fix-broken
 apt update && upgrade -y
 flatpak update
-
+apt auto-remove
 
 reboot
