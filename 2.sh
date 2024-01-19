@@ -28,6 +28,7 @@ nala install gnome-mpv -y
 nala install htop -y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
@@ -38,9 +39,9 @@ flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
+flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.leinardi.gwe -y
 nala install nvtop -y 
 nala install gh -y
