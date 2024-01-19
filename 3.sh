@@ -24,12 +24,18 @@ cp /var/cuda-repo-debian12-12-3-local/cuda-*-keyring.gpg /usr/share/keyrings/
 
 apt update && upgrade -y
 
-nala install nvidia-kernel-open-dkms nvidia-driver nvidia-opencl-icd linux-headers-amd64 firmware-misc-nonfree nvidia-installer-cleanup -y
+nala install nvidia-kernel-open-dkms nvidia-driver nvidia-opencl-icd linux-headers-amd64 libnvidia-gl-535 libvulkan1 libvulkan1:i386 libnvidia-gl-535:i386 firmware-misc-nonfree nvidia-installer-cleanup -y
 
-apt update && upgrade -y
+apt update
 
 apt install cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms -y
 
+flatpak install flathub org.freedesktop.Platform.GL.nvidia-545-29-06 -y
 
-apt update && upgrade -y
+apt update && upgrade -y 
+
+
+
+
+
 
