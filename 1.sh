@@ -39,7 +39,7 @@ sudo apt install -f
 flatpak update
 
 
-nala install gnome-core -y
+nala install gnome-shell tilix -y
 
 
 # Enable graphical login and change target from CLI to GUI
