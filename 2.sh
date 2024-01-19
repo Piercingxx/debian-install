@@ -15,11 +15,6 @@ builddir=$(pwd)
 echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor performance
 
 # Installing other less important but still important Programs and drivers
-nala install gnome-control-center -y
-nala install gdm -y
-nala install xdg-user-dirs -y
-nala install networkmanager -y
-nala install gnome-keyring -y
 nala install gnome-calculator -y
 nala install nautilus -y
 nala install build-essential -y
