@@ -12,11 +12,8 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ testing main non-free-firmware
-deb http://security.debian.org/debian-security testing-security/updates main non-free-firmware
-deb https://deb.debian.org/debian/ testing-updates main non-free-firmware
-deb-src https://deb.debian.org/debian/ testing main non-free-firmware 
-deb-src https://deb.debian.org/debian/ testing-updates main non-free-firmware" | sudo tee -a /etc/apt/sources.list
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security testing-security/updates main non-free-firmware" | sudo tee -a /etc/apt/sources.list
 
 
 
