@@ -75,6 +75,11 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 
+# Copy extension files over
+mkdir -p /home/$username/.local/share/gnome-shell/extensions
+cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
+
+
 
 apt update && upgrade -y
 apt full-upgrade -y
