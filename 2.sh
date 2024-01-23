@@ -17,6 +17,7 @@ echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governo
 # Installing other less important but still important Programs and drivers
 nala install gnome-calculator -y
 nala install nautilus -y
+nals install rename -y
 nala install build-essential -y
 nala install gdebi -y
 nala install lua5.4 -y
