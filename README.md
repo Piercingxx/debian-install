@@ -1,7 +1,6 @@
 # Debian-install
-This script will automate the install of all the GUI stuff needed in Debian 12. All the drivers/fonts/apps that I use on my Daily Driver.
-
-Still a Beta, one day I'll polish it and compile into a single script. 
+This script will automate the install of a very vanilla Gnome Core and all the drivers fonts and programs that I use on my Daily Driver/Gaming rig/Tablets.
+This is divided into sections so you can install only what you need.
 
 
 ### Notes:
@@ -20,13 +19,15 @@ Still a Beta, one day I'll polish it and compile into a single script.
   
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface device running (skip if not a Surface).
   
-- "testing.sh" will change your Source.list to test branch.
+- "testing.sh" will change your Source.list to test branch. This is recommended if you are both running brandnew hardware and gameing. 
   
-- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "surface" and "testing" scripts are optional. On brandnew hardware I highly recommend testing. 
+- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "surface" and "testing" scripts are optional.
+
 
 ### Credits:
 - The "usenala" script is from https://github.com/ChrisTitusTech/Debian-titus
 - The surface bits are from: https://github.com/linux-surface/linux-surface/wiki
+
  
 ### To install:
 
