@@ -25,6 +25,6 @@ sudo dpkg --configure -a
 apt install --fix-broken
 apt update && upgrade -y
 flatpak update
-apt auto-remove
+apt auto-remove -y
 
 reboot
