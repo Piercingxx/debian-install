@@ -9,7 +9,9 @@ Still a Beta, one day I'll polish it and compile into a single script.
 - Install Debian as a headless system, no DE at all.
 - Do install the GRUB.
 - Reboot into terminal and follow the To install instructions
-- 
+  
+- If you wish to edit any script before running it simply "sudo nano [file]" to edit it then ctrl+s & ctrl+x
+  
 - Script "1.sh" to install Gnome-core and a few adjustments.
   
 - Script "2.sh" will install applications and fonts.
