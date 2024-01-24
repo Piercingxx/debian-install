@@ -14,6 +14,7 @@ builddir=$(pwd)
 
 apt update && upgrade -y
 
+flatpak install flathub com.leinardi.gwe -y
 
 # Video card drivers
 
@@ -33,9 +34,3 @@ apt install cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms -y
 flatpak install flathub org.freedesktop.Platform.GL.nvidia-545-29-06 -y
 
 apt update && upgrade -y 
-
-
-
-
-
-
