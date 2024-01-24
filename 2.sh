@@ -100,7 +100,4 @@ apt install --fix-broken
 apt autoremove 
 apt update && upgrade -y
 flatpak update
-
-
-
-sudo reboot
+reboot
