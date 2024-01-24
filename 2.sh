@@ -52,6 +52,11 @@ sudo mv betterdiscordctl /usr/local/bin
 sudo betterdiscordctl self-upgrade
 betterdiscordctl --d-install flatpak install
 
+# move Better Discord Theme and Plugins
+mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
+cp -R dotconfig/BetterDiscord/themes/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
+mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
+cp -R dotconfig/BetterDiscord/plugins/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
 
 apt update && upgrade -y
 flatpak update -y
