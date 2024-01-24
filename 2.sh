@@ -29,6 +29,7 @@ nala install gparted -y
 nala install gnome-tweaks -y
 nala install gnome-mpv -y
 nala install btop -y
+nala install gh -y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
@@ -46,7 +47,15 @@ flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.leinardi.gwe -y
-nala install gh -y
+
+# install better discord
+curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
+chmod +x betterdiscordctl
+sudo mv betterdiscordctl /usr/local/bin
+sudo betterdiscordctl self-upgrade
+betterdiscordctl --d-install flatpak install
+
+
 apt update && upgrade -y
 flatpak update -y
 apt purge firefox -y
