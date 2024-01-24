@@ -11,9 +11,6 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-# powermode to performance
-echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor performance
-
 # Installing other less important but still important Programs and drivers
 nala install gnome-calculator -y
 nala install nautilus -y
