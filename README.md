@@ -16,13 +16,13 @@ Still a Beta, one day I'll polish it and compile into a single script.
   
 - Script "2.sh" will install applications and fonts.
   
-- Script "3.sh" will install Nvidia drivers.
+- Script "3.sh" will install Nvidia drivers (of you dont have a Nvidia GPU skip this one).
   
-- "Surface.sh" will install the necessary drivers to get a Microsoft Surface device running.
+- "Surface.sh" will install the necessary drivers to get a Microsoft Surface device running (skip if not a Surface).
   
 - "testing.sh" will change your Source.list to test branch.
   
-- These scrips must be ran in order, any deviation will break you system. The "surface" and "testing" scripts are optional. If you come across any install errors, let me know. 
+- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "surface" and "testing" scripts are optional. On brandnew hardware I highly recommend testing. 
 
 ### Credits:
 - The "usenala" script is from https://github.com/ChrisTitusTech/Debian-titus
@@ -41,6 +41,8 @@ git clone https://github.com/Piercing666/debian-install
 
 cd debian-install
 
-chmod u+x 1.sh
+chmod u+x 1.sh 2.sh 3.sh Surface.sh testing.sh
 
 ./1.sh
+
+then continue from there after each reboot.
