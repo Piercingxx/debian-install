@@ -34,3 +34,5 @@ apt install cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms -y
 flatpak install flathub org.freedesktop.Platform.GL.nvidia-545-29-06 -y
 
 apt update && upgrade -y 
+
+reboot
