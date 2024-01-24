@@ -138,7 +138,4 @@ flatpak update -y
 apt full-upgrade -y
 sudo apt install -f
 sudo dpkg --configure -a
-
-
-
-sudo reboot
+reboot
