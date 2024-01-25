@@ -91,6 +91,13 @@ mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
 
 
+# Cursor 
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+# icons
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+
+
 
 apt update && upgrade -y
 apt full-upgrade -y
