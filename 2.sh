@@ -46,17 +46,17 @@ flatpak install flathub com.obsproject.Studio -y
 
 
 # install better discord
-curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
-chmod +x betterdiscordctl
-sudo mv betterdiscordctl /usr/local/bin
-sudo betterdiscordctl self-upgrade
-betterdiscordctl --d-install flatpak install
+# curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
+# chmod +x betterdiscordctl
+# sudo mv betterdiscordctl /usr/local/bin
+# sudo betterdiscordctl self-upgrade
+# betterdiscordctl --d-install flatpak install
 
 # move Better Discord Theme and Plugins
-mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
-cp -R dotconfig/BetterDiscord/themes/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
-mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
-cp -R dotconfig/BetterDiscord/plugins/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
+# mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
+# cp -R dotconfig/BetterDiscord/themes/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
+# mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
+# cp -R dotconfig/BetterDiscord/plugins/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
 
 apt update && upgrade -y
 flatpak update -y
@@ -92,10 +92,10 @@ cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome
 
 
 # Cursor 
-wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+# wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 
 # icons
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+# gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 
 
