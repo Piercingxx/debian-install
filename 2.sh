@@ -44,19 +44,7 @@ flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 
-
-# install better discord
-# curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
-# chmod +x betterdiscordctl
-# sudo mv betterdiscordctl /usr/local/bin
-# sudo betterdiscordctl self-upgrade
-# betterdiscordctl --d-install flatpak install
-
-# move Better Discord Theme and Plugins
-# mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
-# cp -R dotconfig/BetterDiscord/themes/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/themes
-# mkdir -p /home/$username/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
-# cp -R dotconfig/BetterDiscord/plugins/* /$username/dr3k/.var/app/com.discordapp.Discord/config/BetterDiscord/plugins
+flatpak override com.synology.SynologyDrive --filesystem=host
 
 apt update && upgrade -y
 flatpak update -y
