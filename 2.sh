@@ -43,7 +43,7 @@ flatpak install flathub com.synology.SynologyDrive -y
 flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
-nala install firmware-iwlwifi -y
+nala install firmware-iwlwifi Bluetooth gnome-Bluetooth bluez bluez-tools pulseaudio-module-Bluetooth -y
 flatpak override com.synology.SynologyDrive --filesystem=host
 
 apt update && upgrade -y
