@@ -26,7 +26,9 @@ nala install gparted -y
 nala install gnome-tweaks -y
 nala install gnome-mpv -y
 nala install btop -y
+nals install curl -y
 nala install gh -y
+nala install dh-dkms debscripts-y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
@@ -43,8 +45,7 @@ flatpak install flathub com.synology.SynologyDrive -y
 flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
-nala install firmware-iwlwifi Bluetooth gnome-Bluetooth bluez bluez-tools pulseaudio-module-Bluetooth -y
-flatpak override com.synology.SynologyDrive --filesystem=host
+
 
 apt update && upgrade -y
 flatpak update -y
@@ -52,10 +53,9 @@ apt purge firefox -y
 
 # do not install steam via flatpak
 wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
-gdebi steam.deb -y
+gdebi steam.deb
 #dependancies for steam
-nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386
-
+nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386 lib32z1 libgl1-mesa-dri:i386 libgl1:i386 bumblebee bumblebee-nvidia primus linux-headers-generic -y
 
 # Installing fonts
 cd $builddir 
@@ -74,16 +74,23 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 
 
-# Copy extension files over
+# Extensions - will need to be customized still
 mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
 
 
 # Cursor 
-# wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+# Install Nordzy cursor
+git clone https://github.com/alvatip/Nordzy-cursors
+cd Nordzy-cursors
+./install.sh
+cd $builddir
+rm -rf Nordzy-cursors
 
 # icons
-# gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 
 
