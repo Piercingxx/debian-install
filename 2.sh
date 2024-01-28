@@ -52,10 +52,10 @@ flatpak update -y
 apt purge firefox -y
 
 # do not install steam via flatpak
-wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
-gdebi steam.deb
-#dependancies for steam
-nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 nvidia-driver-libs:i386 steam-libs-amd64 steam-libs-i386 lib32z1 libgl1-mesa-dri:i386 libgl1:i386 bumblebee bumblebee-nvidia primus linux-headers-generic -y
+# wget https://cdn.cloudflare.steamstatic.com/client/installer/steam.deb
+# gdebi steam.deb
+# dependancies for steam
+# nala install libegl1:i386 libgbm1:i386 libgl1-mesa-dri:i386 libgl1:i386 steam-libs-amd64 steam-libs-i386 lib32z1 libgl1-mesa-dri:i386 libgl1:i386 primus linux-headers-generic -y
 
 # Installing fonts
 cd $builddir 
