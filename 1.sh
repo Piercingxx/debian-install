@@ -13,7 +13,10 @@ builddir=$(pwd)
 
 apt install nala -y
 
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
+sudo rm /etc/apt/sources.list
+sudo touch /etc/apt/sources.list 
+sudo chmod +rwx /etc/apt/sources.list
+sudo printf "deb https://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security stable-security/updates main contrib non-free non-free-firmware
 deb https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
 deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
@@ -37,13 +40,10 @@ apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
 flatpak update
-
-
 nala install gnome-shell tilix -y
 
 
 # Enable graphical login and change target from CLI to GUI
-
 # First admend the .gdm3 to add Intall section
 sudo rm /lib/systemd/system/gdm3.service && sudo touch /lib/systemd/system/gdm3.service && sudo chmod +rwx /lib/systemd/system/gdm3.service && sudo printf "[Unit]
 Description=GNOME Display Manager
@@ -126,8 +126,7 @@ WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
 
 
 # Edit Graphical Login Settings
-sudo rm /etc/gdm3/greeter.dconf-defaults && sudo touch /etc/gdm3/greeter.dconf-defaults && sudo chmod +rwx /etc/gdm3/greeter.dconf-defaults && sudo printf "  GNU nano 7.2                                                                  /etc/gdm3/greeter.dconf-defaults                                                                           
-# These are the options for the greeter session that can be set 
+sudo rm /etc/gdm3/greeter.dconf-defaults && sudo touch /etc/gdm3/greeter.dconf-defaults && sudo chmod +rwx /etc/gdm3/greeter.dconf-defaults && sudo printf "# These are the options for the greeter session that can be set 
 # through GSettings. Any GSettings setting that is used by the 
 # greeter session can be set here.
 
@@ -178,8 +177,6 @@ banner-message-text='Hello Handsome'
 
 
 
-
-
 # Finalizing graphical login
 systemctl enable gdm
 systemctl enable gdm3 --now
@@ -194,7 +191,4 @@ flatpak update -y
 apt full-upgrade -y
 apt install -f
 dpkg --configure -a
-
-
-
 reboot
