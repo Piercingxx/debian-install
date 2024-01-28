@@ -122,12 +122,68 @@ KeyringMode=shared
 [Install]
 WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
 
+
+
+
+# Edit Graphical Login Settings
+sudo rm /etc/gdm3/greeter.dconf-defaults && sudo touch /etc/gdm3/greeter.dconf-defaults && sudo chmod +rwx /etc/gdm3/greeter.dconf-defaults && sudo printf "  GNU nano 7.2                                                                  /etc/gdm3/greeter.dconf-defaults                                                                           
+# These are the options for the greeter session that can be set 
+# through GSettings. Any GSettings setting that is used by the 
+# greeter session can be set here.
+
+# Note that you must configure the path used by dconf to store the 
+# configuration, not the GSettings path.
+
+
+# Theming options
+# ===============
+#  - Change the GTK+ theme
+[org/gnome/desktop/interface]
+# gtk-theme='Adwaita'
+#  - Use another background
+[org/gnome/desktop/background]
+# picture-uri='file:///usr/share/themes/Adwaita/backgrounds/stripes.jpg'
+# picture-options='zoom'
+#  - Or no background at all
+[org/gnome/desktop/background]
+# picture-options='none'
+# primary-color='#000000'
+
+# Login manager options
+# =====================
+[org/gnome/login-screen]
+# logo='/usr/share/images/vendor-logos/logo-text-version-64.png'
+
+# - Disable user list
+# disable-user-list=true
+# - Disable restart buttons
+# disable-restart-buttons=true
+# - Show a login welcome message
+banner-message-enable=true
+banner-message-text='Hello Handsome'
+
+# Automatic suspend
+# =================
+[org/gnome/settings-daemon/plugins/power]
+# - Time inactive in seconds before suspending with AC power
+#   1200=20 minutes, 0=never
+# sleep-inactive-ac-timeout=1200
+# - What to do after sleep-inactive-ac-timeout
+#   'blank', 'suspend', 'shutdown', 'hibernate', 'interactive' or 'nothing'
+# sleep-inactive-ac-type='suspend'
+# - As above but when on battery
+# sleep-inactive-battery-timeout=1200
+# sleep-inactive-battery-type='suspend'
+#" | sudo tee -a /etc/gdm3/greeter.dconf-defaults
+
+
+
+
+
 # Finalizing graphical login
 systemctl enable gdm
 systemctl enable gdm3 --now
-sudo systemctl enable gdm3 --now
-
-
+systemctl enable gdm3 --now
 
 
 # Use nala
@@ -136,6 +192,9 @@ bash scripts/usenala
 apt update && upgrade -y
 flatpak update -y
 apt full-upgrade -y
-sudo apt install -f
-sudo dpkg --configure -a
+apt install -f
+dpkg --configure -a
+
+
+
 reboot
