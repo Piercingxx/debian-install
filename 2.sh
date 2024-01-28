@@ -72,6 +72,8 @@ rm ./FiraCode.zip ./Meslo.zip
 # Extensions - will need to be customized still
 mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
+chmod -R 777 /home/$username/.local/share/gnome-shell/extensions
+
 
 
 # Cursor 
