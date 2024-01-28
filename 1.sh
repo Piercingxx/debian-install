@@ -180,7 +180,6 @@ banner-message-text='Hello Handsome'
 # Finalizing graphical login
 systemctl enable gdm
 systemctl enable gdm3 --now
-systemctl enable gdm3 --now
 
 
 # Use nala
