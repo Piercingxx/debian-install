@@ -26,9 +26,14 @@ nala install gparted -y
 nala install gnome-tweaks -y
 nala install gnome-mpv -y
 nala install btop -y
-nals install curl -y
+nala install curl -y
+nala install unzip -y
 nala install gh -y
-nala install dh-dkms debscripts-y
+nala install x11-xserver-utils -y
+nala install dh-dkms -y
+nala install devscripts -y
+nala install papirus-icon-theme -y
+nala install fonts-noto-color-emoji -y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
@@ -93,8 +98,8 @@ gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 apt update && upgrade -y
 apt full-upgrade -y
-sudo apt install -f
-sudo dpkg --configure -a
+apt install -f
+dpkg --configure -a
 apt install --fix-broken
 apt autoremove 
 apt update && upgrade -y
