@@ -57,13 +57,13 @@ apt purge firefox -y
 
 
 # Add GIMP preferences 
-rm -r /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
-mkdir -p /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
-cd dotconfig/Gimp
-unzip My\ Active\ 2.99.zip -d /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
-chown $username:$username /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99/*
-cd ..
-cd ..
+# rm -r /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
+# mkdir -p /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
+# cd dotconfig/Gimp
+# unzip My\ Active\ 2.99.zip -d /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
+# chown $username:$username /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99/*
+# cd ..
+# cd ..
 
 
 # Installing fonts
@@ -86,9 +86,9 @@ mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
 chmod -R 777 /home/$username/.local/share/gnome-shell/extensions
 
+
 # Removing zip files and stuff
 rm ./FiraCode.zip ./Meslo.zip
-rm -r dotconfig
 rm -r dotlocal
 re -r scripts
 
