@@ -34,6 +34,7 @@ nala install dh-dkms -y
 nala install devscripts -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
+nala install font-manager -y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
@@ -50,11 +51,19 @@ flatpak install flathub com.synology.SynologyDrive -y
 flatpak install flathub com.dropbox.Client -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
-
-
 apt update && upgrade -y
 flatpak update -y
 apt purge firefox -y
+
+
+# Add GIMP preferences 
+rm -r /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
+mkdir -p /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
+cd dotconfig/Gimp
+unzip My\ Active\ 2.99.zip -d /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
+chown $username:$username /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99/*
+cd ..
+cd ..
 
 
 # Installing fonts
@@ -70,8 +79,6 @@ chown $username:$username /home/$username/.fonts/*
 
 # Reloading Font
 fc-cache -vf
-# Removing zip Files
-rm ./FiraCode.zip ./Meslo.zip
 
 
 # Extensions - will need to be customized still
@@ -79,6 +86,11 @@ mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
 chmod -R 777 /home/$username/.local/share/gnome-shell/extensions
 
+# Removing zip files and stuff
+rm ./FiraCode.zip ./Meslo.zip
+rm -r dotconfig
+rm -r dotlocal
+re -r scripts
 
 
 # Cursor 
@@ -93,7 +105,6 @@ rm -rf Nordzy-cursors
 
 # icons
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-
 
 
 apt update && upgrade -y
