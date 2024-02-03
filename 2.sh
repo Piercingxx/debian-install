@@ -38,6 +38,7 @@ nala install font-manager -y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
