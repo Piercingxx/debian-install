@@ -46,6 +46,7 @@ flatpak install flathub org.librecad.librecad -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub org.inkscape.Inkscape -y
+flatpak install flathub com.flashforge.FlashPrint -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.synology.SynologyDrive -y
