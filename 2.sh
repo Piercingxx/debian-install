@@ -14,6 +14,7 @@ builddir=$(pwd)
 #Installing Priority Programs to setup while this script runs
 nala install gnome-tweaks -y
 flatpak install flathub com.synology.SynologyDrive -y
+nala install nautilus -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install flathub com.google.Chrome -y
@@ -26,7 +27,6 @@ flatpak install flathub com.dropbox.Client -y
 
 # Installing other less important but still important Programs, drivers, etc
 nala install gnome-calculator -y
-nala install nautilus -y
 nala install rename -y
 nala install cups -y
 nala install util-linux -y
