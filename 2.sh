@@ -11,7 +11,20 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-# Installing other less important but still important Programs and drivers
+#Installing Priority Programs to setup while this script runs
+nala install gnome-tweaks -y
+flatpak install flathub com.synology.SynologyDrive -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub org.libreoffice.LibreOffice -y
+flatpak install flathub com.google.Chrome -y
+flatpak install flathub com.discordapp.Discord -y
+nala install neovim vim-gtk3 ripgrep fd-find xclip python3-venv luarocks golang-go shellcheck -y
+flatpak install flathub com.visualstudio.code -y
+flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub com.dropbox.Client -y
+
+
+# Installing other less important but still important Programs, drivers, etc
 nala install gnome-calculator -y
 nala install nautilus -y
 nala install rename -y
@@ -21,9 +34,7 @@ nala install build-essential -y
 nala install gdebi -y
 nala install lua5.4 -y
 nala install neofetch -y
-nala install neovim -y
 nala install gparted -y
-nala install gnome-tweaks -y
 nala install gnome-mpv -y
 nala install btop -y
 nala install curl -y
@@ -37,21 +48,13 @@ nala install fonts-noto-color-emoji -y
 nala install font-manager -y
 apt update && upgrade -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub org.freecadweb.FreeCAD -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.librecad.librecad -y
-flatpak install flathub org.libreoffice.LibreOffice -y
-flatpak install flathub com.google.Chrome -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.flashforge.FlashPrint -y
-flatpak install flathub com.visualstudio.code -y
-flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub com.synology.SynologyDrive -y
-flatpak install flathub com.dropbox.Client -y
-flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub com.obsproject.Studio -y
 apt update && upgrade -y
 flatpak update -y
