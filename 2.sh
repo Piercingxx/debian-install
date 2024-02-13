@@ -18,7 +18,6 @@ nala install nautilus -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.dropbox.Client -y
 nala install papirus-icon-theme -y
@@ -26,6 +25,12 @@ nala install fonts-noto-color-emoji -y
 nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
+nala install linux-headers-generic -y
+
+#coding shit
+flatpak install flathub com.vscodium.codium -y
+nala install shellcheck -y
+nala install lua5.4 -y
 
 # Installing fonts
 cd $builddir 
@@ -70,7 +75,6 @@ flatpak install flathub org.libreoffice.LibreOffice -y
 nala install gnome-calculator -y
 nala install rename -y
 nala install cups -y
-nala install lua5.4 -y
 nala install util-linux -y
 nala install gdebi -y
 nala install neofetch -y
