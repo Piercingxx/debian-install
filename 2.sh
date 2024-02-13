@@ -16,58 +16,22 @@ nala install gnome-tweaks -y
 flatpak install flathub com.synology.SynologyDrive -y
 nala install nautilus -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
-flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
-nala install neovim vim-gtk3 ripgrep fd-find xclip python3-venv luarocks golang-go shellcheck -y
 flatpak install flathub com.visualstudio.code -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.dropbox.Client -y
-
-
-# Installing other less important but still important Programs, drivers, etc
-nala install gnome-calculator -y
-nala install rename -y
-nala install cups -y
-nala install util-linux -y
-nala install build-essential -y
-nala install gdebi -y
-nala install lua5.4 -y
-nala install neofetch -y
-nala install gparted -y
-nala install gnome-mpv -y
-nala install btop -y
-nala install curl -y
-nala install unzip -y
-nala install gh -y
-nala install x11-xserver-utils -y
-nala install dh-dkms -y
-nala install devscripts -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
 nala install font-manager -y
-apt update && upgrade -y
-flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
-flatpak install flathub org.gnome.SimpleScan -y
-flatpak install flathub net.scribus.Scribus -y
-flatpak install flathub org.blender.Blender -y
-flatpak install flathub org.inkscape.Inkscape -y
-flatpak install flathub com.flashforge.FlashPrint -y
-flatpak install flathub com.obsproject.Studio -y
-apt update && upgrade -y
-flatpak update -y
-apt purge firefox -y
+nala install build-essential -y
+nala install unzip -y
 
-
-# Add GIMP preferences 
-# rm -r /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
-# mkdir -p /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
-# cd dotconfig/Gimp
-# unzip My\ Active\ 2.99.zip -d /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99
-# chown $username:$username /home/$username/.var/app/org.gimp.GIMP/config/GIMP/2.99/*
-# cd ..
-# cd ..
-
+# Install Neovim with Chris Titus script
+git clone https://github.com/christitustech/Neovim -y
+cd Neovim
+sudo ./setup.sh
+cd /
 
 # Installing fonts
 cd $builddir 
@@ -79,22 +43,18 @@ unzip Meslo.zip -d /home/$username/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 chown $username:$username /home/$username/.fonts/*
 
-
 # Reloading Font
 fc-cache -vf
-
 
 # Extensions - will need to be customized still
 mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
 chmod -R 777 /home/$username/.local/share/gnome-shell/extensions
 
-
 # Removing zip files and stuff
 rm ./FiraCode.zip ./Meslo.zip
 rm -r dotlocal
 re -r scripts
-
 
 # Cursor 
 wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
@@ -108,6 +68,47 @@ rm -rf Nordzy-cursors
 
 # icons
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+
+
+
+# Installing other less important but still important Programs, drivers, etc
+flatpak install flathub org.libreoffice.LibreOffice -y
+nala install gnome-calculator -y
+nala install rename -y
+nala install cups -y
+nala install lua5.4 -y
+nala install util-linux -y
+nala install gdebi -y
+nala install neofetch -y
+nala install gparted -y
+nala install gnome-mpv -y
+nala install btop -y
+nala install curl -y
+nala install gh -y
+nala install x11-xserver-utils -y
+nala install dh-dkms -y
+nala install devscripts -y
+apt update && upgrade -y
+flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+flatpak install flathub org.gnome.SimpleScan -y
+flatpak install flathub net.scribus.Scribus -y
+flatpak install flathub org.blender.Blender -y
+flatpak install flathub org.inkscape.Inkscape -y
+flatpak install flathub com.flashforge.FlashPrint -y
+flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub com.usebottles.bottles -y
+apt update && upgrade -y
+flatpak update -y
+apt purge firefox -y
+
+
+# dependancy for DaVinci Resolve - have to install manually later, download from website
+nala install libfuse2 libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0-y
+cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs
+cd /opt/resolve/libs
+sudo mkdir /opt/resolve/libs/_disabled
+sudo mv libgio* libglib* libgmodule* libgobject* _disabled
+cd /
 
 
 apt update && upgrade -y
