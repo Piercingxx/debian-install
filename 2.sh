@@ -27,12 +27,6 @@ nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
 
-# Install Neovim with Chris Titus script
-git clone https://github.com/christitustech/Neovim -y
-cd Neovim
-sudo ./setup.sh
-cd /
-
 # Installing fonts
 cd $builddir 
 nala install fonts-font-awesome fonts-noto-color-emoji -y
