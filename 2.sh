@@ -27,10 +27,35 @@ nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
 
-#coding shit
-flatpak install flathub com.vscodium.codium -y
-nala install shellcheck -y
+# Install vscode and extensions - no flatpak!
 nala install lua5.4 -y
+nala install wget gpg -y
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+apt install apt-transport-https
+apt update
+apt install code -y
+code --no-sandbox --install-extension sourcegraph.cody-ai --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension streetsidesoftware.code-spell-checker --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension ritwickdey.LiveServer --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension DaltonMenezes.aura-theme --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension appulate.filewatcher --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension jeanp413.open-remote-ssh --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension GitHub.vscode-pull-request-github --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension johnpapa.vscode-peacock --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension kamikillerto.vscode-colorize --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension oderwat.indent-rainbow --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension sumneko.lua --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension actboy168.lua-debug --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension CoenraadS.bracket-pair-colorizer --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension SirTori.indenticator --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension timonwong.shellcheck --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension rogalmic.bash-debug --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension mads-hartmann.bash-ide-vscode --user-data-dir /home/$username/.vscode/extensions
+code --no-sandbox --install-extension eamodio.gitlens --user-data-dir /home/$username/.vscode/extensions
+
 
 # Installing fonts
 cd $builddir 
@@ -98,6 +123,7 @@ flatpak install flathub com.usebottles.bottles -y
 apt update && upgrade -y
 flatpak update -y
 apt purge firefox -y
+apt purge firefox-esr -y
 
 
 # dependancy for DaVinci Resolve - have to install manually later, download from website
