@@ -37,8 +37,33 @@ apt install apt-transport-https
 apt update
 apt install code -y
 cd /home/$username/.vscode/extensions/
+rm extension.json
 touch extensions.json
 cd /
+
+# If this is your first time using VSCode then create an account and copy these to a new .sh - Do not run as sudo.
+# code --install-extension DaltonMenezes.aura-theme
+# code --install-extension rogalmic.bash-debug
+# code --install-extension mads-hartmann.bash-ide-vscode
+# code --install-extension CoenraadS.bracket-pair-colorizer
+# code --install-extension streetsidesoftware.code-spell-checker
+# code --install-extension sourcegraph.cody-ai
+# code --install-extension kamikillerto.vscode-colorize
+# code --install-extension appulate.filewatcher
+# code --install-extension GitHub.vscode-pull-request-github
+# code --install-extension eamodio.gitlens
+# code --install-extension oderwat.indent-rainbow
+# code --install-extension SirTori.indenticator
+# code --install-extension ritwickdey.LiveServer
+# code --install-extension sumneko.lua
+# code --install-extension actboy168.lua-debug
+# code --install-extension openra.vscode-openra-lua
+# code --install-extension johnpapa.vscode-peacock
+# code --install-extension jeanp413.open-remote-ssh
+# code --install-extension timonwong.shellcheck
+ 
+
+
 
 # Installing fonts
 cd $builddir 
