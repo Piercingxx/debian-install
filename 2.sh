@@ -13,12 +13,12 @@ builddir=$(pwd)
 
 #Installing Priority Programs to setup while this script runs
 nala install gnome-tweaks -y
-flatpak install flathub com.synology.SynologyDrive -y
 nala install nautilus -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub com.synology.SynologyDrive -y
 flatpak install flathub com.dropbox.Client -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
@@ -29,7 +29,6 @@ nala install linux-headers-generic -y
 
 # Install vscode and extensions - no flatpak!
 nala install lua5.4 -y
-nala install wget gpg -y
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
