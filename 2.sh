@@ -36,10 +36,6 @@ rm -f packages.microsoft.gpg
 apt install apt-transport-https
 apt update
 apt install code -y
-cd /home/$username/.vscode/extensions/
-rm extension.json
-touch extensions.json
-cd /
 
 # If this is your first time using VSCode then create an account and copy these to a new .sh - Do not run as sudo.
 # code --install-extension DaltonMenezes.aura-theme
