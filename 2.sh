@@ -18,7 +18,6 @@ flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub com.synology.SynologyDrive -y
 flatpak install flathub com.dropbox.Client -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
@@ -26,18 +25,24 @@ nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
-
-# Install vscode and extensions - no flatpak!
 nala install lua5.4 -y
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
-apt install apt-transport-https
-apt update
-apt install code -y
+# flatpak install flathub com.synology.SynologyDrive -y
+# I'm over the flatpak of synology...the .deb is soooo much better. 
 
-# If this is your first time using VSCode then create an account and copy these to a new .sh - Do not run as sudo.
+flatpak install flathub com.visualstudio.code -y
+
+# another way to install vscode and install the extensions listed below
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+# install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# rm -f packages.microsoft.gpg
+# apt install apt-transport-https
+# apt update
+# apt install code -y
+
+# If this is your first time using VSCode then create an account and set it up with these extensions. 
+# This is a great place to start. This is setup for Lua and Bash, feel free to customize.
+# Copy these to a new .sh and run it in terminal - Do not run as sudo.
 # code --install-extension DaltonMenezes.aura-theme
 # code --install-extension rogalmic.bash-debug
 # code --install-extension mads-hartmann.bash-ide-vscode
@@ -75,6 +80,7 @@ chown $username:$username /home/$username/.fonts/*
 fc-cache -vf
 
 # Extensions - will need to be customized still
+# After full install dwl Alt+tab and User Themes - versions are not compatible between stable and testing branches.
 mkdir -p /home/$username/.local/share/gnome-shell/extensions
 cp -R dotlocal/share/gnome-shell/extensions/* /home/$username/.local/share/gnome-shell/extensions/
 chmod -R 777 /home/$username/.local/share/gnome-shell/extensions
@@ -96,7 +102,6 @@ rm -rf Nordzy-cursors
 
 # icons
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-
 
 
 # Installing other less important but still important Programs, drivers, etc
