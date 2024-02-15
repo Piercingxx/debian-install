@@ -33,14 +33,14 @@ mkdir -p /var/lib/usbmux/.config
 
 
 # Install Essentials
-apt install wget flatpak gnome-software-plugin-flatpak -y
+apt install wget gpg flatpak gnome-software-plugin-flatpak -y
 
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 apt update && upgrade -y
 apt full-upgrade -y
 sudo apt install -f
 flatpak update
-nala install gnome-shell tilix -y
+nala install gnome-shell tilix gnome-text-editor -y
 
 
 # Enable graphical login and change target from CLI to GUI
