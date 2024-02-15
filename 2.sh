@@ -37,25 +37,9 @@ rm -f packages.microsoft.gpg
 apt install apt-transport-https
 apt update
 apt install code -y
-code --no-sandbox --install-extension sourcegraph.cody-ai --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension streetsidesoftware.code-spell-checker --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension ritwickdey.LiveServer --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension DaltonMenezes.aura-theme --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension appulate.filewatcher --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension jeanp413.open-remote-ssh --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension GitHub.vscode-pull-request-github --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension johnpapa.vscode-peacock --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension kamikillerto.vscode-colorize --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension oderwat.indent-rainbow --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension sumneko.lua --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension actboy168.lua-debug --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension CoenraadS.bracket-pair-colorizer --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension SirTori.indenticator --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension timonwong.shellcheck --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension rogalmic.bash-debug --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension mads-hartmann.bash-ide-vscode --user-data-dir /home/$username/.vscode/extensions
-code --no-sandbox --install-extension eamodio.gitlens --user-data-dir /home/$username/.vscode/extensions
-
+cd /home/$username/.vscode/extensions/
+touch extensions.json
+cd /
 
 # Installing fonts
 cd $builddir 
