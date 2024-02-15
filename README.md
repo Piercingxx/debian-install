@@ -11,13 +11,13 @@ This is divided into sections so you can install only what you need.
   
 - If you wish to edit any script before running it simply "sudo nano [file]" to edit it then ctrl+s & ctrl+x
   
-- Script "1.sh" to install Gnome-core and a few adjustments.
+- "1.sh" to install Gnome-shell and a few adjustments.
   
-- Script "2.sh" will install applications and fonts.
+- "2.sh" will install applications and fonts.
   
-- Script "3.sh" will install Nvidia drivers (of you dont have a Nvidia GPU skip this one).
+- "3.sh" will install Nvidia drivers (if you dont have a Nvidia GPU skip this one).
   
-- "Surface.sh" will install the necessary drivers to get a Microsoft Surface device running (skip if not a Surface).
+- "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Surface).
   
 - "testing.sh" will change your Source.list to test branch. This is recommended if you are both running brandnew hardware and gameing. 
   
