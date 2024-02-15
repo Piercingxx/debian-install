@@ -15,13 +15,17 @@ This is divided into sections so you can install only what you need.
   
 - Script "2.sh" will install applications and fonts.
   
+- **Steam** If you need to install steam do so AFTER 1.sh or 2.sh but BEFORE 3.sh OR testing.sh Most systems it doesnt matter on, but there are some that hate steam after NVIDIA drivers are installed. Install steam from their website, download the .deb and use Gdebi Package Installer. DO NOT USE THE FLATPAK!!
+  
 - Script "3.sh" will install Nvidia drivers (of you dont have a Nvidia GPU skip this one).
   
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface device running (skip if not a Surface).
   
 - "testing.sh" will change your Source.list to test branch. This is recommended if you are both running brandnew hardware and gameing. 
   
-- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "surface" and "testing" scripts are optional.
+- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "surface" and "testing" scripts are hardware based/optional.
+
+
 
 
 ### Credits:
