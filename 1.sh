@@ -11,6 +11,8 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
+echo "Starting Script 1.sh"
+
 apt install nala -y
 
 sudo rm /etc/apt/sources.list
@@ -25,24 +27,28 @@ sudo add-apt-repository ppa:graphics-drivers/ppa -y
 
 # Update packages list and update system
 apt update && upgrade -y
+wait
 
 # Making dir
-cd $builddir
-mkdir -p /home/$username/.fonts
+cd "$builddir" || exit
+mkdir -p /home/"$username"/.fonts
 mkdir -p /var/lib/usbmux/.config
 
 
-# Install Essentials
+echo "Install Essentials"
 apt install wget gpg flatpak gnome-software-plugin-flatpak -y
-
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 apt update && upgrade -y
+wait
 apt full-upgrade -y
+wait
 sudo apt install -f
+wait
 flatpak update
+wait
 nala install gnome-shell tilix gnome-text-editor -y
 
-
+echo "Changing Graphical Login"
 # Enable graphical login and change target from CLI to GUI
 # First admend the .gdm3 to add Intall section
 sudo rm /lib/systemd/system/gdm3.service && sudo touch /lib/systemd/system/gdm3.service && sudo chmod +rwx /lib/systemd/system/gdm3.service && sudo printf "[Unit]
@@ -81,7 +87,6 @@ KeyringMode=shared
 
 [Install]
 WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm3.service
-
 
 
 # And then the .gdm to add Intall section
@@ -124,7 +129,7 @@ WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
 
 
 
-
+echo "Hello Handsome"
 # Edit Graphical Login Settings
 sudo rm /etc/gdm3/greeter.dconf-defaults && sudo touch /etc/gdm3/greeter.dconf-defaults && sudo chmod +rwx /etc/gdm3/greeter.dconf-defaults && sudo printf "# These are the options for the greeter session that can be set 
 # through GSettings. Any GSettings setting that is used by the 
@@ -176,7 +181,6 @@ banner-message-text='Hello Handsome'
 #" | sudo tee -a /etc/gdm3/greeter.dconf-defaults
 
 
-
 # Finalizing graphical login
 systemctl enable gdm
 systemctl enable gdm3 --now
@@ -186,8 +190,11 @@ systemctl enable gdm3 --now
 bash scripts/usenala
 
 apt update && upgrade -y
+wait
 flatpak update -y
+wait
 apt full-upgrade -y
+wait
 apt install -f
 dpkg --configure -a
 reboot
