@@ -35,48 +35,17 @@ nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
 nala install lua5.4 -y
-# flatpak install flathub com.synology.SynologyDrive -y
-# I'm over the flatpak of synology...install the .deb its soooo much better. 
-
 flatpak install flathub com.visualstudio.code -y
 
-# another way to install vscode and install the extensions listed below
-# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-# install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-# sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-# rm -f packages.microsoft.gpg
-# apt install apt-transport-https
-# apt update
-# wait
-# apt install code -y
+wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
+sudo dpkg -i synology-drive-client-15724.x86_64.deb
+wait
+rm synology-drive-client-15724.x86_64.deb
 
-# If this is your first time using VSCode then create an account and set it up with these extensions. 
-# This is a great place to start. This is setup for Lua and Bash, feel free to customize.
-# Copy these to a new .sh and run it in terminal - Do not run as sudo.
-# code --install-extension DaltonMenezes.aura-theme
-# code --install-extension rogalmic.bash-debug
-# code --install-extension mads-hartmann.bash-ide-vscode
-# code --install-extension CoenraadS.bracket-pair-colorizer
-# code --install-extension streetsidesoftware.code-spell-checker
-# code --install-extension sourcegraph.cody-ai
-# code --install-extension kamikillerto.vscode-colorize
-# code --install-extension appulate.filewatcher
-# code --install-extension GitHub.vscode-pull-request-github
-# code --install-extension eamodio.gitlens
-# code --install-extension oderwat.indent-rainbow
-# code --install-extension SirTori.indenticator
-# code --install-extension ritwickdey.LiveServer
-# code --install-extension sumneko.lua
-# code --install-extension actboy168.lua-debug
-# code --install-extension openra.vscode-openra-lua
-# code --install-extension johnpapa.vscode-peacock
-# code --install-extension jeanp413.open-remote-ssh
-# code --install-extension timonwong.shellcheck
 
 echo "Installing Fonts"
 # Installing fonts
 cd "$builddir" || exit
-
 
 nala install fonts-font-awesome fonts-noto-color-emoji -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
@@ -177,3 +146,39 @@ wait
 flatpak update
 wait
 reboot
+
+
+
+
+# another way to install vscode and install the extensions listed below
+# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+# install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+# sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+# rm -f packages.microsoft.gpg
+# apt install apt-transport-https
+# apt update
+# wait
+# apt install code -y
+
+# If this is your first time using VSCode then create an account and set it up with these extensions. 
+# This is a great place to start. This is setup for Lua and Bash, feel free to customize.
+# Copy these to a new .sh and run it in terminal - Do not run as sudo.
+# code --install-extension DaltonMenezes.aura-theme
+# code --install-extension rogalmic.bash-debug
+# code --install-extension mads-hartmann.bash-ide-vscode
+# code --install-extension CoenraadS.bracket-pair-colorizer
+# code --install-extension streetsidesoftware.code-spell-checker
+# code --install-extension sourcegraph.cody-ai
+# code --install-extension kamikillerto.vscode-colorize
+# code --install-extension appulate.filewatcher
+# code --install-extension GitHub.vscode-pull-request-github
+# code --install-extension eamodio.gitlens
+# code --install-extension oderwat.indent-rainbow
+# code --install-extension SirTori.indenticator
+# code --install-extension ritwickdey.LiveServer
+# code --install-extension sumneko.lua
+# code --install-extension actboy168.lua-debug
+# code --install-extension openra.vscode-openra-lua
+# code --install-extension johnpapa.vscode-peacock
+# code --install-extension jeanp413.open-remote-ssh
+# code --install-extension timonwong.shellcheck
