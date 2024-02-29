@@ -46,6 +46,7 @@ sudo apt install -f
 wait
 flatpak update
 wait
+echo "Downloading Gnome"
 nala install gnome-shell tilix gnome-text-editor -y
 
 echo "Changing Graphical Login"
