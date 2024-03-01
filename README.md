@@ -13,7 +13,7 @@ This is divided into sections so you can install only what you need.
   
 - "1.sh" to install Gnome-shell and a few adjustments.
   
-- "2.sh" will install applications and fonts (it take a minute to run so I'll usually edit settings and preferences while it runs).
+- "2.sh" will install applications and fonts (it takes a minute to run so I'll usually edit settings and preferences while it runs).
   
 - "3.sh" will install Nvidia drivers (if you dont have a Nvidia GPU skip this one).
   
