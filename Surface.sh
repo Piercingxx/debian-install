@@ -8,13 +8,12 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-username=$(id -u -n 1000)
-builddir=$(pwd)
-
 #disable automatic screen brightness
 gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+wait
 
 apt update && upgrade -y
+wait
 
 wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
     | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
@@ -22,7 +21,8 @@ wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/
 echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
 	| sudo tee /etc/apt/sources.list.d/linux-surface.list
         
-apt update
+apt update && upgrade -y
+wait
 
 apt install linux-image-surface linux-headers-surface libwacom-surface iptsd -y
 
@@ -35,6 +35,6 @@ nala install tlp tlp-rdw smartmontools vainfo -y
 #open tlp.conf in /etc and unhash DEVICES_TO_DISABLE_ON_STARTUP="bluetooth" 
 
 
-#after reboot run vainfo and fix any errors if any
+#after reboot run vainfo and fix any errors
 
 reboot
