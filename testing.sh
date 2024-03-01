@@ -8,23 +8,26 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-username=$(id -u -n 1000)
-builddir=$(pwd)
-
 
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security testing-security/updates main non-free-firmware" | sudo tee -a /etc/apt/sources.list
 
 
-
-
 apt update && upgrade -y
+wait
 apt full-upgrade -y
+wait
 sudo apt install -f
+wait
 sudo dpkg --configure -a
+wait
 apt install --fix-broken
+wait
 apt update && upgrade -y
+wait
 flatpak update
+wait
 apt auto-remove -y
+wait
 
 reboot
