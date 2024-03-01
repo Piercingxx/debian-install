@@ -21,11 +21,9 @@ This is divided into sections so you can install only what you need.
   
 - "testing.sh" will change your Source.list to test branch. This is recommended if you are both running brandnew hardware and gameing. 
   
-- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "surface" and "testing" scripts are hardware based/optional.
+- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "Surface.sh" and "testing.sh" scripts are hardware based/optional.
 
-- **Steam** If you need to install Steam do so AFTER 1.sh or 2.sh but BEFORE 3.sh OR testing.sh Most systems it doesnt matter on, but there are some that hate steam after NVIDIA drivers are installed. Install steam from their website, download the .deb and use Gdebi Package Installer. DO NOT USE THE FLATPAK!!
-
-- If you have multiple harddrives in your system, after you run all the scripts, edit your fstab to automount them.
+- If you have multiple harddrives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
 
 ### Credits:
 - The "usenala" script is from https://github.com/ChrisTitusTech/Debian-titus
