@@ -12,14 +12,17 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 echo "Starting Script 2.sh"
+sleep 2
 
 
 echo "Updating Repositiories"
+sleep 1
 apt update && upgrade -y
 wait
 
 #Installing Priority Programs to setup while this script runs
 echo "Installing Priority Programs"
+sleep 2
 nala install gnome-tweaks -y
 nala install nautilus -y
 nala install seahorse -y
@@ -36,14 +39,13 @@ nala install unzip -y
 nala install linux-headers-generic -y
 nala install lua5.4 -y
 flatpak install flathub com.visualstudio.code -y
-
 wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
 sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
 rm synology-drive-client-15724.x86_64.deb
 
-
 echo "Installing Fonts"
+sleep 2
 # Installing fonts
 cd "$builddir" || exit
 
@@ -59,6 +61,8 @@ chown "$username":"$username" /home/"$username"/.fonts/*
 fc-cache -vf
 wait
 
+echo "Installing Gnome Extensions"
+sleep 2
 # Extensions - will need to be customized still
 # After full install dwl Alt+tab and User Themes - versions are not compatible between stable and testing branches.
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
@@ -68,8 +72,10 @@ chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 # Removing zip files and stuff
 rm ./FiraCode.zip ./Meslo.zipk
 rm -r dotlocal
-re -r scripts
+rm -r scripts
 
+echo "Installing Cursors & Icons"
+sleep 2
 # Cursor 
 wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 
@@ -83,14 +89,12 @@ rm -rf Nordzy-cursors
 # icons
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
-echo "Installing More Programs"
-# Installing other less important but still important Programs, drivers, etc
+echo "Installing other less important but still important Programs, drivers, etc"
+wait 2
 
-# Install Steam
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 sudo dpkg -i steam.deb
 rm steam.deb
-
 nala install gnome-calculator -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 nala install rename -y
@@ -117,12 +121,12 @@ flatpak install flathub com.flashforge.FlashPrint -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
-
 apt purge firefox -y
 apt purge firefox-esr -y
 
 
-# dependancy for DaVinci Resolve - have to install manually later, download from website
+echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
+sleep 2
 nala install libfuse2 libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0-y
 # cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs
 # cd /opt/resolve/libs || exit
@@ -145,6 +149,9 @@ apt update && upgrade -y
 wait
 flatpak update
 wait
+echo "After rebooting, run Script 3.sh for Nvidia drivers." 
+echo "Skip 3.sh if you are not using Nvidia hardware."
+wait 3
 reboot
 
 
