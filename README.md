@@ -21,7 +21,7 @@ This is divided into sections so you can install only what you need.
   
 - "testing.sh" will change your Source.list to test branch. This is recommended if you are both running brandnew hardware and gameing. 
   
-- These scrips must be ran in order. Any deviation will break you system. The "3.sh" "Surface.sh" and "testing.sh" scripts are hardware based/optional.
+- These scrips must be ran in order. Any deviation will break your system. The "3.sh" "Surface.sh" and "testing.sh" scripts are hardware based/optional.
 
 - If you have multiple harddrives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
 
