@@ -12,6 +12,7 @@ username=$(id -u -n 1000)
 builddir=$(pwd)
 
 echo "Starting Script 1.sh"
+sleep 2
 
 apt install nala -y
 
@@ -36,6 +37,7 @@ mkdir -p /var/lib/usbmux/.config
 
 
 echo "Install Essentials"
+sleep 2
 apt install wget gpg flatpak gnome-software-plugin-flatpak -y
 flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 apt update && upgrade -y
@@ -46,10 +48,10 @@ sudo apt install -f
 wait
 flatpak update
 wait
-echo "Downloading Gnome"
 nala install gnome-shell tilix gnome-text-editor -y
 
 echo "Changing Graphical Login"
+sleep 2
 # Enable graphical login and change target from CLI to GUI
 # First admend the .gdm3 to add Intall section
 sudo rm /lib/systemd/system/gdm3.service && sudo touch /lib/systemd/system/gdm3.service && sudo chmod +rwx /lib/systemd/system/gdm3.service && sudo printf "[Unit]
@@ -131,6 +133,7 @@ WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
 
 
 echo "Hello Handsome"
+sleep 2
 # Edit Graphical Login Settings
 sudo rm /etc/gdm3/greeter.dconf-defaults && sudo touch /etc/gdm3/greeter.dconf-defaults && sudo chmod +rwx /etc/gdm3/greeter.dconf-defaults && sudo printf "# These are the options for the greeter session that can be set 
 # through GSettings. Any GSettings setting that is used by the 
@@ -198,4 +201,6 @@ apt full-upgrade -y
 wait
 apt install -f
 dpkg --configure -a
+echo "After reboot run 2.sh"
+sleep 2
 reboot
