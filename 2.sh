@@ -44,6 +44,17 @@ sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
 rm synology-drive-client-15724.x86_64.deb
 
+wget "https://download.bleachbit.org/bleachbit_4.6.0-0_all_debian12.deb"
+dpkg -i bleachbit_4.6.0-0_all_debian12.deb
+wait
+rm bleachbit_4.6.0-0_all_debian12.deb
+
+wget "https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run"
+chmod u+x pia-linux-3.5.3-07926.run
+./pia-linux-3.5.3-07926.run
+wait
+rm pia-linux-3.5.3-07926.run
+
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
