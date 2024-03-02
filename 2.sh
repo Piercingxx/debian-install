@@ -44,17 +44,6 @@ sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
 rm synology-drive-client-15724.x86_64.deb
 
-wget "https://download.bleachbit.org/bleachbit_4.6.0-0_all_debian12.deb"
-dpkg -i bleachbit_4.6.0-0_all_debian12.deb
-wait
-rm bleachbit_4.6.0-0_all_debian12.deb
-
-wget "https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run"
-chmod u+x pia-linux-3.5.3-07926.run
-./pia-linux-3.5.3-07926.run
-wait
-rm pia-linux-3.5.3-07926.run
-
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
@@ -115,6 +104,7 @@ nala install gdebi -y
 nala install neofetch -y
 nala install gparted -y
 nala install gnome-mpv -y
+nala install bleachbit -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
@@ -134,6 +124,11 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 apt purge firefox -y
 apt purge firefox-esr -y
+wget "https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run"
+chmod u+x pia-linux-3.5.3-07926.run
+./pia-linux-3.5.3-07926.run
+wait
+rm pia-linux-3.5.3-07926.run
 
 
 echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
