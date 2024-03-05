@@ -95,6 +95,9 @@ wait 2
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 sudo dpkg -i steam.deb
 rm steam.deb
+# i386 is needed for steam to launch
+sudo dpkg --add-architecture i386
+
 nala install gnome-calculator -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 nala install rename -y
@@ -104,7 +107,6 @@ nala install gdebi -y
 nala install neofetch -y
 nala install gparted -y
 nala install gnome-mpv -y
-nala install bleachbit -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
@@ -124,11 +126,6 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 apt purge firefox -y
 apt purge firefox-esr -y
-wget "https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run"
-chmod u+x pia-linux-3.5.3-07926.run
-./pia-linux-3.5.3-07926.run
-wait
-rm pia-linux-3.5.3-07926.run
 
 
 echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
