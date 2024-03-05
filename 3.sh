@@ -45,6 +45,9 @@ apt install cuda-toolkit-12-3 cuda-drivers nvidia-kernel-open-dkms -y
 
 flatpak install flathub org.freedesktop.Platform.GL.nvidia-545-29-06 -y
 
+# necessary for steam
+apt install libgl1-nvidia-glvnd-glx:i386 -y
+
 apt update && upgrade -y 
 wait
 reboot
