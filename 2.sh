@@ -124,6 +124,7 @@ flatpak install flathub com.flashforge.FlashPrint -y
 flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
+flatpak install flathub org.qbittorrent.qBittorrent -y
 apt purge firefox -y
 apt purge firefox-esr -y
 
@@ -137,6 +138,11 @@ nala install libfuse2 libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damag
 # sudo mv libgio* libglib* libgmodule* libgobject* _disabled
 # cd /
 
+# VPN
+wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run
+chmod +x pia-linux-3.5.3-07926.run
+./pia-linux-3.5.3-07926.run
+wait
 
 apt update && upgrade -y
 wait
@@ -151,10 +157,9 @@ apt autoremove
 apt update && upgrade -y
 wait
 flatpak update
-wait
 echo "After rebooting, run Script 3.sh for Nvidia drivers." 
 echo "Skip 3.sh if you are not using Nvidia hardware."
-wait 3
+wait 5
 reboot
 
 
