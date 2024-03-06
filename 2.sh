@@ -14,6 +14,10 @@ builddir=$(pwd)
 echo "Starting Script 2.sh"
 sleep 2
 
+# Checks for active network connection
+if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
+    then awk {print} <<< "Network connectivity is required to continue."; exit
+fi
 
 echo "Updating Repositiories"
 sleep 1
@@ -166,14 +170,8 @@ reboot
 
 
 # another way to install vscode and install the extensions listed below
-# wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-# install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-# sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-# rm -f packages.microsoft.gpg
-# apt install apt-transport-https
-# apt update
-# wait
-# apt install code -y
+# wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/019f4d1419fbc8219a181fab7892ebccf7ee29a2/code_1.87.0-1709078641_amd64.deb | dpkg -i code_1.87.0-1709078641_amd64.deb | rm code_1.87.0-1709078641_amd64.deb
+
 
 # If this is your first time using VSCode then create an account and set it up with these extensions. 
 # This is a great place to start. This is setup for Lua and Bash, feel free to customize.
