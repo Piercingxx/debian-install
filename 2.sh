@@ -20,9 +20,13 @@ if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
 fi
 
 echo "Updating Repositiories"
-sleep 1
+sleep 2
 apt update && upgrade -y
 wait
+
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+
 
 #Installing Priority Programs to setup while this script runs
 echo "Installing Priority Programs"
