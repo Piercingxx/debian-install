@@ -24,9 +24,6 @@ sleep 2
 apt update && upgrade -y
 wait
 
-gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-
 
 #Installing Priority Programs to setup while this script runs
 echo "Installing Priority Programs"
@@ -126,6 +123,7 @@ wait
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub net.scribus.Scribus -y
+flatpak install flathub org.videolan.VLC -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.flashforge.FlashPrint -y
