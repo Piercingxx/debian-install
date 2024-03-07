@@ -111,7 +111,6 @@ nala install util-linux -y
 nala install gdebi -y
 nala install neofetch -y
 nala install gparted -y
-nala install gnome-mpv -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
