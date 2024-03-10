@@ -30,24 +30,16 @@ echo "Installing Priority Programs"
 sleep 2
 nala install gnome-tweaks -y
 nala install nautilus -y
-nala install seahorse -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.google.Chrome -y
-flatpak install flathub com.discordapp.Discord -y
-flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub com.dropbox.Client -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
 nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
-nala install lua5.4 -y
-flatpak install flathub com.visualstudio.code -y
-wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
-sudo dpkg -i synology-drive-client-15724.x86_64.deb
-wait
-rm synology-drive-client-15724.x86_64.deb
+flatpak install flathub com.discordapp.Discord -y
+flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 
 echo "Installing Fonts"
 sleep 2
@@ -95,14 +87,15 @@ rm -rf Nordzy-cursors
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 echo "Installing other less important but still important Programs, drivers, etc"
-wait 2
+sleep 2
 
-wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
-sudo dpkg -i steam.deb
-rm steam.deb
-# i386 is needed for steam to launch
-sudo dpkg --add-architecture i386
-
+flatpak install flathub com.dropbox.Client -y
+nala install seahorse -y
+flatpak install flathub com.visualstudio.code -y
+wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
+sudo dpkg -i synology-drive-client-15724.x86_64.deb
+wait
+rm synology-drive-client-15724.x86_64.deb
 nala install gnome-calculator -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 nala install rename -y
@@ -118,6 +111,7 @@ nala install libfuse2 -y
 nala install x11-xserver-utils -y
 nala install dh-dkms -y
 nala install devscripts -y
+nala install lua5.4 -y
 apt update && upgrade -y
 wait
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
@@ -127,27 +121,27 @@ flatpak install flathub org.videolan.VLC -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub com.flashforge.FlashPrint -y
-flatpak install flathub com.obsproject.Studio -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
-apt purge firefox -y
-apt purge firefox-esr -y
+# flatpak install flathub com.obsproject.Studio -y
+
+# steam
+wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+sudo dpkg -i steam.deb
+rm steam.deb
+# i386 is needed for steam to launch
+sudo dpkg --add-architecture i386
 
 
 echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
 sleep 2
-nala install libfuse2 libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0-y
-# cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs
-# cd /opt/resolve/libs || exit
-# sudo mkdir /opt/resolve/libs/_disabled
-# sudo mv libgio* libglib* libgmodule* libgobject* _disabled
-# cd /
+nala install libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0 -y
 
 # VPN
-wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run
-chmod +x pia-linux-3.5.3-07926.run
-./pia-linux-3.5.3-07926.run
+wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
+chmod u+x pia-linux-3.5.5-08091.run
+./pia-linux-3.5.5-08091.run
 wait
 
 apt update && upgrade -y
