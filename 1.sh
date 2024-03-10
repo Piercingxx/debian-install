@@ -11,196 +11,188 @@ fi
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-echo "Starting Script 1.sh"
+echo "Starting Script 2.sh"
 sleep 2
 
-apt install nala -y
+# Checks for active network connection
+if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
+    then awk {print} <<< "Network connectivity is required to continue."; exit
+fi
 
-sudo rm /etc/apt/sources.list
-sudo touch /etc/apt/sources.list 
-sudo chmod +rwx /etc/apt/sources.list
-sudo printf "deb https://deb.debian.org/debian/ stable main contrib non-free non-free-firmware
-deb http://security.debian.org/debian-security stable-security/updates main contrib non-free non-free-firmware
-deb https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware
-deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
-
-sudo add-apt-repository ppa:graphics-drivers/ppa -y
-
-# Update packages list and update system
+echo "Updating Repositiories"
+sleep 2
 apt update && upgrade -y
 wait
 
-# Making dir
+
+#Installing Priority Programs to setup while this script runs
+echo "Installing Priority Programs"
+sleep 2
+nala install gnome-tweaks -y
+nala install nautilus -y
+nala install seahorse -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub com.google.Chrome -y
+flatpak install flathub com.discordapp.Discord -y
+flatpak install flathub md.obsidian.Obsidian -y
+flatpak install flathub com.dropbox.Client -y
+nala install papirus-icon-theme -y
+nala install fonts-noto-color-emoji -y
+nala install font-manager -y
+nala install build-essential -y
+nala install unzip -y
+nala install linux-headers-generic -y
+nala install lua5.4 -y
+flatpak install flathub com.visualstudio.code -y
+wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
+sudo dpkg -i synology-drive-client-15724.x86_64.deb
+wait
+rm synology-drive-client-15724.x86_64.deb
+
+echo "Installing Fonts"
+sleep 2
+# Installing fonts
 cd "$builddir" || exit
-mkdir -p /home/"$username"/.fonts
-mkdir -p /var/lib/usbmux/.config
 
+nala install fonts-font-awesome fonts-noto-color-emoji -y
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+unzip FiraCode.zip -d /home/"$username"/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+unzip Meslo.zip -d /home/"$username"/.fonts
+mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
+chown "$username":"$username" /home/"$username"/.fonts/*
 
-echo "Install Essentials"
+# Reloading Font
+fc-cache -vf
+wait
+
+echo "Installing Gnome Extensions"
 sleep 2
-apt install wget gpg flatpak gnome-software-plugin-flatpak -y
-flatpak remote-add flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# Extensions - will need to be customized still
+# After full install dwl Alt+tab and User Themes - versions are not compatible between stable and testing branches.
+mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
+cp -R dotlocal/share/gnome-shell/extensions/* /home/"$username"/.local/share/gnome-shell/extensions/
+chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
+
+# Removing zip files and stuff
+rm ./FiraCode.zip ./Meslo.zipk
+rm -r dotlocal
+rm -r scripts
+
+echo "Installing Cursors & Icons"
+sleep 2
+# Cursor 
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+# Install Nordzy cursor
+git clone https://github.com/alvatip/Nordzy-cursors
+cd Nordzy-cursors || exit
+./install.sh
+cd "$builddir" || exit
+rm -rf Nordzy-cursors
+
+# icons
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+
+echo "Installing other less important but still important Programs, drivers, etc"
+wait 2
+
+wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+sudo dpkg -i steam.deb
+rm steam.deb
+# i386 is needed for steam to launch
+sudo dpkg --add-architecture i386
+
+nala install gnome-calculator -y
+flatpak install flathub org.libreoffice.LibreOffice -y
+nala install rename -y
+nala install cups -y
+nala install util-linux -y
+nala install gdebi -y
+nala install neofetch -y
+nala install gparted -y
+nala install btop -y
+nala install curl -y
+nala install gh -y
+nala install x11-xserver-utils -y
+nala install dh-dkms -y
+nala install devscripts -y
 apt update && upgrade -y
 wait
-apt full-upgrade -y
-wait
-sudo apt install -f
-wait
-flatpak update
-wait
-nala install gnome-shell tilix gnome-text-editor -y
+flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+flatpak install flathub org.gnome.SimpleScan -y
+flatpak install flathub net.scribus.Scribus -y
+flatpak install flathub org.videolan.VLC -y
+flatpak install flathub org.blender.Blender -y
+flatpak install flathub org.inkscape.Inkscape -y
+flatpak install flathub com.flashforge.FlashPrint -y
+flatpak install flathub com.obsproject.Studio -y
+flatpak install flathub com.usebottles.bottles -y
+flatpak install flathub com.github.tchx84.Flatseal -y
+flatpak install flathub org.qbittorrent.qBittorrent -y
+apt purge firefox -y
+apt purge firefox-esr -y
 
-echo "Changing Graphical Login"
+
+echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
 sleep 2
-# Enable graphical login and change target from CLI to GUI
-# First admend the .gdm3 to add Intall section
-sudo rm /lib/systemd/system/gdm3.service && sudo touch /lib/systemd/system/gdm3.service && sudo chmod +rwx /lib/systemd/system/gdm3.service && sudo printf "[Unit]
-Description=GNOME Display Manager
+nala install libfuse2 libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0-y
+# cp /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 /opt/resolve/libs
+# cd /opt/resolve/libs || exit
+# sudo mkdir /opt/resolve/libs/_disabled
+# sudo mv libgio* libglib* libgmodule* libgobject* _disabled
+# cd /
 
-# replaces the getty
-Conflicts=getty@tty1.service
-After=getty@tty1.service
-
-# replaces plymouth-quit since it quits plymouth on its own
-Conflicts=plymouth-quit.service
-After=plymouth-quit.service
-
-# Needs all the dependencies of the services it's replacing
-# pulled from getty@.service and plymouth-quit.service
-# (except for plymouth-quit-wait.service since it waits until
-# plymouth is quit, which we do)
-After=rc-local.service plymouth-start.service systemd-user-sessions.service
-
-# GDM takes responsibility for stopping plymouth, so if it fails
-# for any reason, make sure plymouth still stops
-OnFailure=plymouth-quit.service
-
-[Service]
-ExecStartPre=/usr/share/gdm/generate-config
-ExecStart=/usr/sbin/gdm3
-KillMode=mixed
-Restart=always
-RestartSec=1s
-IgnoreSIGPIPE=no
-BusName=org.gnome.DisplayManager
-EnvironmentFile=-/etc/default/locale
-ExecReload=/usr/share/gdm/generate-config
-ExecReload=/bin/kill -SIGHUP $MAINPID
-KeyringMode=shared
-
-[Install]
-WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm3.service
-
-
-# And then the .gdm to add Intall section
-sudo rm /lib/systemd/system/gdm.service && sudo touch /lib/systemd/system/gdm.service && sudo chmod +rwx /lib/systemd/system/gdm.service && sudo printf "[Unit]
-Description=GNOME Display Manager
-
-# replaces the getty
-Conflicts=getty@tty1.service
-After=getty@tty1.service
-
-# replaces plymouth-quit since it quits plymouth on its own
-Conflicts=plymouth-quit.service
-After=plymouth-quit.service
-
-# Needs all the dependencies of the services it's replacing
-# pulled from getty@.service and plymouth-quit.service
-# (except for plymouth-quit-wait.service since it waits until
-# plymouth is quit, which we do)
-After=rc-local.service plymouth-start.service systemd-user-sessions.service
-
-# GDM takes responsibility for stopping plymouth, so if it fails
-# for any reason, make sure plymouth still stops
-OnFailure=plymouth-quit.service
-
-[Service]
-ExecStartPre=/usr/share/gdm/generate-config
-ExecStart=/usr/sbin/gdm3
-KillMode=mixed
-Restart=always
-RestartSec=1s
-IgnoreSIGPIPE=no
-BusName=org.gnome.DisplayManager
-EnvironmentFile=-/etc/default/locale
-ExecReload=/usr/share/gdm/generate-config
-ExecReload=/bin/kill -SIGHUP $MAINPID
-KeyringMode=shared
-
-[Install]
-WantedBy=multi-user.target" | sudo tee -a /lib/systemd/system/gdm.service
-
-
-
-echo "Hello Handsome"
-sleep 2
-# Edit Graphical Login Settings
-sudo rm /etc/gdm3/greeter.dconf-defaults && sudo touch /etc/gdm3/greeter.dconf-defaults && sudo chmod +rwx /etc/gdm3/greeter.dconf-defaults && sudo printf "# These are the options for the greeter session that can be set 
-# through GSettings. Any GSettings setting that is used by the 
-# greeter session can be set here.
-
-# Note that you must configure the path used by dconf to store the 
-# configuration, not the GSettings path.
-
-
-# Theming options
-# ===============
-#  - Change the GTK+ theme
-[org/gnome/desktop/interface]
-# gtk-theme='Adwaita'
-#  - Use another background
-[org/gnome/desktop/background]
-# picture-uri='file:///usr/share/themes/Adwaita/backgrounds/stripes.jpg'
-# picture-options='zoom'
-#  - Or no background at all
-[org/gnome/desktop/background]
-# picture-options='none'
-# primary-color='#000000'
-
-# Login manager options
-# =====================
-[org/gnome/login-screen]
-# logo='/usr/share/images/vendor-logos/logo-text-version-64.png'
-
-# - Disable user list
-# disable-user-list=true
-# - Disable restart buttons
-# disable-restart-buttons=true
-# - Show a login welcome message
-banner-message-enable=true
-banner-message-text='Hello Handsome'
-
-# Automatic suspend
-# =================
-[org/gnome/settings-daemon/plugins/power]
-# - Time inactive in seconds before suspending with AC power
-#   1200=20 minutes, 0=never
-# sleep-inactive-ac-timeout=1200
-# - What to do after sleep-inactive-ac-timeout
-#   'blank', 'suspend', 'shutdown', 'hibernate', 'interactive' or 'nothing'
-# sleep-inactive-ac-type='suspend'
-# - As above but when on battery
-# sleep-inactive-battery-timeout=1200
-# sleep-inactive-battery-type='suspend'
-#" | sudo tee -a /etc/gdm3/greeter.dconf-defaults
-
-
-# Finalizing graphical login
-systemctl enable gdm
-systemctl enable gdm3 --now
-
-
-# Use nala
-bash scripts/usenala
+# VPN
+wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.3-07926.run
+chmod +x pia-linux-3.5.3-07926.run
+./pia-linux-3.5.3-07926.run
+wait
 
 apt update && upgrade -y
-wait
-flatpak update -y
 wait
 apt full-upgrade -y
 wait
 apt install -f
+wait
 dpkg --configure -a
-echo "After reboot run 2.sh"
-sleep 2
+apt install --fix-broken
+wait
+apt autoremove 
+apt update && upgrade -y
+wait
+flatpak update
+echo "After rebooting, run Script 3.sh for Nvidia drivers." 
+echo "Skip 3.sh if you are not using Nvidia hardware."
+wait 5
 reboot
+
+
+
+
+# another way to install vscode and install the extensions listed below
+# wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/019f4d1419fbc8219a181fab7892ebccf7ee29a2/code_1.87.0-1709078641_amd64.deb | dpkg -i code_1.87.0-1709078641_amd64.deb | rm code_1.87.0-1709078641_amd64.deb
+
+
+# If this is your first time using VSCode then create an account and set it up with these extensions. 
+# This is a great place to start. This is setup for Lua and Bash, feel free to customize.
+# Copy these to a new .sh and run it in terminal - Do not run as sudo.
+# code --install-extension DaltonMenezes.aura-theme
+# code --install-extension rogalmic.bash-debug
+# code --install-extension mads-hartmann.bash-ide-vscode
+# code --install-extension CoenraadS.bracket-pair-colorizer
+# code --install-extension streetsidesoftware.code-spell-checker
+# code --install-extension sourcegraph.cody-ai
+# code --install-extension kamikillerto.vscode-colorize
+# code --install-extension appulate.filewatcher
+# code --install-extension GitHub.vscode-pull-request-github
+# code --install-extension eamodio.gitlens
+# code --install-extension oderwat.indent-rainbow
+# code --install-extension SirTori.indenticator
+# code --install-extension ritwickdey.LiveServer
+# code --install-extension sumneko.lua
+# code --install-extension actboy168.lua-debug
+# code --install-extension openra.vscode-openra-lua
+# code --install-extension johnpapa.vscode-peacock
+# code --install-extension jeanp413.open-remote-ssh
+# code --install-extension timonwong.shellcheck
