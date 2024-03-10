@@ -180,13 +180,13 @@ banner-message-text='Hello Handsome'
 [org/gnome/settings-daemon/plugins/power]
 # - Time inactive in seconds before suspending with AC power
 #   1200=20 minutes, 0=never
-# sleep-inactive-ac-timeout=1200
+sleep-inactive-ac-timeout=0
 # - What to do after sleep-inactive-ac-timeout
 #   'blank', 'suspend', 'shutdown', 'hibernate', 'interactive' or 'nothing'
-# sleep-inactive-ac-type='suspend'
+sleep-inactive-ac-type='suspend'
 # - As above but when on battery
-# sleep-inactive-battery-timeout=1200
-# sleep-inactive-battery-type='suspend'
+sleep-inactive-battery-timeout=1200
+sleep-inactive-battery-type='suspend'
 #" | sudo tee -a /etc/gdm3/greeter.dconf-defaults
 
 
