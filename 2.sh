@@ -114,6 +114,7 @@ nala install gparted -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
+nala install libfuse2 -y
 nala install x11-xserver-utils -y
 nala install dh-dkms -y
 nala install devscripts -y
