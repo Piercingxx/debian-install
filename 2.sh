@@ -141,8 +141,7 @@ nala install libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-ic
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 chmod u+x pia-linux-3.5.5-08091.run
-./pia-linux-3.5.5-08091.run
-wait
+
 
 apt update && upgrade -y
 wait
