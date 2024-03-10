@@ -8,6 +8,10 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
+# Checks for active network connection
+if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
+    then awk {print} <<< "Network connectivity is required to continue."; exit
+fi
 
 sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
 deb http://security.debian.org/debian-security testing-security/updates main non-free-firmware" | sudo tee -a /etc/apt/sources.list
