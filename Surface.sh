@@ -8,9 +8,10 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-#disable automatic screen brightness
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
-wait
+# Checks for active network connection
+if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
+    then awk {print} <<< "Network connectivity is required to continue."; exit
+fi
 
 apt update && upgrade -y
 wait
