@@ -16,6 +16,11 @@ echo "Build directory: $builddir"
 
 echo "Starting Script 3.sh"
 
+# Checks for active network connection
+if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
+    then awk {print} <<< "Network connectivity is required to continue."; exit
+fi
+
 echo "Updating Repositiories"
 apt update && upgrade -y
 wait
