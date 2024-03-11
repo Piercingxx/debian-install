@@ -70,13 +70,17 @@ flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
-# flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 # flatpak install flathub com.obsproject.Studio -y
 # flatpak install flathub com.visualstudio.code -y
 # flatpak install flathub com.flashforge.FlashPrint -y
 
 # flashprint
-https://en.fss.flashforge.com/10000/software/f186e88806341f4e694728bf2ec68c4e.deb
+wget https://en.fss.flashforge.com/10000/software/f186e88806341f4e694728bf2ec68c4e.deb
+wait
+dpkg -i f186e88806341f4e694728bf2ec68c4e.deb
+wait
+rm f186e88806341f4e694728bf2ec68c4e.deb
 
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
