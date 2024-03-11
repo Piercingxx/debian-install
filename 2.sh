@@ -183,6 +183,13 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T"
+gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+gnome-extensions enable aztaskbar@aztaskbar.gitlab.com
+gnome-extensions enable burn-my-windows@schneegans.github.com
+gnome-extensions enable CoverflowAltTab@palatis.blogspot.com
+gnome-extensions enable awesome-tiles@velitasali.com
+gnome-extensions enable blur-my-shell@aunetx
+
 
 
 apt update && upgrade -y
