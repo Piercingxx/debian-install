@@ -114,6 +114,7 @@ chown "$username":"$username" /home/"$username"/.fonts/*
 # Reloading Font
 fc-cache -vf
 wait
+rm Meslo.zip
 
 echo "Installing Cursors & Icons"
 sleep 2
