@@ -44,6 +44,7 @@ nala install rename -y
 nala install cups -y
 nala install util-linux -y
 nala install xdg-utils -y
+nala install dbus-x11 -y
 nala install gdebi -y
 nala install neofetch -y
 nala install gparted -y
@@ -115,10 +116,6 @@ apt update && upgrade -y
 wait
 
 
-
-
-
-
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
@@ -166,8 +163,20 @@ rm -r scripts
 mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
 
-
-
+echo "Installing Dependencies for DaVinci Resolve."
+sleep 2
+nala install libglu1-mesa -y
+nala install libgdk-pixbuf2.0-0 -y
+nala install libxcb-composite0 -y
+nala install libxcb-cursor0 -y
+nala install libxcb-damage0 -y
+nala install ocl-icd-libopencl1 -y
+nala install libssl-dev -y
+nala install ocl-icd-opencl-dev -y
+nala install libpango-1.0-0 -y
+nala install libxml2-utils -y
+nala install podman-toolbox -y
+wait
 
 apt update && upgrade -y
 wait
@@ -186,38 +195,68 @@ flatpak update
 # Preferences 
 echo "Updating Customization Preferences"
 sleep 2
-su "$username"
-gsettings set org.gnome.desktop.interface clock-format 24h
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
-gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface clock-show-weekday true
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
-gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
-gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
-gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
-gsettings set org.gnome.desktop.interface enable-hot-corners false
-gsettings set org.gnome.desktop.background picture-options 'spanned'
-gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']"
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T"
-gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
-gnome-extensions enable aztaskbar@aztaskbar.gitlab.com
-# gnome-extensions enable burn-my-windows@schneegans.github.com
-gnome-extensions enable awesome-tiles@velitasali.com
-gnome-extensions enable blur-my-shell@aunetx
 
+
+sudo -u dr3k gsettings set org.gnome.desktop.interface clock-format 24h
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface clock-show-weekday true
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.session idle-delay 0
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface show-battery-percentage true
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.interface enable-hot-corners false
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.background picture-options 'spanned'
+sleep 1
+sudo -u dr3k gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']"
+sleep 1
+sudo -u dr3k gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']"
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix"
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix"
+sleep 1
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T"
+sleep 1
+sudo -u dr3k gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+sleep 1
+sudo -u dr3k gnome-extensions enable aztaskbar@aztaskbar.gitlab.com
+sleep 1
+sudo -u dr3k gnome-extensions enable awesome-tiles@velitasali.com
+sleep 1
+sudo -u dr3k gnome-extensions enable blur-my-shell@aunetx
+sleep 1
+# sudo -u dr3k gnome-extensions enable burn-my-windows@schneegans.github.com
+# sleep 1
 
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers." 
