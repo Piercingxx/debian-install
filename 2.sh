@@ -142,16 +142,9 @@ rm -r dotlocal
 rm -r scripts
 
 
-
-
-
-echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
-sleep 2
-nala install libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0 -y
-
-
-
 # Preferences 
+echo "Updating Customization Preferences"
+sleep 2
 gsettings set org.gnome.desktop.interface clock-format 24h
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
