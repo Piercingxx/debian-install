@@ -15,9 +15,11 @@ echo "Starting Script 2.sh"
 sleep 2
 
 # Checks for active network connection
-if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
-    then awk {print} <<< "Network connectivity is required to continue."; exit
+if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
+    awk '{print}' <<< "Network connectivity is required to continue."
+    exit
 fi
+
 
 echo "Updating Repositiories"
 sleep 2
@@ -26,20 +28,75 @@ wait
 
 
 #Installing Priority Programs to setup while this script runs
-echo "Installing Priority Programs"
+echo "Installing Programs and Drivers"
 sleep 2
 nala install gnome-tweaks -y
 nala install nautilus -y
-flatpak install flathub com.google.Chrome -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
 nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
+nala install seahorse -y
+nala install gnome-calculator -y
+nala install rename -y
+nala install cups -y
+nala install util-linux -y
+nala install gdebi -y
+nala install neofetch -y
+nala install gparted -y
+nala install btop -y
+nala install curl -y
+nala install gh -y
+nala install libfuse2 -y
+nala install x11-xserver-utils -y
+nala install dh-dkms -y
+nala install devscripts -y
+nala install lua5.4 -y
+wait
+flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub com.dropbox.Client -y
+flatpak install flathub com.visualstudio.code -y
+flatpak install flathub org.libreoffice.LibreOffice -y
+flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
+flatpak install flathub org.gnome.SimpleScan -y
+flatpak install flathub net.scribus.Scribus -y
+flatpak install flathub org.videolan.VLC -y
+flatpak install flathub org.blender.Blender -y
+flatpak install flathub org.inkscape.Inkscape -y
+flatpak install flathub com.flashforge.FlashPrint -y
+flatpak install flathub com.usebottles.bottles -y
+flatpak install flathub com.github.tchx84.Flatseal -y
+flatpak install flathub org.qbittorrent.qBittorrent -y
+# flatpak install flathub com.obsproject.Studio -y
+
+wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
+sudo dpkg -i synology-drive-client-15724.x86_64.deb
+wait
+rm synology-drive-client-15724.x86_64.deb
+
+# steam
+wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+sudo dpkg -i steam.deb
+rm steam.deb
+# i386 is needed for steam to launch
+sudo dpkg --add-architecture i386
+
+# VPN
+wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
+chmod u+x pia-linux-3.5.5-08091.run
+
+apt update && upgrade -y
+wait
+
+
+
+
+
 
 echo "Installing Fonts"
 sleep 2
@@ -58,6 +115,19 @@ chown "$username":"$username" /home/"$username"/.fonts/*
 fc-cache -vf
 wait
 
+echo "Installing Cursors & Icons"
+sleep 2
+# Cursor 
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+# Install Nordzy cursor
+git clone https://github.com/alvatip/Nordzy-cursors
+cd Nordzy-cursors || exit
+./install.sh
+cd "$builddir" || exit
+rm -rf Nordzy-cursors
+
+
 echo "Installing Gnome Extensions"
 sleep 2
 # Extensions - will need to be customized still
@@ -71,77 +141,17 @@ rm ./FiraCode.zip ./Meslo.zipk
 rm -r dotlocal
 rm -r scripts
 
-echo "Installing Cursors & Icons"
-sleep 2
-# Cursor 
-wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 
-# Install Nordzy cursor
-git clone https://github.com/alvatip/Nordzy-cursors
-cd Nordzy-cursors || exit
-./install.sh
-cd "$builddir" || exit
-rm -rf Nordzy-cursors
 
-# icons
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-
-echo "Installing other less important but still important Programs, drivers, etc"
-sleep 2
-
-flatpak install flathub com.dropbox.Client -y
-nala install seahorse -y
-flatpak install flathub com.visualstudio.code -y
-wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
-sudo dpkg -i synology-drive-client-15724.x86_64.deb
-wait
-rm synology-drive-client-15724.x86_64.deb
-nala install gnome-calculator -y
-flatpak install flathub org.libreoffice.LibreOffice -y
-nala install rename -y
-nala install cups -y
-nala install util-linux -y
-nala install gdebi -y
-nala install neofetch -y
-nala install gparted -y
-nala install btop -y
-nala install curl -y
-nala install gh -y
-nala install libfuse2 -y
-nala install x11-xserver-utils -y
-nala install dh-dkms -y
-nala install devscripts -y
-nala install lua5.4 -y
-apt update && upgrade -y
-wait
-flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
-flatpak install flathub org.gnome.SimpleScan -y
-flatpak install flathub net.scribus.Scribus -y
-flatpak install flathub org.videolan.VLC -y
-flatpak install flathub org.blender.Blender -y
-flatpak install flathub org.inkscape.Inkscape -y
-flatpak install flathub com.flashforge.FlashPrint -y
-flatpak install flathub com.usebottles.bottles -y
-flatpak install flathub com.github.tchx84.Flatseal -y
-flatpak install flathub org.qbittorrent.qBittorrent -y
-# flatpak install flathub com.obsproject.Studio -y
-
-# steam
-wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
-sudo dpkg -i steam.deb
-rm steam.deb
-# i386 is needed for steam to launch
-sudo dpkg --add-architecture i386
 
 
 echo "Installing dependencies for DaVinci Resolve. Manually install later from website"
 sleep 2
 nala install libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-icd-libopencl1 libssl-dev ocl-icd-opencl-dev libpango-1.0-0 -y
 
-# VPN
-wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
-chmod u+x pia-linux-3.5.5-08091.run
 
+
+# Preferences 
 gsettings set org.gnome.desktop.interface clock-format 24h
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
@@ -159,10 +169,14 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
 gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
-gsettings set org.gnome.shell enable-hot-corners false
+gsettings set org.gnome.desktop.interface enable-hot-corners false
 gsettings set org.gnome.desktop.background picture-options 'spanned'
 gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'com.discordapp.Discord.desktop']"
-
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']"
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "tilix"
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "tilix"
+# gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Primary><Alt>T"
 
 
 apt update && upgrade -y
@@ -182,8 +196,6 @@ echo "After rebooting, run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
 wait 5
 reboot
-
-
 
 
 # another way to install vscode and install the extensions listed below
