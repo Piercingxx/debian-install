@@ -38,12 +38,13 @@ wait
 
 
 
-
-wget https://swr.cloud.blackmagicdesign.com/DaVinciResolve/v18.6.5/DaVinci_Resolve_18.6.5_Linux.zip?verify=1710152971-%2BcJfEuCjESaemO3IFsAvFPbB08xn%2BkHZCA8Px2%2F6Yxw%3D
 cd /home/"$username"/Downloads
-unzip DaVinci_Resolve_18.6.5_Linux.zip
-chown "$username":"$username" DaVinci_Resolve_18.6.5_Linux.run
-./DaVinci_Resolve_18.6.5_Linux.run
+wget https://swr.cloud.blackmagicdesign.com/DaVinciResolve/v18.6.5/DaVinci_Resolve_Studio_18.6.5_Linux.zip?verify=1710156622-e6XNbpzTzj1fsjAISI3CUSvA9VlldcJIo8w265zl86o%3D
+wait
+unzip DaVinci_Resolve_Studio_18.6.5_Linux.zip
+wait
+chown "$username":"$username" DaVinci_Resolve_Studio_18.6.5_Linux.zip
+./DaVinci_Resolve_Studio_18.6.5_Linux.zip
 
 wait
 
