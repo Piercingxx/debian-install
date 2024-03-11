@@ -106,10 +106,6 @@ apt update && upgrade -y
 wait
 
 
-
-
-
-
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
@@ -154,6 +150,9 @@ rm ./FiraCode.zip ./Meslo.zipk
 rm -r dotlocal
 rm -r scripts
 
+# Used in fstab
+mkdir -p /media/Working-Storage
+mkdir -p /media/Archived-Storage
 
 # Preferences 
 echo "Updating Customization Preferences"
