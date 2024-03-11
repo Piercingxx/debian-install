@@ -197,65 +197,65 @@ echo "Updating Customization Preferences"
 sleep 2
 
 
-sudo -u dr3k gsettings set org.gnome.desktop.interface clock-format 24h
+sudo -u dr3k gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+sudo -u dr3k gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+sudo -u dr3k gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && echo "GTK Theme: Adwaita-dark"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
+sudo -u dr3k gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors' && echo "Cursor Theme: Nordzy"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+sudo -u dr3k gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface clock-show-weekday true
+sudo -u dr3k gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing' && echo "Sleep Inactive AC: Nothing"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing' && echo "Sleep Inactive Battery: Nothing"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.session idle-delay 0
+sudo -u dr3k gsettings set org.gnome.desktop.session idle-delay 0 && echo "Lock Screen Idle: 0"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface show-battery-percentage true
+sudo -u dr3k gsettings set org.gnome.desktop.interface show-battery-percentage true && echo "Show Battery Percentage: True"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false && echo "Ambient Enabled: False"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.power idle-dim false && echo "Idle Dim: False"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true && echo "Night Light Enabled: True"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false && echo "Night Light Schedule Automatic: False"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20 && echo "Night Light Schedule From: 20"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04 && echo "Night Light Schedule To: 04"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500 && echo "Night Light Temperature: 2500"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.interface enable-hot-corners false
+sudo -u dr3k gsettings set org.gnome.desktop.interface enable-hot-corners false && echo "Enable Hot Corners: False"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.background picture-options 'spanned'
+sudo -u dr3k gsettings set org.gnome.desktop.background picture-options 'spanned' && echo "Background Options: Spanned"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']"
+sudo -u dr3k gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, Visual Studio Code, Discord"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']"
+sudo -u dr3k gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" && echo "Caps Lock: Backspace"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']" && echo "Custom Keybindings: None"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix"
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix" && echo "Tilix: Name"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix"
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix" && echo "Tilix: Command"
 sleep 1
-sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T"
+sudo -u dr3k gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T" && echo "Tilix: Binding"
 sleep 1
-sudo -u dr3k gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+sudo -u dr3k gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com && echo "App Indicator Support: Enabled"
 sleep 1
-sudo -u dr3k gnome-extensions enable aztaskbar@aztaskbar.gitlab.com
+sudo -u dr3k gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && echo "AzTaskbar: Enabled"
 sleep 1
-sudo -u dr3k gnome-extensions enable awesome-tiles@velitasali.com
+sudo -u dr3k gnome-extensions enable awesome-tiles@velitasali.com && echo "Awesome Tiles: Enabled"
 sleep 1
-sudo -u dr3k gnome-extensions enable blur-my-shell@aunetx
+sudo -u dr3k gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 sleep 1
-# sudo -u dr3k gnome-extensions enable burn-my-windows@schneegans.github.com
+# sudo -u dr3k gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
 # sleep 1
 
 
