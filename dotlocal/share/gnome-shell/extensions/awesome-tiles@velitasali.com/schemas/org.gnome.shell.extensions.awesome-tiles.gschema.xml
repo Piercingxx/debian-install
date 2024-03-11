@@ -133,7 +133,7 @@
       <description>Maximum time of you can adjust tiling step by iterating same keybinding in milliseconds.</description>
     </key>
     <key name="gap-size-increments" type="i">
-      <default>5</default>
+      <default>1</default>
       <summary>Gap Size Increments</summary>
       <description>Determine how much gap size adjust by keybinding.</description>
     </key>
