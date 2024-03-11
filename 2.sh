@@ -223,7 +223,7 @@ gnome-extensions enable blur-my-shell@aunetx
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers." 
 echo "Skip 3.sh if you are not using Nvidia hardware."
 wait 10
-reboot
+sudo reboot
 
 
 
