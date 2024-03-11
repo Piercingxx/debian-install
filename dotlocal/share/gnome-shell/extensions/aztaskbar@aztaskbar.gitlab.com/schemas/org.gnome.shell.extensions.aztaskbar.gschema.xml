@@ -57,7 +57,7 @@
             <description>Isolate running apps by current monitors.</description>
         </key>
         <key type="(bi)" name="main-panel-height">
-            <default>(true, 40)</default>
+            <default>(true, 33)</default>
             <summary>Change the height of GNOME top panel</summary>
             <description>Change the height of GNOME top panel.</description>
         </key>
@@ -67,7 +67,7 @@
             <description>Show/Hide  the app menu button in panel.</description>
         </key>
         <key type="b" name="show-panel-activities-button">
-            <default>true</default>
+            <default>false</default>
             <summary>Show/Hide the activities button in panel</summary>
             <description>Show/Hide  the activities button in panel.</description>
         </key>
@@ -77,7 +77,7 @@
             <description>Show/Hide running apps icons.</description>
         </key>
         <key type="b" name="favorites">
-            <default>true</default>
+            <default>false</default>
             <summary>Show GNOME favorites as AppIcons</summary>
             <description>Show GNOME favorites as AppIcons.</description>
         </key>
@@ -167,7 +167,7 @@
             <description>Show tool-tips for AppIcons.</description>
         </key>
         <key type="i" name="icon-size">
-            <default>26</default>
+            <default>23</default>
             <summary>Icon size for the AppIcons</summary>
             <description>Icon size for the AppIcons.</description>
         </key>
