@@ -142,6 +142,28 @@ nala install libglu1-mesa libxcb-composite0 libxcb-cursor0 libxcb-damage0 ocl-ic
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 chmod u+x pia-linux-3.5.5-08091.run
 
+gsettings set org.gnome.desktop.interface clock-format 24h
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.interface.show-battery-percentage true
+gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
+gsettings set org.gnome.shell enable-hot-corners false
+gsettings set org.gnome.desktop.background picture-options 'spanned'
+gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'com.discordapp.Discord.desktop']"
+
+
 
 apt update && upgrade -y
 wait
