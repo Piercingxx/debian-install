@@ -43,6 +43,7 @@ nala install gnome-calculator -y
 nala install rename -y
 nala install cups -y
 nala install util-linux -y
+nala install xdg-utils -y
 nala install gdebi -y
 nala install neofetch -y
 nala install gparted -y
@@ -58,21 +59,25 @@ wait
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.dropbox.Client -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub org.gnome.SimpleScan -y
-flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub org.videolan.VLC -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.inkscape.Inkscape -y
-flatpak install flathub com.flashforge.FlashPrint -y
+flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
+# flatpak install flathub com.mattjakeman.ExtensionManager -y
 # flatpak install flathub com.obsproject.Studio -y
 # flatpak install flathub com.visualstudio.code -y
+# flatpak install flathub com.flashforge.FlashPrint -y
+
+# flashprint
+https://en.fss.flashforge.com/10000/software/f186e88806341f4e694728bf2ec68c4e.deb
+
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
 wait
@@ -106,6 +111,10 @@ apt update && upgrade -y
 wait
 
 
+
+
+
+
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
@@ -122,7 +131,6 @@ chown "$username":"$username" /home/"$username"/.fonts/*
 # Reloading Font
 fc-cache -vf
 wait
-rm Meslo.zip
 
 echo "Installing Cursors & Icons"
 sleep 2
@@ -146,7 +154,7 @@ cp -R dotlocal/share/gnome-shell/extensions/* /home/"$username"/.local/share/gno
 chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 
 # Removing zip files and stuff
-rm ./FiraCode.zip ./Meslo.zipk
+rm ./FiraCode.zip ./Meslo.zip
 rm -r dotlocal
 rm -r scripts
 
@@ -154,39 +162,6 @@ rm -r scripts
 mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
 
-# Preferences 
-echo "Updating Customization Preferences"
-sleep 2
-gsettings set org.gnome.desktop.interface clock-format 24h
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
-gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface clock-show-weekday true
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
-gsettings set org.gnome.desktop.session idle-delay 0
-gsettings set org.gnome.desktop.interface.show-battery-percentage true
-gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
-gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
-gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
-gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
-gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
-gsettings set org.gnome.desktop.interface enable-hot-corners false
-gsettings set org.gnome.desktop.background picture-options 'spanned'
-gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'com.discordapp.Discord.desktop']"
-gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T"
-gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
-gnome-extensions enable aztaskbar@aztaskbar.gitlab.com
-gnome-extensions enable burn-my-windows@schneegans.github.com
-gnome-extensions enable awesome-tiles@velitasali.com
-gnome-extensions enable blur-my-shell@aunetx
 
 
 
@@ -199,13 +174,51 @@ wait
 dpkg --configure -a
 apt install --fix-broken
 wait
-apt autoremove 
+apt autoremove -y
 apt update && upgrade -y
 wait
 flatpak update
-echo "After rebooting, run Script 3.sh for Nvidia drivers." 
+
+# Preferences 
+echo "Updating Customization Preferences"
+sleep 2
+su "$username"
+gsettings set org.gnome.desktop.interface clock-format 24h
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false
+gsettings set org.gnome.settings-daemon.plugins.power idle-dim false
+gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20
+gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500
+gsettings set org.gnome.desktop.interface enable-hot-corners false
+gsettings set org.gnome.desktop.background picture-options 'spanned'
+gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']"
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T"
+gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+gnome-extensions enable aztaskbar@aztaskbar.gitlab.com
+# gnome-extensions enable burn-my-windows@schneegans.github.com
+gnome-extensions enable awesome-tiles@velitasali.com
+gnome-extensions enable blur-my-shell@aunetx
+
+
+
+echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers." 
 echo "Skip 3.sh if you are not using Nvidia hardware."
-wait 5
+wait 10
 reboot
 
 
