@@ -17,6 +17,8 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
     exit
 fi
 
+echo "Installing DaVinci Resolve Studio"
+
 apt update && upgrade -y
 wait
 
