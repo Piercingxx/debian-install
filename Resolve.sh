@@ -9,7 +9,6 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 username=$(id -u -n 1000)
-builddir=$(pwd)
 
 # Checks for active network connection
 if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
@@ -40,13 +39,13 @@ wait
 
 
 
-cd /home/"$username"/Downloads
+cd /home/"$username"/Downloads || exit
 wget https://swr.cloud.blackmagicdesign.com/DaVinciResolve/v18.6.5/DaVinci_Resolve_Studio_18.6.5_Linux.zip?verify=1710156622-e6XNbpzTzj1fsjAISI3CUSvA9VlldcJIo8w265zl86o%3D
 wait
-unzip DaVinci_Resolve_Studio_18.6.5_Linux.zip
+unzip DaVinci_Resolve_Studio_18.6.5_Linux.zip*
 wait
-chown "$username":"$username" DaVinci_Resolve_Studio_18.6.5_Linux.zip
-./DaVinci_Resolve_Studio_18.6.5_Linux.zip
+chown "$username":"$username" DaVinci_Resolve_Studio_18.6.5_Linux.run
+./DaVinci_Resolve_Studio_18.6.5_Linux.run
 
 wait
 
@@ -67,4 +66,3 @@ echo "Launch Btop and terminate Davince Resolve splash."
 echo "It will then launch without any issues."
 
 sleep 60
-
