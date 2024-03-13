@@ -23,6 +23,7 @@ fi
 
 echo "Updating Repositiories"
 sleep 2
+add-apt-repository universe -y
 apt update && upgrade -y
 wait
 
@@ -51,6 +52,7 @@ nala install gparted -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
+nals install fuse -y
 nala install libfuse2 -y
 nala install x11-xserver-utils -y
 nala install dh-dkms -y
@@ -72,16 +74,9 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub com.flashforge.FlashPrint -y
 # flatpak install flathub com.obsproject.Studio -y
 # flatpak install flathub com.visualstudio.code -y
-# flatpak install flathub com.flashforge.FlashPrint -y
-
-# flashprint
-wget https://en.fss.flashforge.com/10000/software/f186e88806341f4e694728bf2ec68c4e.deb
-wait
-dpkg -i f186e88806341f4e694728bf2ec68c4e.deb
-wait
-rm f186e88806341f4e694728bf2ec68c4e.deb
 
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
@@ -195,8 +190,6 @@ flatpak update
 # Preferences 
 echo "Updating Customization Preferences"
 sleep 2
-
-
 sudo -u dr3k gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
 sleep 1
 sudo -u dr3k gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
