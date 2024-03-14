@@ -20,11 +20,13 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
     exit
 fi
 
+
 echo "Updating Repositiories"
 sleep 2
 add-apt-repository universe -y
 apt update && upgrade -y
 wait
+
 
 #Installing Priority Programs to setup while this script runs
 echo "Installing Programs and Drivers"
@@ -56,6 +58,7 @@ nala install x11-xserver-utils -y
 nala install dh-dkms -y
 nala install devscripts -y
 nala install lua5.4 -y
+nala install dconf* -y
 wait
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
@@ -108,6 +111,7 @@ wait
 apt update && upgrade -y
 wait
 
+
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
@@ -136,6 +140,7 @@ cd Nordzy-cursors || exit
 ./install.sh
 cd "$builddir" || exit
 rm -rf Nordzy-cursors
+
 
 echo "Installing Gnome Extensions"
 sleep 2
@@ -188,6 +193,8 @@ echo "Updating Customization Preferences"
 sleep 2
 sudo -u $username gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
 sleep 1
+sudo -u $username gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true && echo "Numlock State: True"
+sleep 1
 sudo -u $username gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
 sleep 1
 sudo -u $username gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && echo "GTK Theme: Adwaita-dark"
@@ -195,6 +202,8 @@ sleep 1
 sudo -u $username gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors' && echo "Cursor Theme: Nordzy"
 sleep 1
 sudo -u $username gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
+sleep 1
+sudo -u $username gsettings set org.gnome.desktop.interface enable-animations false && echo "Enable Animations: False"
 sleep 1
 sudo -u $username gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
 sleep 1
@@ -238,11 +247,13 @@ sudo -u $username gsettings set org.gnome.desktop.peripherals.touchpad tap-to-cl
 sleep 1 
 sudo -u $username gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true && echo "Natural Scroll: True"
 sleep 1
-sudo -u $username gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false && echo "Two Finger Scrolling: False"
-sleep 1
 sudo -u $username gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true && echo "Edge Scrolling: True"
 sleep 1
+sudo -u $username gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false && echo "Two Finger Scrolling: False"
+sleep 1
 sudo -u $username gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas' && echo "Click Method: Areas"
+sleep 1
+sudo -u $username gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive' && echo "Power Button Action: Interactive"
 sleep 1
 sudo -u $username gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com && echo "App Indicator Support: Enabled"
 sleep 1
@@ -252,12 +263,66 @@ sudo -u $username gnome-extensions enable awesome-tiles@velitasali.com && echo "
 sleep 1
 sudo -u $username gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 sleep 1
-# sudo -u $username gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
-# sleep 1
+#sudo -u $username gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
+#sleep 1
+dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments 1 && echo "Awesome Tiles Gap Size Increments: 1"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/favorites false && echo "AzTaskbar Favorites: False"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height (true, 33) && echo "AzTaskbar Main Panel Height: 33"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button false && echo "AzTaskbar Show Panel Activities Button: False"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 23 && echo "AzTaskbar Icon Size: 23"
+sleep 1
+dconf write /org/gnome/shell/extensions/blur-my-shell/brightness 1.0 && echo "Blur My Shell Brightness: 1.0"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color '#272822' && echo "Tilix Background Color: #272822"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-transparency-percent 80 && echo "Tilix Background Transparency: 80"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/badge-color-set false && echo "Tilix Badge Color Set: False"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/bold-color-set false && echo "Tilix Bold Color Set: False"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-blink-mode 'on' && echo "Tilix Cursor Blink Mode: On"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-colors-set false && echo "Tilix Cursor Colors Set: False"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-shape 'ibeam' && echo "Tilix Cursor Shape: Ibeam"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color '#F8F8F2' && echo "Tilix Foreground Color: #F8F8F2"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/highlight-colors-set false && echo "Tilix Highlight Colors Set: False"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/login-shell true && echo "Tilix Login Shell: True"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/notify-silence-enabled true && echo "Tilix Notify Silence Enabled: True"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette ['#000000', '#FF5555', '#55FF55', '#FFFF55', '#5555FF', '#FF55FF', '#55FFFF', '#BBBBBB', '#555555', '#FF5555', '#55FF55', '#FFFF55', '#5555FF', '#FF55FF', '#55FFFF', '#FFFFFF']
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-theme-colors false && echo "Tilix Use Theme Colors: False"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/show-scrollbar false && echo "Tilix Show Scrollbar: False"
+sleep 1
+dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/text-blink-mode 'always' && echo "Tilix Text Blink Mode: Always"
+sleep 1
+dconf write /com/gexperts/Tilix/terminal-title-style 'none' && echo "Tilix Terminal Title Style: None"
+sleep 1
+dconf write /com/gexperts/Tilix/window-style 'borderless' && echo "Tilix Window Style: Borderless"
+sleep 1
+dconf write /com/gexperts/Tilix/theme-variant 'dark' && echo "Tilix Theme Variant: Dark"
+sleep 1
+dconf write /com/gexperts/Tilix/terminal-title-show-when-single false && echo "Tilix Terminal Title Show When Single: False"
+sleep 1
+dconf write /com/gexperts/Tilix/new-instance-mode 'split-right' && echo "Tilix New Instance Mode: Split Right"
+sleep 1
+
+
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers." 
 echo "Skip 3.sh if you are not using Nvidia hardware."
-wait 10
+sleep 10
 sudo reboot
 
 
