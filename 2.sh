@@ -265,18 +265,6 @@ sudo -u $username gnome-extensions enable blur-my-shell@aunetx && echo "Blur My 
 sleep 1
 #sudo -u $username gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
 #sleep 1
-dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments 1 && echo "Awesome Tiles Gap Size Increments: 1"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/favorites false && echo "AzTaskbar Favorites: False"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height (true, 33) && echo "AzTaskbar Main Panel Height: 33"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button false && echo "AzTaskbar Show Panel Activities Button: False"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 23 && echo "AzTaskbar Icon Size: 23"
-sleep 1
-dconf write /org/gnome/shell/extensions/blur-my-shell/brightness 1.0 && echo "Blur My Shell Brightness: 1.0"
-sleep 1
 dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color '#272822' && echo "Tilix Background Color: #272822"
 sleep 1
 dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-transparency-percent 80 && echo "Tilix Background Transparency: 80"
@@ -317,15 +305,23 @@ dconf write /com/gexperts/Tilix/terminal-title-show-when-single false && echo "T
 sleep 1
 dconf write /com/gexperts/Tilix/new-instance-mode 'split-right' && echo "Tilix New Instance Mode: Split Right"
 sleep 1
-
-
+dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments 1 && echo "Awesome Tiles Gap Size Increments: 1"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/favorites false && echo "AzTaskbar Favorites: False"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height true, 33 && echo "AzTaskbar Main Panel Height: 33"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button false && echo "AzTaskbar Show Panel Activities Button: False"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 23 && echo "AzTaskbar Icon Size: 23"
+sleep 1
+dconf write /org/gnome/shell/extensions/blur-my-shell/brightness 1.0 && echo "Blur My Shell Brightness: 1.0"
+sleep 1
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers." 
 echo "Skip 3.sh if you are not using Nvidia hardware."
 sleep 10
 sudo reboot
-
-
 
 # If this is your first time using VSCode then create an account and set it up with these extensions. 
 # This is a great place to start. This is setup for Lua and Bash, feel free to customize.
