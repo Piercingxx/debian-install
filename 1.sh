@@ -53,7 +53,13 @@ sudo apt install -f
 wait
 flatpak update
 wait
-nala install gnome-shell tilix gnome-text-editor -y
+nala install gnome-shell -y
+nala install wait -y
+nala install tilix -y
+nala install gnome-text-editor -y
+nala install dconf* -y
+wait
+sleep 2
 
 echo "Changing Graphical Login"
 sleep 2
