@@ -15,8 +15,9 @@ echo "Starting Script 1.sh"
 sleep 2
 
 # Checks for active network connection
-if [[ -n $(command -v nmcli) && $(nmcli -t -f STATE g) != connected ]]
-    then awk {print} <<< "Network connectivity is required to continue."; exit
+if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
+    awk '{print}' <<< "Network connectivity is required to continue."
+    exit
 fi
 
 apt install nala -y
