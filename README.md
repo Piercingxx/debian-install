@@ -4,7 +4,7 @@ This is divided into sections so you can install only what you need.
 
 
 ### Notes:
-- I recommend an up-to-date copy of the netinst.iso from their website: https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso
+- I recommend an up-to-date copy of the netinst.iso from their website.
 - Install Debian as a headless system, no DE at all.
 - Do install the GRUB.
 - Reboot into terminal and follow the To install instructions
