@@ -37,6 +37,7 @@ nala install tlp tlp-rdw smartmontools vainfo -y
 #open tlp.conf in /etc and unhash DEVICES_TO_DISABLE_ON_STARTUP="bluetooth" 
 
 
-#after reboot run vainfo and fix any errors
+echo "After reboot run vainfo and fix any errors"
+sleep 5
 
 reboot
