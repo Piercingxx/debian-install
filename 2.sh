@@ -58,8 +58,7 @@ nala install x11-xserver-utils -y
 nala install dh-dkms -y
 nala install devscripts -y
 nala install lua5.4 -y
-nala install dconf* -y
-wait
+sleep 2
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
