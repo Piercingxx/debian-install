@@ -46,6 +46,7 @@ nala install xdg-utils -y
 nala install dbus-x11 -y
 nala install gdebi -y
 nala install neofetch -y
+nala install mpv -y
 nala install gparted -y
 nala install btop -y
 nala install curl -y
@@ -64,7 +65,6 @@ flatpak install flathub com.dropbox.Client -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub org.gnome.SimpleScan -y
-flatpak install flathub org.videolan.VLC -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub net.scribus.Scribus -y
