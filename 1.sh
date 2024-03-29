@@ -22,6 +22,7 @@ fi
 
 apt install nala -y
 
+# Enables non-free repositories and adds them to the sources list.
 sudo rm /etc/apt/sources.list
 sudo touch /etc/apt/sources.list 
 sudo chmod +rwx /etc/apt/sources.list
@@ -55,7 +56,6 @@ wait
 flatpak update
 wait
 nala install gnome-shell -y
-nala install wait -y
 nala install tilix -y
 nala install gnome-text-editor -y
 nala install dconf* -y
