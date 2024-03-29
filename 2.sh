@@ -37,7 +37,6 @@ nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
-nala install gnome-shell-extensions-gpaste gpaste -y
 nala install seahorse -y
 nala install gnome-calculator -y
 nala install rename -y
@@ -139,7 +138,7 @@ cd Nordzy-cursors || exit
 cd "$builddir" || exit
 rm -rf Nordzy-cursors
 
-echo "Moving Gnome Extensions"
+echo "Gnome Extensions"
 sleep 2
 # Extensions - will need to be customized still
 # After full install dwl Alt+tab and User Themes - versions are not compatible between stable and testing branches.
@@ -316,7 +315,6 @@ dconf write /com/gexperts/Tilix/terminal-title-show-when-single "false" && echo 
 sleep 1
 dconf write /com/gexperts/Tilix/new-instance-mode "'split-right'" && echo "Tilix New Instance Mode: Split Right"
 sleep 1
-
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
