@@ -37,6 +37,7 @@ nala install font-manager -y
 nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
+nala install gnome-shell-extensions-gpaste gpaste -y
 nala install seahorse -y
 nala install gnome-calculator -y
 nala install rename -y
@@ -68,13 +69,14 @@ flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub net.scribus.Scribus -y
+flatpak install flathub org.gnome.gThumb -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub com.flashforge.FlashPrint -y
 # flatpak install flathub com.obsproject.Studio -y
-# flatpak install flathub com.visualstudio.code -y
+
 
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
@@ -137,7 +139,7 @@ cd Nordzy-cursors || exit
 cd "$builddir" || exit
 rm -rf Nordzy-cursors
 
-echo "Installing Gnome Extensions"
+echo "Moving Gnome Extensions"
 sleep 2
 # Extensions - will need to be customized still
 # After full install dwl Alt+tab and User Themes - versions are not compatible between stable and testing branches.
@@ -260,6 +262,20 @@ sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur M
 sleep 1
 #sudo -u "$username" gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
 #sleep 1
+
+dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height "33" && echo "AzTaskbar Main Panel Height: 33"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button "false" && echo "AzTaskbar Show Panel Activities Button: False"
+sleep 1
+dconf write /org/gnome/shell/extensions/aztaskbar/icon-size "23" && echo "AzTaskbar Icon Size: 23"
+sleep 1
+dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
+sleep 1
+
 dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color "'#272822'" && echo "Tilix Background Color: #272822"
 sleep 1
 dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-transparency-percent "80" && echo "Tilix Background Transparency: 80"
@@ -300,18 +316,7 @@ dconf write /com/gexperts/Tilix/terminal-title-show-when-single "false" && echo 
 sleep 1
 dconf write /com/gexperts/Tilix/new-instance-mode "'split-right'" && echo "Tilix New Instance Mode: Split Right"
 sleep 1
-dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height "33" && echo "AzTaskbar Main Panel Height: 33"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button "false" && echo "AzTaskbar Show Panel Activities Button: False"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/icon-size "23" && echo "AzTaskbar Icon Size: 23"
-sleep 1
-dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
-sleep 1
+
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
