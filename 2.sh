@@ -259,8 +259,6 @@ sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo
 sleep 1
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 sleep 1
-#sudo -u "$username" gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
-#sleep 1
 
 dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
 sleep 1
