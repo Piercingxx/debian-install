@@ -73,9 +73,7 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
-flatpak install flathub com.flashforge.FlashPrint -y
-# flatpak install flathub com.obsproject.Studio -y
-
+# flatpak install flathub com.flashforge.FlashPrint -y# flatpak install flathub com.obsproject.Studio -y
 
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
@@ -99,11 +97,13 @@ rm steam.deb
 # i386 is needed for steam to launch
 sudo dpkg --add-architecture i386
 
+
+# Things to download and install only if you need them
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 wait
-chown "$username":"$username" pia-linux-3.5.5-08091.run
-./pia-linux-3.5.5-08091.run
+#FlashForge
+wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
 wait
 
 apt update && upgrade -y
@@ -121,6 +121,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
 chown "$username":"$username" /home/"$username"/.fonts/*
+nala install ttf-mscorefonts-installer -y
 
 # Reloading Font
 fc-cache -vf
@@ -259,6 +260,8 @@ sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo
 sleep 1
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 sleep 1
+#sudo -u "$username" gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
+#sleep 1
 
 dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
 sleep 1
