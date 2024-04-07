@@ -102,6 +102,7 @@ sudo dpkg --add-architecture i386
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 wait
+chmod 777 pia-linux-3.5.5-08091.run
 #FlashForge
 wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
 wait
