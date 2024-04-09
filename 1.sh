@@ -56,7 +56,7 @@ wait
 flatpak update
 wait
 nala install gnome-shell -y
-nala install tilix -y
+nala install kitty -y
 nala install gnome-text-editor -y
 nala install dconf* -y
 wait
