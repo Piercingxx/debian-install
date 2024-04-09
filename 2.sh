@@ -20,6 +20,64 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
   exit
 fi
 
+# Customizing Settings
+sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true && echo "Numlock State: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" && echo "Caps Lock: Backspace"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing' && echo "Sleep Inactive AC: Nothing"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.session idle-delay 0 && echo "Lock Screen Idle: 20"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.interface show-battery-percentage true && echo "Show Battery Percentage: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false && echo "Ambient Enabled: False"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power idle-dim false && echo "Idle Dim: False"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true && echo "Night Light Enabled: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false && echo "Night Light Schedule Automatic: False"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20 && echo "Night Light Schedule From: 20"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04 && echo "Night Light Schedule To: 04"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500 && echo "Night Light Temperature: 2500"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.interface enable-hot-corners false && echo "Enable Hot Corners: False"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.background picture-options 'spanned' && echo "Background Options: Spanned"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']" && echo "Custom Keybindings: None"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "kitty" && echo "Kitty: Name"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "kitty" && echo "Kitty: Command"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T" && echo "Kitty: Binding"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true && echo "Tap to Click: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true && echo "Natural Scroll: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true && echo "Edge Scrolling: True"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false && echo "Two Finger Scrolling: False"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas' && echo "Click Method: Areas"
+sleep 1
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive' && echo "Power Button Action: Interactive"
+sleep 1
+
+
+
 echo "Updating Repositiories"
 sleep 2
 add-apt-repository universe -y
@@ -110,6 +168,22 @@ wait
 apt update && upgrade -y
 wait
 
+
+
+echo "Installing Cursors & Icons"
+sleep 2
+# Cursor
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+
+# Install Nordzy cursor
+git clone https://github.com/alvatip/Nordzy-cursors
+cd Nordzy-cursors || exit
+./install.sh
+cd "$builddir" || exit
+rm -rf Nordzy-cursors
+
+
+
 echo "Installing Fonts"
 sleep 2
 # Installing fonts
@@ -128,24 +202,17 @@ nala install ttf-mscorefonts-installer -y
 fc-cache -vf
 wait
 
-echo "Installing Cursors & Icons"
-sleep 2
-# Cursor
-wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
 
-# Install Nordzy cursor
-git clone https://github.com/alvatip/Nordzy-cursors
-cd Nordzy-cursors || exit
-./install.sh
-cd "$builddir" || exit
+# Preferences
+echo "Customization Preferences"
+sudo -u "$username" gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && echo "GTK Theme: Adwaita-dark"
+sudo -u "$username" gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors' && echo "Cursor Theme: Nordzy"
+sudo -u "$username" gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
+sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, Visual Studio Code, Discord"
 
-# Beautiful bash by Chris Titus
-git clone https://github.com/ChrisTitusTech/mybash
-cd mybash || exit
-bash setup.sh
-cd "$builddir" || exit
 
-# Extensions - will need to be customized still
+
+# Extensions
 echo "Gnome Extensions"
 sleep 2
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
@@ -153,18 +220,21 @@ nala install gnome-shell-extension-appindicator -y
 nala install gnome-shell-extension-gsconnect -y
 
 # Awesome Tiles
+cd "$builddir" || exit
 wget https://codeload.github.com/velitasali/gnome-shell-extension-awesome-tiles/zip/refs/heads/main
 unzip gnome-shell-extension-awesome-tiles-main.zip
 rm gnome-shell-extension-awesome-tiles-main.zip
 cp -R gnome-shell-extension-awesome-tiles-main /home/"$username"/.local/share/gnome-shell/extensions/
 
 # Blur my Shell
+cd "$builddir" || exit
 wget https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
 unzip blur-my-shell-master.zip
 rm blur-my-shell-master.zip
 cp -R blur-my-shell-master /home/"$username"/.local/share/gnome-shell/extensions/
 
 # App Icons Taskbar
+cd "$builddir" || exit
 wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
 unzip aztaskbar-main.zip
 rm aztaskbar-main.zip
@@ -173,14 +243,12 @@ cp -R aztaskbar-main /home/"$username"/.local/share/gnome-shell/extensions/
 chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 
 # Kitty Terminal Modifications
-cp -R /dotconf/kitty /home/"$username"/.config/kitty/
+cp -R home/"$username"/debian-install/dotconf/kitty/* /home/"$username"/.config/kitty/
 
 # Removing zip files and stuff
 rm ./FiraCode.zip ./Meslo.zip
 rm -r /dotconf
 rm -r scripts
-rm -rf mybash
-rm -rf Nordzy-cursors
 
 # Used in fstab
 mkdir -p /media/Working-Storage
@@ -215,99 +283,22 @@ apt update && upgrade -y
 wait
 flatpak update
 
-# Preferences
-echo "Updating Customization Preferences"
-sleep 2
-sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true && echo "Numlock State: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && echo "GTK Theme: Adwaita-dark"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors' && echo "Cursor Theme: Nordzy"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface enable-animations false && echo "Enable Animations: False"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing' && echo "Sleep Inactive AC: Nothing"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.session idle-delay 0 && echo "Lock Screen Idle: 20"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface show-battery-percentage true && echo "Show Battery Percentage: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false && echo "Ambient Enabled: False"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power idle-dim false && echo "Idle Dim: False"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true && echo "Night Light Enabled: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false && echo "Night Light Schedule Automatic: False"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20 && echo "Night Light Schedule From: 20"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04 && echo "Night Light Schedule To: 04"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500 && echo "Night Light Temperature: 2500"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.interface enable-hot-corners false && echo "Enable Hot Corners: False"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.background picture-options 'spanned' && echo "Background Options: Spanned"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, Visual Studio Code, Discord"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" && echo "Caps Lock: Backspace"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']" && echo "Custom Keybindings: None"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "kitty" && echo "Kitty: Name"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "kitty" && echo "Kitty: Command"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T" && echo "Kitty: Binding"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true && echo "Tap to Click: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true && echo "Natural Scroll: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true && echo "Edge Scrolling: True"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false && echo "Two Finger Scrolling: False"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas' && echo "Click Method: Areas"
-sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive' && echo "Power Button Action: Interactive"
-sleep 1
 
 # Enable Gnome Extensions
 sudo -u "$username" gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com && echo "App Indicator Support: Enabled"
-sleep 1
 sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && echo "AzTaskbar: Enabled"
-sleep 1
 sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo "Awesome Tiles: Enabled"
-sleep 1
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
-sleep 1
 sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && echo "GSConnect: Enabled"
-sleep 1
 
-# Modify Gnome Extensions
-dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height "33" && echo "AzTaskbar Main Panel Height: 33"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button "false" && echo "AzTaskbar Show Panel Activities Button: False"
-sleep 1
-dconf write /org/gnome/shell/extensions/aztaskbar/icon-size "23" && echo "AzTaskbar Icon Size: 23"
-sleep 1
-dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
-sleep 1
+
+# Beautiful bash 
+git clone https://github.com/ChrisTitusTech/mybash
+cd mybash || exit
+bash setup.sh
+cd "$builddir" || exit
+rm -rf mybash
+
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
