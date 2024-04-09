@@ -93,6 +93,7 @@ rm synology-drive-client-15724.x86_64.deb
 wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 wait
 sudo dpkg -i steam.deb
+wait
 rm steam.deb
 # i386 is needed for steam to launch
 sudo dpkg --add-architecture i386
@@ -102,7 +103,6 @@ sudo dpkg --add-architecture i386
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 wait
-chmod 777 pia-linux-3.5.5-08091.run
 #FlashForge
 wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
 wait
@@ -138,20 +138,49 @@ git clone https://github.com/alvatip/Nordzy-cursors
 cd Nordzy-cursors || exit
 ./install.sh
 cd "$builddir" || exit
-rm -rf Nordzy-cursors
 
+# Beautiful bash by Chris Titus
+git clone https://github.com/ChrisTitusTech/mybash
+cd mybash || exit
+bash setup.sh
+cd "$builddir" || exit
+
+# Extensions - will need to be customized still
 echo "Gnome Extensions"
 sleep 2
-# Extensions - will need to be customized still
-# After full install dwl Alt+tab and User Themes - versions are not compatible between stable and testing branches.
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
-cp -R dotlocal/share/gnome-shell/extensions/* /home/"$username"/.local/share/gnome-shell/extensions/
+nala install gnome-shell-extension-appindicator -y
+nala install gnome-shell-extension-gsconnect -y
+
+# Awesome Tiles
+wget https://codeload.github.com/velitasali/gnome-shell-extension-awesome-tiles/zip/refs/heads/main
+unzip gnome-shell-extension-awesome-tiles-main.zip
+rm gnome-shell-extension-awesome-tiles-main.zip
+cp -R gnome-shell-extension-awesome-tiles-main /home/"$username"/.local/share/gnome-shell/extensions/
+
+# Blur my Shell
+wget https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
+unzip blur-my-shell-master.zip
+rm blur-my-shell-master.zip
+cp -R blur-my-shell-master /home/"$username"/.local/share/gnome-shell/extensions/
+
+# App Icons Taskbar
+wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
+unzip aztaskbar-main.zip
+rm aztaskbar-main.zip
+cp -R aztaskbar-main /home/"$username"/.local/share/gnome-shell/extensions/
+
 chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
+
+# Kitty Terminal Modifications
+cp -R /dotconf/kitty /home/"$username"/.config/kitty/
 
 # Removing zip files and stuff
 rm ./FiraCode.zip ./Meslo.zip
-rm -r dotlocal
+rm -r /dotconf
 rm -r scripts
+rm -rf mybash
+rm -rf Nordzy-cursors
 
 # Used in fstab
 mkdir -p /media/Working-Storage
@@ -235,11 +264,11 @@ sudo -u "$username" gsettings set org.gnome.desktop.input-sources xkb-options "[
 sleep 1
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']" && echo "Custom Keybindings: None"
 sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "tilix" && echo "Tilix: Name"
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "kitty" && echo "Kitty: Name"
 sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "tilix" && echo "Tilix: Command"
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "kitty" && echo "Kitty: Command"
 sleep 1
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T" && echo "Tilix: Binding"
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T" && echo "Kitty: Binding"
 sleep 1
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true && echo "Tap to Click: True"
 sleep 1
@@ -253,6 +282,8 @@ sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad click-m
 sleep 1
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive' && echo "Power Button Action: Interactive"
 sleep 1
+
+# Enable Gnome Extensions
 sudo -u "$username" gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com && echo "App Indicator Support: Enabled"
 sleep 1
 sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && echo "AzTaskbar: Enabled"
@@ -261,9 +292,10 @@ sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo
 sleep 1
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 sleep 1
-#sudo -u "$username" gnome-extensions enable burn-my-windows@schneegans.github.com && echo "Burn My Windows: Enabled"
-#sleep 1
+sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && echo "GSConnect: Enabled"
+sleep 1
 
+# Modify Gnome Extensions
 dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
 sleep 1
 dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
@@ -277,50 +309,9 @@ sleep 1
 dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 sleep 1
 
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-color "'#272822'" && echo "Tilix Background Color: #272822"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/background-transparency-percent "80" && echo "Tilix Background Transparency: 80"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/badge-color-set "false" && echo "Tilix Badge Color Set: False"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/bold-color-set "false" && echo "Tilix Bold Color Set: False"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-blink-mode "'on'" && echo "Tilix Cursor Blink Mode: On"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-colors-set "false" && echo "Tilix Cursor Colors Set: False"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/cursor-shape "'ibeam'" && echo "Tilix Cursor Shape: Ibeam"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/foreground-color "'#F8F8F2'" && echo "Tilix Foreground Color: #F8F8F2"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/highlight-colors-set "false" && echo "Tilix Highlight Colors Set: False"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/login-shell "true" && echo "Tilix Login Shell: True"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/notify-silence-enabled "true" && echo "Tilix Notify Silence Enabled: True"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/palette "['#000000', '#FF5555', '#55FF55', '#FFFF55', '#5555FF', '#FF55FF', '#55FFFF', '#BBBBBB', '#555555', '#FF5555', '#55FF55', '#FFFF55', '#5555FF', '#FF55FF', '#55FFFF', '#FFFFFF']"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/use-theme-colors "false" && echo "Tilix Use Theme Colors: False"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/show-scrollbar "false" && echo "Tilix Show Scrollbar: False"
-sleep 1
-dconf write /com/gexperts/Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d/text-blink-mode "'always'" && echo "Tilix Text Blink Mode: Always"
-sleep 1
-dconf write /com/gexperts/Tilix/terminal-title-style "'none'" && echo "Tilix Terminal Title Style: None"
-sleep 1
-dconf write /com/gexperts/Tilix/window-style "'borderless'" && echo "Tilix Window Style: Borderless"
-sleep 1
-dconf write /com/gexperts/Tilix/theme-variant "'dark'" && echo "Tilix Theme Variant: Dark"
-sleep 1
-dconf write /com/gexperts/Tilix/terminal-title-show-when-single "false" && echo "Tilix Terminal Title Show When Single: False"
-sleep 1
-dconf write /com/gexperts/Tilix/new-instance-mode "'split-right'" && echo "Tilix New Instance Mode: Split Right"
-sleep 1
-
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
-sleep 10
+sleep 5
 sudo reboot
 
 # If this is your first time using VSCode then create an account and set it up with these extensions.
