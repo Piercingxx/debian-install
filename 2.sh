@@ -170,7 +170,8 @@ wait
 unzip main
 wait
 rm main
-cp -R gnome-shell-extension-awesome-tiles-main /home/"$username"/.local/share/gnome-shell/extensions/
+chmod -R 777 gnome-shell-extension-awesome-tiles-main
+cp -R gnome-shell-extension-awesome-tiles-main /usr/share/gnome-shell/extensions/
 rm -r gnome-shell-extension-awesome-tiles-main
 
 # Blur my Shell
@@ -179,7 +180,8 @@ wait
 unzip master
 wait
 rm master
-cp -R blur-my-shell-master /home/"$username"/.local/share/gnome-shell/extensions/
+chmod -R 777 blur-my-shell-master
+cp -R blur-my-shell-master /usr/share/gnome-shell/extensions/
 rm -r blur-my-shell-master
 
 # App Icons Taskbar
@@ -188,10 +190,10 @@ wait
 unzip aztaskbar-main.zip
 wait
 rm aztaskbar-main.zip
-cp -R aztaskbar-main /home/"$username"/.local/share/gnome-shell/extensions/
+chmod -R 777 aztaskbar-main
+cp -R aztaskbar-main /usr/share/gnome-shell/extensions/
 rm -r aztaskbar-main
 
-chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 
 
 # Removing zip files and stuff
