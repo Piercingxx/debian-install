@@ -167,10 +167,11 @@ nala install gnome-shell-extension-gsconnect -y
 cd "$builddir" || exit
 wget https://codeload.github.com/velitasali/gnome-shell-extension-awesome-tiles/zip/refs/heads/main
 wait
-unzip gnome-shell-extension-awesome-tiles-main.zip
+unzip main
 wait
-rm gnome-shell-extension-awesome-tiles-main.zip
-cp gnome-shell-extension-awesome-tiles-main /home/"$username"/.local/share/gnome-shell/extensions/
+rm main
+cp -R gnome-shell-extension-awesome-tiles-main /home/"$username"/.local/share/gnome-shell/extensions/
+rm -r gnome-shell-extension-awesome-tiles-main
 
 # Blur my Shell
 wget https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
@@ -187,7 +188,8 @@ wait
 unzip aztaskbar-main.zip
 wait
 rm aztaskbar-main.zip
-cp aztaskbar-main /home/"$username"/.local/share/gnome-shell/extensions/
+cp -R aztaskbar-main /home/"$username"/.local/share/gnome-shell/extensions/
+rm -r aztaskbar-main
 
 chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 
