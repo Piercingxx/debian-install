@@ -38,6 +38,7 @@ echo "Installing Programs and Drivers"
 sleep 2
 nala install gnome-tweaks -y
 nala install nautilus -y
+nala install gnome-shell-extension-manager -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
 nala install font-manager -y
@@ -58,7 +59,7 @@ nala install gparted -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
-nals install fuse -y
+nala install fuse -y
 nala install libfuse2 -y
 nala install x11-xserver-utils -y
 nala install dh-dkms -y
@@ -79,7 +80,6 @@ flatpak install flathub org.gnome.gThumb -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
 
 
 # VSCode
@@ -160,6 +160,7 @@ mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
 nala install gnome-shell-extension-appindicator -y
 nala install gnome-shell-extension-gsconnect -y
 #nala install gnome-shell-extension-tiling-assistant -y
+#nala install gnome-shell-extension-top-icons-plus -y
 #nala install gnome-shell-extension-hide-activities -y
 
 # Awesome Tiles
