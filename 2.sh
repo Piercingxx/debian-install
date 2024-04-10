@@ -80,7 +80,7 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
-# flatpak install flathub com.flashforge.FlashPrint -y# flatpak install flathub com.obsproject.Studio -y
+
 
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
@@ -139,7 +139,6 @@ echo "Installing Fonts"
 sleep 2
 # Installing fonts
 cd "$builddir" || exit
-
 nala install fonts-font-awesome fonts-noto-color-emoji -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip -d /home/"$username"/.fonts
@@ -310,7 +309,7 @@ sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && ec
 # Beautiful bash 
 git clone https://github.com/ChrisTitusTech/mybash
 cd mybash || exit
-bash setup.sh
+bash setup.sh -y
 cd "$builddir" || exit
 rm -rf mybash
 
