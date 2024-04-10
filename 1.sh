@@ -34,7 +34,8 @@ deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free non-
 sudo add-apt-repository ppa:graphics-drivers/ppa -y
 
 # Update packages list and update system
-apt update && upgrade -y
+apt update 
+apt upgrade -y
 wait
 
 # Making dir
