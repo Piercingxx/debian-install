@@ -81,6 +81,12 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 
+# Gnome-terminal mod
+wget https://raw.githubusercontent.com/daltonmenezes/aura-theme/main/packages/gnome-terminal/aura-theme.dconf
+wait
+dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < aura-theme.dconf
+
+
 
 # VSCode
 wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
@@ -159,9 +165,8 @@ sleep 2
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
 nala install gnome-shell-extension-appindicator -y
 nala install gnome-shell-extension-gsconnect -y
-#nala install gnome-shell-extension-tiling-assistant -y
-#nala install gnome-shell-extension-top-icons-plus -y
-#nala install gnome-shell-extension-hide-activities -y
+nala install gnome-shell-extension-tiling-assistant -y
+nala install gnome-shell-extension-hide-activities -y
 
 # Awesome Tiles
 cd "$builddir" || exit
@@ -195,11 +200,10 @@ cp -R aztaskbar-main /usr/share/gnome-shell/extensions/
 rm -r aztaskbar-main
 
 
-
 # Removing zip files and stuff
 rm ./FiraCode.zip ./Meslo.zip
-rm -r /dotconf
-rm -r /scripts
+rm -r dotconf
+rm -r scripts
 
 # Used in fstab
 mkdir -p /media/Working-Storage
@@ -300,11 +304,10 @@ sleep 1
 
 
 # Enable Gnome Extensions
-sudo -u "$username" gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com && echo "App Indicator Support: Enabled"
-sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && echo "AzTaskbar: Enabled"
-sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo "Awesome Tiles: Enabled"
-sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
+sudo -u "$username" gnome-extensions enable ubuntu-appindicators@ubuntu.com && echo "App Indicator: Enabled"
 sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && echo "GSConnect: Enabled"
+sudo -u "$username" gnome-extensions enable tiling-assistant@leleat-on-github && echo "Edge Tiling: Enabled"
+sudo -u "$username" gnome-extensions enable Hide_Activities@shay.shayel.org && echo "Hide Activities: Enabled"
 
 
 # Beautiful bash 
