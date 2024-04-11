@@ -30,6 +30,7 @@ cd "$builddir" || exit
 mkdir -p /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
+mkdir -p /root/.icons
 cp -R dotconf/* /home/"$username"/.config/
 wait
 
@@ -80,12 +81,6 @@ flatpak install flathub org.gnome.gThumb -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
-
-# Gnome-terminal mod
-wget https://raw.githubusercontent.com/daltonmenezes/aura-theme/main/packages/gnome-terminal/aura-theme.dconf
-wait
-dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ < aura-theme.dconf
-
 
 
 # VSCode
@@ -145,14 +140,14 @@ echo "Installing Fonts"
 sleep 2
 # Installing fonts
 cd "$builddir" || exit
-nala install fonts-font-awesome fonts-noto-color-emoji -y
+apt install fonts-font-awesome fonts-noto-color-emoji -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip -d /home/"$username"/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
 chown "$username":"$username" /home/"$username"/.fonts/*
-nala install ttf-mscorefonts-installer -y
+apt install ttf-mscorefonts-installer -y
 
 # Reloading Font
 fc-cache -vf
@@ -177,7 +172,7 @@ wait
 rm main
 chmod -R 777 gnome-shell-extension-awesome-tiles-main
 cp -R gnome-shell-extension-awesome-tiles-main /usr/share/gnome-shell/extensions/
-rm -r gnome-shell-extension-awesome-tiles-main
+#rm -r gnome-shell-extension-awesome-tiles-main
 
 # Blur my Shell
 wget https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
@@ -187,7 +182,7 @@ wait
 rm master
 chmod -R 777 blur-my-shell-master
 cp -R blur-my-shell-master /usr/share/gnome-shell/extensions/
-rm -r blur-my-shell-master
+#rm -r blur-my-shell-master
 
 # App Icons Taskbar
 wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
@@ -197,7 +192,7 @@ wait
 rm aztaskbar-main.zip
 chmod -R 777 aztaskbar-main
 cp -R aztaskbar-main /usr/share/gnome-shell/extensions/
-rm -r aztaskbar-main
+#rm -r aztaskbar-main
 
 
 # Removing zip files and stuff
@@ -284,6 +279,9 @@ sudo -u "$username" gnome-extensions enable ubuntu-appindicators@ubuntu.com && e
 sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && echo "GSConnect: Enabled"
 sudo -u "$username" gnome-extensions enable tiling-assistant@leleat-on-github && echo "Edge Tiling: Enabled"
 sudo -u "$username" gnome-extensions enable Hide_Activities@shay.shayel.org && echo "Hide Activities: Enabled"
+dconf write /org/gnome/shell/extensions/tiling-assistant-single-screen-gap "56" && echo "Edge Tiling: Gap 56"
+dconf write /org/gnome/shell/extensions/tiling-assistant-window-gap "46" && echo "Window Tiling: Gap 46"
+dconf write /org/gnome/shell/extensions/tiling-assistant/enable-tiling-popup false && echo "Edge Tiling: Popup Disabled"
 
 
 # Beautiful bash 
@@ -297,7 +295,7 @@ rm -rf mybash
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
 sleep 5
-#sudo reboot
+sudo reboot
 
 # If this is your first time using VSCode then create an account and set it up with these extensions.
 # This is a great place to start. This is setup for Lua and Bash, feel free to customize.
