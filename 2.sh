@@ -251,7 +251,7 @@ wait
 apt autoremove -y
 apt update && upgrade -y
 wait
-flatpak update
+flatpak update -y
 
 #Customization
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
@@ -305,7 +305,7 @@ sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur M
 # Beautiful bash modified Chris Titus' bash
 unzip mybash.zip
 cd mybash || exit
-./setup.sh -Force
+./setup.sh --assume-yes
 wait
 cd "$builddir" || exit
 rm -rf mybash
