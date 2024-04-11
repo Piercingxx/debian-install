@@ -309,7 +309,7 @@ sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur M
 # Beautiful bash modified Chris Titus' bash
 unzip mybash.zip
 cd mybash || exit
-./setup.sh
+./setup.sh -Force
 wait
 cd "$builddir" || exit
 rm -rf mybash
