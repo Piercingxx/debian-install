@@ -31,21 +31,22 @@ mkdir -p /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 cp -R dotconf/* /home/"$username"/.config/
+wait
 
 # Installing important stuff and some dependancies first
-nala install dbus-x11 -y
-nala install cups -y
-nala install util-linux -y
-nala install xdg-utils -y
-nala install build-essential -y
-nala install gnome-tweaks -y
-nala install nautilus -y
-nala install gnome-shell-extension-manager -y
-nala install fuse -y
-nala install libfuse2 -y
-nala install x11-xserver-utils -y
-nala install dh-dkms -y
-nala install devscripts -y
+apt install dbus-x11 -y
+apt install cups -y
+apt install util-linux -y
+apt install xdg-utils -y
+apt install build-essential -y
+apt install gnome-tweaks -y
+apt install nautilus -y
+apt install gnome-shell-extension-manager -y
+apt install fuse -y
+apt install libfuse2 -y
+apt install x11-xserver-utils -y
+apt install dh-dkms -y
+apt install devscripts -y
 
 # Customizing Preferences
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
@@ -74,22 +75,22 @@ sleep 1
 #Installing Programs and Stuff
 echo "Installing Programs and Drivers"
 sleep 2
-nala install papirus-icon-theme -y
-nala install fonts-noto-color-emoji -y
-nala install font-manager -y
-nala install unzip -y
-nala install linux-headers-generic -y
-nala install seahorse -y
-nala install gnome-calculator -y
-nala install rename -y
-nala install gdebi -y
-nala install neofetch -y
-nala install mpv -y
-nala install gparted -y
-nala install btop -y
-nala install curl -y
-nala install gh -y
-nala install lua5.4 -y
+apt install papirus-icon-theme -y
+apt install fonts-noto-color-emoji -y
+apt install font-manager -y
+apt install unzip -y
+apt install linux-headers-generic -y
+apt install seahorse -y
+apt install gnome-calculator -y
+apt install rename -y
+apt install gdebi -y
+apt install neofetch -y
+apt install mpv -y
+apt install gparted -y
+apt install btop -y
+apt install curl -y
+apt install gh -y
+apt install lua5.4 -y
 sleep 2
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
@@ -188,10 +189,10 @@ wait
 echo "Gnome Extensions"
 sleep 2
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
-nala install gnome-shell-extension-appindicator -y
-nala install gnome-shell-extension-gsconnect -y
-nala install gnome-shell-extension-tiling-assistant -y
-nala install gnome-shell-extension-hide-activities -y
+apt install gnome-shell-extension-appindicator -y
+apt install gnome-shell-extension-gsconnect -y
+apt install gnome-shell-extension-tiling-assistant -y
+apt install gnome-shell-extension-hide-activities -y
 
 # Awesome Tiles
 cd "$builddir" || exit
@@ -236,17 +237,17 @@ mkdir -p /media/Archived-Storage
 
 echo "Installing Dependencies for DaVinci Resolve."
 sleep 2
-nala install libglu1-mesa -y
-nala install libgdk-pixbuf2.0-0 -y
-nala install libxcb-composite0 -y
-nala install libxcb-cursor0 -y
-nala install libxcb-damage0 -y
-nala install ocl-icd-libopencl1 -y
-nala install libssl-dev -y
-nala install ocl-icd-opencl-dev -y
-nala install libpango-1.0-0 -y
-nala install libxml2-utils -y
-nala install podman-toolbox -y
+apt install libglu1-mesa -y
+apt install libgdk-pixbuf2.0-0 -y
+apt install libxcb-composite0 -y
+apt install libxcb-cursor0 -y
+apt install libxcb-damage0 -y
+apt install ocl-icd-libopencl1 -y
+apt install libssl-dev -y
+apt install ocl-icd-opencl-dev -y
+apt install libpango-1.0-0 -y
+apt install libxml2-utils -y
+apt install podman-toolbox -y
 wait
 
 apt update && upgrade -y
