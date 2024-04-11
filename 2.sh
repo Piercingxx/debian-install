@@ -185,7 +185,6 @@ rm -rf blur-my-shell
 
 
 #Nautilus Customization
-apt install nautilus-wipe -y
 apt install gnome-sushi -y
 apt install imagemagick nautilus-image-converter -y
 apt install nautilus-admin -y
