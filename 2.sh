@@ -280,15 +280,22 @@ sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && ec
 sudo -u "$username" gnome-extensions enable tiling-assistant@leleat-on-github && echo "Edge Tiling: Enabled"
 sudo -u "$username" gnome-extensions enable Hide_Activities@shay.shayel.org && echo "Hide Activities: Enabled"
 dconf write /org/gnome/shell/extensions/tiling-assistant-single-screen-gap "56" && echo "Edge Tiling: Gap 56"
+wait
 dconf write /org/gnome/shell/extensions/tiling-assistant-window-gap "46" && echo "Window Tiling: Gap 46"
+wait
 dconf write /org/gnome/shell/extensions/tiling-assistant/enable-tiling-popup false && echo "Edge Tiling: Popup Disabled"
+wait
 
 
 # Beautiful bash 
 git clone https://github.com/ChrisTitusTech/mybash
+wait
 cd mybash || exit
+wait
 bash setup.sh -y
+wait
 cd "$builddir" || exit
+wait
 rm -rf mybash
 
 
