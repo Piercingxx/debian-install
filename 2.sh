@@ -33,6 +33,12 @@ mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 mkdir -p /root/.icons
 cp -R dotconf/* /home/"$username"/.config/
 wait
+chmod -R 777 /home/"$username"/.config/
+chmod -R 777 /home/"$username"/.fonts/
+chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions/
+chmod -R 777 /root/.icons/
+
+
 
 # Installing important stuff and some dependancies first
 echo "Installing Programs and Drivers"
@@ -85,11 +91,11 @@ flatpak install flathub org.qbittorrent.qBittorrent -y
 
 
 # VSCode
-wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/1e790d77f81672c49be070e04474901747115651/code_1.87.1-1709685762_amd64.deb
+wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/code_1.88.1-1712771838_amd64.deb
 wait
-dpkg -i code_1.87.1-1709685762_amd64.deb
+dpkg -i code_1.88.1-1712771838_amd64.deb
 wait
-rm code_1.87.1-1709685762_amd64.deb
+rm code_1.88.1-1712771838_amd64.deb
 
 # Synology Drive
 wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/3.4.0-15724/Ubuntu/Installer/synology-drive-client-15724.x86_64.deb"
@@ -107,15 +113,19 @@ rm steam.deb
 # i386 is needed for steam to launch
 sudo dpkg --add-architecture i386
 
+#FlashForge
+wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
+wait
+sudo dpkg -i e02d016281d06012ea71a671d1e1fdb7.deb
+wait
+rm e02d016281d06012ea71a671d1e1fdb7.deb
 
 # Things to download and install only if you need them
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 wait
 chmod 777 pia-linux-3.5.5-08091.run
-#FlashForge
-wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
-wait
+
 
 
 apt update
@@ -207,9 +217,13 @@ rm ./FiraCode.zip ./Meslo.zip
 rm -r dotconf
 rm -r scripts
 
+
 # Used in fstab
 mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
+chmod -R 777 /media/Working-Storage
+chmod -R 777 /media/Archived-Storage
+
 
 echo "Installing Dependencies for DaVinci Resolve."
 sleep 2
@@ -277,7 +291,7 @@ sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power power-
 sudo -u "$username" gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && echo "GTK Theme: Adwaita-dark"
 sudo -u "$username" gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors' && echo "Cursor Theme: Nordzy"
 sudo -u "$username" gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
-sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, Visual Studio Code, Discord"
+sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop', 'org.gimp.GIMP.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, VSCode, Discord, Gimp"
 sleep 1
 
 
@@ -289,13 +303,13 @@ sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && ec
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 
 
-# Beautiful bash from Chris Titus
-cd dotconf || exit
+# Beautiful bash modified Chris Titus' bash
 unzip mybash.zip
 cd mybash || exit
 ./setup.sh -y
 wait
 cd "$builddir" || exit
+rm -rf mybash
 
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
