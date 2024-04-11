@@ -171,6 +171,7 @@ sleep 2
 # App Icons Taskbar
 cd dotconf/extensions || exit
 unzip aztask.zip 
+chown -R aztaskbar@aztaskbar.gitlab.com
 cp -R aztaskbar@aztaskbar.gitlab.com /home/dr3k/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/aztaskbar@aztaskbar.gitlab.com
 cd "$builddir" || exit
@@ -178,6 +179,7 @@ rm -rf aztaskbar@aztaskbar.gitlab.com
 # Awesome Tiles
 cd dotconf/extensions || exit
 unzip awesome-tiles.zip 
+chown -R awesome-tiles@velitasali.com
 cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/awesome-tiles@velitasali.com
 cd "$builddir" || exit
@@ -185,6 +187,7 @@ rm -rf awesome-tiles@velitasali.com
 # Blur My Shell
 cd dotconf/extensions || exit
 unzip blur-my-shell.zip
+chmod -R 777 blur-my-shell@aunetx
 cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
 cd "$builddir" || exit
