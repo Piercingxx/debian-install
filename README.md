@@ -24,7 +24,7 @@ This is divided into sections so you can install only what you need.
 - If you have multiple harddrives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
 
 ### Credits:
-- The "usenala" script is from https://github.com/ChrisTitusTech/Debian-titus
+- The "usenala" script "Beautiful Bash" are from https://github.com/ChrisTitusTech/Debian-titus
 - The surface bits are from: https://github.com/linux-surface/linux-surface/wiki but compiled into this script by me.
 
  
