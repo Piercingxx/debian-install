@@ -163,27 +163,6 @@ apt install gnome-shell-extension-gsconnect -y
 apt install gnome-shell-extension-tiling-assistant -y
 apt install gnome-shell-extension-hide-activities -y
 
-# Awesome Tiles
-cd "$builddir" || exit
-wget https://codeload.github.com/velitasali/gnome-shell-extension-awesome-tiles/zip/refs/heads/main
-wait
-unzip main
-wait
-rm main
-chmod -R 777 gnome-shell-extension-awesome-tiles-main
-cp -R gnome-shell-extension-awesome-tiles-main /usr/share/gnome-shell/extensions/
-#rm -r gnome-shell-extension-awesome-tiles-main
-
-# Blur my Shell
-wget https://codeload.github.com/aunetx/blur-my-shell/zip/refs/heads/master
-wait
-unzip master
-wait
-rm master
-chmod -R 777 blur-my-shell-master
-cp -R blur-my-shell-master /usr/share/gnome-shell/extensions/
-#rm -r blur-my-shell-master
-
 # App Icons Taskbar
 wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
 wait
