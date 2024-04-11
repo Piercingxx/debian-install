@@ -271,7 +271,7 @@ git clone https://github.com/ChrisTitusTech/mybash
 wait
 cd mybash || exit
 wait
-bash setup.sh -y
+bash setup.sh
 wait
 cd "$builddir" || exit
 wait
