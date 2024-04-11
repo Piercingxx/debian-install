@@ -113,19 +113,15 @@ rm steam.deb
 # i386 is needed for steam to launch
 sudo dpkg --add-architecture i386
 
-#FlashForge
-wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
-wait
-sudo dpkg -i e02d016281d06012ea71a671d1e1fdb7.deb -y
-wait
-rm e02d016281d06012ea71a671d1e1fdb7.deb
 
-# Things to download and install only if you need them
+# Things to download, install only if you need them
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 wait
 chmod 777 pia-linux-3.5.5-08091.run
-
+#FlashForge
+wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
+wait
 
 
 apt update
@@ -171,7 +167,7 @@ sleep 2
 # App Icons Taskbar
 cd dotconf/extensions || exit
 unzip aztask.zip 
-chown -R aztaskbar@aztaskbar.gitlab.com
+chown -R 777 aztaskbar@aztaskbar.gitlab.com
 cp -R aztaskbar@aztaskbar.gitlab.com /home/dr3k/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/aztaskbar@aztaskbar.gitlab.com
 cd "$builddir" || exit
@@ -179,7 +175,7 @@ rm -rf aztaskbar@aztaskbar.gitlab.com
 # Awesome Tiles
 cd dotconf/extensions || exit
 unzip awesome-tiles.zip 
-chown -R awesome-tiles@velitasali.com
+chown -R 777 awesome-tiles@velitasali.com
 cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/awesome-tiles@velitasali.com
 cd "$builddir" || exit
