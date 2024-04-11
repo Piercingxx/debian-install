@@ -7,9 +7,7 @@ This is divided into sections so you can install only what you need.
 - I recommend an up-to-date copy of the netinst.iso from their website.
 - Install Debian as a headless system, no DE at all.
 - Do install the GRUB.
-- Reboot into terminal and follow the To install instructions
-  
-- If you wish to edit any script before running it simply "sudo nano [file]" to edit it then ctrl+s & ctrl+x
+- Reboot and follow the To install instructions
   
 - "1.sh" to install Gnome-shell and a few adjustments.
   
@@ -35,15 +33,13 @@ This is divided into sections so you can install only what you need.
 ```
 sudo su
 
-apt update
-
 apt install git -y
 
 git clone https://github.com/Piercing666/debian-install
 
-cd debian-install
+chmod -R 777 debian-install
 
-chmod u+x 1.sh 2.sh 3.sh Surface.sh testing.sh
+cd debian-install
 
 ./1.sh
 
