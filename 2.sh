@@ -169,7 +169,6 @@ wait
 unzip aztaskbar-main.zip
 wait
 rm aztaskbar-main.zip
-chmod -R 777 aztaskbar-main
 cp -R aztaskbar-main /usr/share/gnome-shell/extensions/
 #rm -r aztaskbar-main
 
@@ -271,7 +270,7 @@ git clone https://github.com/ChrisTitusTech/mybash
 wait
 cd mybash || exit
 wait
-bash setup.sh
+bash setup.sh -y
 wait
 cd "$builddir" || exit
 wait
