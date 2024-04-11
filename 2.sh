@@ -168,30 +168,30 @@ wait
 # Extensions
 echo "Gnome Extensions"
 sleep 2
-apt install gnome-shell-extension-appindicator -y
-apt install gnome-shell-extension-gsconnect -y
 # App Icons Taskbar
 cd dotconf/extensions || exit
 unzip aztask.zip 
-cp -r aztaskbar@aztaskbar.gitlab.com /home/dr3k/.local/share/gnome-shell/extensions/
+cp -R aztaskbar@aztaskbar.gitlab.com /home/dr3k/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/aztaskbar@aztaskbar.gitlab.com
 cd "$builddir" || exit
 rm -rf aztaskbar@aztaskbar.gitlab.com
 # Awesome Tiles
 cd dotconf/extensions || exit
 unzip awesome-tiles.zip 
-cp -r awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
+cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/awesome-tiles@velitasali.com
 cd "$builddir" || exit
 rm -rf awesome-tiles@velitasali.com
 # Blur My Shell
 cd dotconf/extensions || exit
 unzip blur-my-shell.zip
-cd blur-my-shell || exit
-cp -r blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
+cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
 cd "$builddir" || exit
 rm -rf blur-my-shell
+
+apt install gnome-shell-extension-appindicator -y
+apt install gnome-shell-extension-gsconnect -y
 
 
 #Nautilus Customization
