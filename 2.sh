@@ -55,6 +55,7 @@ apt install papirus-icon-theme -y
 apt install fonts-noto-color-emoji -y
 apt install font-manager -y
 apt install unzip -y
+apt install make -y
 apt install linux-headers-generic -y
 apt install seahorse -y
 apt install gnome-calculator -y
@@ -171,6 +172,26 @@ wait
 rm aztaskbar-main.zip
 cp -R aztaskbar-main /usr/share/gnome-shell/extensions/
 #rm -r aztaskbar-main
+
+#Nautilus Customization
+apt install nautilus-wipe -y
+apt install gnome-sushi -y
+apt install imagemagick nautilus-image-converter -y
+apt install nautilus-admin -y
+apt install gir1.2-gtk-4.0 -y
+git clone https://github.com/Stunkymonkey/nautilus-open-any-terminal.git
+cd nautilus-open-any-terminal || exit
+make
+sudo make install schema
+glib-compile-schemas /usr/share/glib-2.0/schemas
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
+#gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
+gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+cd "$builddir" || exit
+rm -rf nautilus-open-any-terminal
+
+
 
 
 # Removing zip files and stuff
