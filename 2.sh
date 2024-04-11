@@ -116,7 +116,7 @@ sudo dpkg --add-architecture i386
 #FlashForge
 wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
 wait
-sudo dpkg -i e02d016281d06012ea71a671d1e1fdb7.deb
+sudo dpkg -i e02d016281d06012ea71a671d1e1fdb7.deb -y
 wait
 rm e02d016281d06012ea71a671d1e1fdb7.deb
 
