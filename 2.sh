@@ -54,7 +54,7 @@ apt install devscripts -y
 apt install papirus-icon-theme -y
 apt install fonts-noto-color-emoji -y
 apt install font-manager -y
-apt install unzip -y
+apt install zip unzip gzip tar -y
 apt install make -y
 apt install linux-headers-generic -y
 apt install seahorse -y
@@ -158,20 +158,31 @@ wait
 # Extensions
 echo "Gnome Extensions"
 sleep 2
-mkdir -p /home/"$username"/.local/share/gnome-shell/extensions
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
-apt install gnome-shell-extension-tiling-assistant -y
-apt install gnome-shell-extension-hide-activities -y
-
 # App Icons Taskbar
-wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.zip
-wait
-unzip aztaskbar-main.zip
-wait
-rm aztaskbar-main.zip
-cp -R aztaskbar-main /usr/share/gnome-shell/extensions/
-#rm -r aztaskbar-main
+cd dotconf/extensions || exit
+unzip aztask.zip 
+cp -r aztaskbar@aztaskbar.gitlab.com /home/dr3k/.local/share/gnome-shell/extensions/
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/aztaskbar@aztaskbar.gitlab.com
+cd "$builddir" || exit
+rm -rf aztaskbar@aztaskbar.gitlab.com
+# Awesome Tiles
+cd dotconf/extensions || exit
+unzip awesome-tiles.zip 
+cp -r awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/awesome-tiles@velitasali.com
+cd "$builddir" || exit
+rm -rf awesome-tiles@velitasali.com
+# Blur My Shell
+cd dotconf/extensions || exit
+unzip blur-my-shell.zip
+cd blur-my-shell || exit
+cp -r blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
+cd "$builddir" || exit
+rm -rf blur-my-shell
+
 
 #Nautilus Customization
 apt install nautilus-wipe -y
@@ -190,8 +201,6 @@ gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
 gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 cd "$builddir" || exit
 rm -rf nautilus-open-any-terminal
-
-
 
 
 # Removing zip files and stuff
@@ -276,26 +285,18 @@ sleep 1
 # Enable Gnome Extensions
 sudo -u "$username" gnome-extensions enable ubuntu-appindicators@ubuntu.com && echo "App Indicator: Enabled"
 sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && echo "GSConnect: Enabled"
-sudo -u "$username" gnome-extensions enable tiling-assistant@leleat-on-github && echo "Edge Tiling: Enabled"
-sudo -u "$username" gnome-extensions enable Hide_Activities@shay.shayel.org && echo "Hide Activities: Enabled"
-dconf write /org/gnome/shell/extensions/tiling-assistant-single-screen-gap "56" && echo "Edge Tiling: Gap 56"
-wait
-dconf write /org/gnome/shell/extensions/tiling-assistant-window-gap "46" && echo "Window Tiling: Gap 46"
-wait
-dconf write /org/gnome/shell/extensions/tiling-assistant/enable-tiling-popup false && echo "Edge Tiling: Popup Disabled"
-wait
+sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo "Awesome Tiles: Enabled"
+sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && echo "AzTaskbar: Enabled"
+sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 
 
-# Beautiful bash 
-git clone https://github.com/ChrisTitusTech/mybash
-wait
+# Beautiful bash from Chris Titus
+cd dotconf || exit
+unzip mybash.zip
 cd mybash || exit
-wait
-bash setup.sh -y
+./setup.sh -y
 wait
 cd "$builddir" || exit
-wait
-rm -rf mybash
 
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
