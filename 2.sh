@@ -32,6 +32,21 @@ mkdir -p /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 cp -R dotconf/* /home/"$username"/.config/
 
+# Installing important stuff and some dependancies first
+nala install dbus-x11 -y
+nala install cups -y
+nala install util-linux -y
+nala install xdg-utils -y
+nala install build-essential -y
+nala install gnome-tweaks -y
+nala install nautilus -y
+nala install gnome-shell-extension-manager -y
+nala install fuse -y
+nala install libfuse2 -y
+nala install x11-xserver-utils -y
+nala install dh-dkms -y
+nala install devscripts -y
+
 # Customizing Preferences
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
@@ -56,25 +71,17 @@ sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-
 sleep 1
 
 
-#Installing Priority Programs to setup while this script runs
+#Installing Programs and Stuff
 echo "Installing Programs and Drivers"
 sleep 2
-nala install gnome-tweaks -y
-nala install nautilus -y
-nala install gnome-shell-extension-manager -y
 nala install papirus-icon-theme -y
 nala install fonts-noto-color-emoji -y
 nala install font-manager -y
-nala install build-essential -y
 nala install unzip -y
 nala install linux-headers-generic -y
 nala install seahorse -y
 nala install gnome-calculator -y
 nala install rename -y
-nala install cups -y
-nala install util-linux -y
-nala install xdg-utils -y
-nala install dbus-x11 -y
 nala install gdebi -y
 nala install neofetch -y
 nala install mpv -y
@@ -82,11 +89,6 @@ nala install gparted -y
 nala install btop -y
 nala install curl -y
 nala install gh -y
-nala install fuse -y
-nala install libfuse2 -y
-nala install x11-xserver-utils -y
-nala install dh-dkms -y
-nala install devscripts -y
 nala install lua5.4 -y
 sleep 2
 flatpak install flathub com.google.Chrome -y
