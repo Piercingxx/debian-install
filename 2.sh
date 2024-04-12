@@ -301,6 +301,16 @@ sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && ec
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 
 
+unzip mybash.zip
+chmod -R 777 mybash
+cd mybash || exit
+./setup.sh
+wait
+cd "$builddir" || exit
+rm -rf mybash
+
+
+
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
 sleep 5
