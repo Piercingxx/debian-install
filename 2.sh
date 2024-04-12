@@ -325,8 +325,8 @@ echo "Skip 3.sh if you are not using Nvidia hardware."
 sleep 5
 sudo reboot
 
-# If this is your first time using VSCode then create an account and set it up with these extensions.
-# This is a great place to start. This is setup for Lua and Bash, feel free to customize.
+# If this is your first time using VSCode, create an account and set it up with extensions.
+# This is a great place to start. This is my setup for Lua, Bash, and Nix.
 # Copy these to a new .sh and run it in terminal - Do not run as sudo.
 # code --install-extension DaltonMenezes.aura-theme
 # code --install-extension rogalmic.bash-debug
@@ -336,6 +336,7 @@ sudo reboot
 # code --install-extension sourcegraph.cody-ai
 # code --install-extension kamikillerto.vscode-colorize
 # code --install-extension appulate.filewatcher
+# code --install-extension aleleba.fira-code-material-icon-theme
 # code --install-extension GitHub.vscode-pull-request-github
 # code --install-extension eamodio.gitlens
 # code --install-extension oderwat.indent-rainbow
@@ -343,9 +344,14 @@ sudo reboot
 # code --install-extension ritwickdey.LiveServer
 # code --install-extension sumneko.lua
 # code --install-extension actboy168.lua-debug
+# code --install-extension PKief.material-icon-theme
+# code --install-extension bbenoist.Nix
 # code --install-extension openra.vscode-openra-lua
 # code --install-extension johnpapa.vscode-peacock
 # code --install-extension jeanp413.open-remote-ssh
+# code --install-extension ms-vscode-remote.remote-ssh-edit
+# code --install-extension ms-vscode.remote-explorer
+# code --install-extension streetsidesoftware.code-spell-checker-scientific-terms
 # code --install-extension timonwong.shellcheck
 # code --install-extension JohnnyMorganz.stylua
 # code --install-extension foxundermoon.shell-format
