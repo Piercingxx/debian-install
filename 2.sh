@@ -171,7 +171,6 @@ unzip aztask.zip
 wait
 chown -R 777 aztaskbar*
 cp -R aztaskbar@aztaskbar.gitlab.com /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 wait
 # Awesome Tiles
@@ -180,7 +179,6 @@ unzip awesome-tiles.zip
 wait
 chown -R 777 awesome-tiles*
 cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 wait
 # Blur My Shell
@@ -189,10 +187,10 @@ unzip blur-my-shell.zip
 wait
 chown -R 777 blur-my-shell*
 cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 wait
 
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/*
 
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
