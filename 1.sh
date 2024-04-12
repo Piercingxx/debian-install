@@ -61,8 +61,8 @@ nala install kitty -y
 nala install gnome-terminal -y
 nala install gnome-text-editor -y
 nala install dconf* -y
+nala install zip unzip gzip tar make curl -y
 wait
-sleep 2
 
 echo "Changing Graphical Login"
 sleep 2
