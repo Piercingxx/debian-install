@@ -57,7 +57,6 @@ apt install libfuse2 -y
 apt install x11-xserver-utils -y
 apt install dh-dkms -y
 apt install devscripts -y
-apt install psutils -y
 apt install papirus-icon-theme -y
 apt install fonts-noto-color-emoji -y
 apt install font-manager -y
@@ -167,6 +166,8 @@ wait
 # Extensions
 echo "Gnome Extensions"
 sleep 2
+
+chown -R 777 /home/"$username"/debian-install || exit
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 # App Icons Taskbar
 cd dotconf/extensions || exit
@@ -187,9 +188,8 @@ wait
 cd dotconf/extensions || exit
 unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
-#chown -R 777 blur-my-shell*
-#cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
+cd /home/"$username"/.local/share/gnome-shell/extensions || exit
+chown -R 777 *
 cd "$builddir" || exit
 wait
 
@@ -325,6 +325,10 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 wait
+
+cd /home/"$username"/
+chown -R 777 debian-install || exit
+cd "$builddir" || exit
 
 # Beautiful Bash
 unzip mybash.zip
