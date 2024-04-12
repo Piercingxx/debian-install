@@ -150,8 +150,10 @@ sleep 2
 cd "$builddir" || exit
 apt install fonts-font-awesome fonts-noto-color-emoji -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+chown -R 777 FiraCode.zip
 unzip FiraCode.zip -d /home/"$username"/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
+chown -R 777 Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
 chown "$username":"$username" /home/"$username"/.fonts/*
@@ -165,37 +167,36 @@ wait
 # Extensions
 echo "Gnome Extensions"
 sleep 2
-# App Icons Taskbar
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
+# App Icons Taskbar
 cd dotconf/extensions || exit
-unzip aztask.zip
+unzip aztask.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-chown -R 777 aztaskbar*
-cp -R aztaskbar@aztaskbar.gitlab.com /home/"$username"/.local/share/gnome-shell/extensions/
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
+wait
 cd "$builddir" || exit
 wait
 # Awesome Tiles
 cd dotconf/extensions || exit
-unzip awesome-tiles.zip
+unzip awesome-tiles.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-chown -R 777 awesome-tiles*
-cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 wait
 # Blur My Shell
 cd dotconf/extensions || exit
-unzip blur-my-shell.zip
+unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-chown -R 777 blur-my-shell*
-cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
+#chown -R 777 blur-my-shell*
+#cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
 cd "$builddir" || exit
 wait
 
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/*
 
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
-
+wait
 
 #Nautilus Customization
 apt install gnome-sushi -y
@@ -214,7 +215,8 @@ rm -rf nautilus-open-any-terminal
 # Removing zip files and stuff
 rm -r dotconf
 rm -r scripts
-
+rm -rf FiraCode.zip
+rm -rf Meslo.zip
 
 # Used in fstab
 mkdir -p /media/Working-Storage
