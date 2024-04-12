@@ -207,6 +207,17 @@ systemctl enable gdm3 --now
 # Use nala
 bash scripts/usenala
 
+
+# Beautiful bash modified Chris Titus' bash
+unzip mybash.zip
+chmod -R 777 mybash
+cd mybash || exit
+./setup.sh
+wait
+cd "$builddir" || exit
+rm -rf mybash
+
+
 apt update && upgrade -y
 wait
 flatpak update -y
