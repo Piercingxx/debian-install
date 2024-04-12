@@ -166,38 +166,50 @@ echo "Gnome Extensions"
 sleep 2
 # App Icons Taskbar
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
-
+cd dotconf/extensions || exit
 unzip aztask.zip
+wait
 cd "$builddir" || exit
 chown -R 777 dotconf
 cd dotconf/extensions || exit
+wait
 rm -rf aztask.zip
+wait
 cd aztask || exit
 cp -R aztaskbar@aztaskbar.gitlab.com /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
+wait
 # Awesome Tiles
 cd dotconf/extensions || exit
 unzip awesome-tiles.zip
+wait
 cd "$builddir" || exit
 chown -R 777 dotconf
 cd dotconf/extensions || exit
+wait
 rm -rf awesome-tiles.zip
+wait
 cd awesome-tiles || exit
 cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
+wait
 # Blur My Shell
 cd dotconf/extensions || exit
 unzip blur-my-shell.zip
+wait
 cd "$builddir" || exit
 chown -R 777 dotconf
 cd dotconf/extensions || exit
+wait
 rm -rf blur-my-shell.zip
+wait
 cd blur-my-shell || exit
 cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
 chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
+wait
 
 
 apt install gnome-shell-extension-appindicator -y
