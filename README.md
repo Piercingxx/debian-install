@@ -59,7 +59,9 @@ Run the first script
 After the system reboots openTerminal (not kitty), sudo su, and cd into install folder and run second script:
 
 ``` sudo su ```
+
 ``` cd debian-install ```
+
 ``` ./2.sh ```
 
 At this point run Steam and fully install it. 
