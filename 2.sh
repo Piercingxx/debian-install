@@ -165,12 +165,13 @@ wait
 echo "Gnome Extensions"
 sleep 2
 # App Icons Taskbar
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd dotconf/extensions || exit
 unzip aztask.zip 
-chown -R 777 /aztask
+chown -R 777 aztask
 cd aztask || exit
 cp -R aztaskbar@aztaskbar.gitlab.com /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/aztaskbar@aztaskbar.gitlab.com
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 # Awesome Tiles
 cd dotconf/extensions || exit
@@ -178,7 +179,7 @@ unzip awesome-tiles.zip
 chown -R 777 awesome-tiles
 cd awesome-tiles || exit
 cp -R awesome-tiles@velitasali.com /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/awesome-tiles@velitasali.com
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 # Blur My Shell
 cd dotconf/extensions || exit
@@ -186,7 +187,7 @@ unzip blur-my-shell.zip
 chmod -R 777 blur-my-shell
 cd blur-my-shell || exit
 cp -R blur-my-shell@aunetx /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions/blur-my-shell@aunetx
+chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 cd "$builddir" || exit
 
 
