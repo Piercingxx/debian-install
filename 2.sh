@@ -328,7 +328,7 @@ wait
 unzip mybash.zip
 chmod -R 777 mybash
 cd mybash || exit
-./setup.sh
+sudo -u "username" ./setup.sh
 wait
 cd "$builddir" || exit
 rm -rf mybash
