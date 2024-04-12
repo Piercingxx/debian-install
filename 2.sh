@@ -57,6 +57,7 @@ apt install libfuse2 -y
 apt install x11-xserver-utils -y
 apt install dh-dkms -y
 apt install devscripts -y
+apt install psutils -y
 apt install papirus-icon-theme -y
 apt install fonts-noto-color-emoji -y
 apt install font-manager -y
@@ -298,26 +299,6 @@ sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && ec
 sudo -u "$username" gnome-extensions enable awesome-tiles@velitasali.com && echo "Awesome Tiles: Enabled"
 sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && echo "AzTaskbar: Enabled"
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
-#gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
-gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
-dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
-dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
-dconf write /org/gnome/shell/extensions/aztaskbar/main-panel-height "33" && echo "AzTaskbar Main Panel Height: 33"
-dconf write /org/gnome/shell/extensions/aztaskbar/show-panel-activities-button "false" && echo "AzTaskbar Show Panel Activities Button: False"
-dconf write /org/gnome/shell/extensions/aztaskbar/icon-size "23" && echo "AzTaskbar Icon Size: 23"
-dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
-
-
-# Beautiful bash modified Chris Titus' bash
-unzip mybash.zip
-chmod -R 777 mybash
-cd mybash || exit
-./setup.sh
-wait
-cd "$builddir" || exit
-rm -rf mybash
 
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
