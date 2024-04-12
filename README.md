@@ -15,6 +15,8 @@ This is divided into sections so you can install only what you need.
   
 - "2.sh" will install applications, fonts, cursors, and customize settings (it takes several minutes to run).
 
+- "2b.sh" is very quick and adjusts extension settings, unfortionately there needs to be a reboot before and after for these to be applied.
+
 - If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install 3.sh. If you install Steam after 3.sh it is a headache.
   
 - "3.sh" will install Nvidia drivers (if you dont have a Nvidia GPU skip this one).
