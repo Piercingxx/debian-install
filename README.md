@@ -56,7 +56,7 @@ Run the first script
 
 ``` ./1.sh ```
 
-After the system reboots openTerminal (not kitty), sudo su, and cd into install folder and run second script:
+After the system reboots open Terminal (not kitty), sudo su, and cd into install folder and run second script:
 
 ``` sudo su ```
 
