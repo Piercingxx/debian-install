@@ -15,17 +15,15 @@ This is divided into sections so you can install only what you need.
   
 - "2.sh" will install applications, fonts, cursors, and customize settings (it takes several minutes to run).
 
-- "2b.sh" is very quick and adjusts extension settings, unfortionately there needs to be a reboot before and after for these to be applied.
-
 - If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install 3.sh. If you install Steam after 3.sh it is a headache.
   
-- "3.sh" will install Nvidia drivers (if you dont have a Nvidia GPU skip this one).
+- "3.sh" will install Nvidia drivers (if you don't have a Nvidia GPU skip this one).
   
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Surface).
   
 - "testing.sh" will change your Source.list to test branch.
   
-- If you have multiple harddrives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
+- If you have multiple hard drives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
 
 ### Credits:
 - The "usenala" script and "Beautiful Bash" are from https://github.com/ChrisTitusTech/Debian-titus
@@ -65,5 +63,5 @@ After the system reboots openTerminal (not kitty), sudo su, and cd into install 
 ``` ./2.sh ```
 
 At this point run Steam and fully install it. 
-After setting up Steam you can install your Nvidia drivers, if you dont have a Nvidia GPU then skip 3.sh.
+After setting up Steam you can install your Nvidia drivers, if you don't have a Nvidia GPU then skip 3.sh.
 After 2.sh kitty will be fully setup is good to be used. You can choose to purge gnome-terminal at that point if you wish.
