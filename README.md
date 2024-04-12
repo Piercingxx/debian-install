@@ -46,7 +46,7 @@ After Git installs:
 
 Then change the Mod:
 
-``` chmod -R 777 debian-install ```
+``` chmod -R u+x debian-install ```
 
 Then cd into install folder
 
