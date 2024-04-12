@@ -312,8 +312,9 @@ dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "
 
 # Beautiful bash modified Chris Titus' bash
 unzip mybash.zip
+chmod -R 777 mybash
 cd mybash || exit
-./setup.sh --assume-yes
+./setup.sh
 wait
 cd "$builddir" || exit
 rm -rf mybash
