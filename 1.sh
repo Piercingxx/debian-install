@@ -61,7 +61,6 @@ nala install kitty -y
 nala install gnome-terminal -y
 nala install gnome-text-editor -y
 nala install dconf* -y
-nala install zip unzip gzip tar make curl -y
 wait
 
 echo "Changing Graphical Login"
@@ -206,16 +205,6 @@ systemctl enable gdm3 --now
 
 # Use nala
 bash scripts/usenala
-
-
-# Beautiful bash modified Chris Titus' bash
-unzip mybash.zip
-chmod -R 777 mybash
-cd mybash || exit
-./setup.sh
-wait
-cd "$builddir" || exit
-rm -rf mybash
 
 
 apt update && upgrade -y
