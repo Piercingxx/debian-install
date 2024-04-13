@@ -152,6 +152,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 chown -R 777 Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
+chown "$username":"$username" /home/"$username"/.fonts
 chown "$username":"$username" /home/"$username"/.fonts/*
 apt install ttf-mscorefonts-installer -y
 
@@ -168,16 +169,25 @@ sleep 2
 cd dotconf/extensions || exit
 unzip aztask.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-
+cd "$builddir" || exit
 # Awesome Tiles
 cd dotconf/extensions || exit
 unzip awesome-tiles.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
+cd "$builddir" || exit
 # Blur My Shell
 cd dotconf/extensions || exit
 unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
 cd "$builddir" || exit
+
+
+cd /home/"$username"/.local/share/gnome-shell || exit
+chown -f ["$username":"$username"] extenstions
+cd extensions || exit
+chown -f ["$username":"$username"] *
+cd "$builddir" || exit
+
 
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
@@ -207,6 +217,10 @@ rm -rf Meslo.zip
 # Used in fstab
 mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
+chown "$username":"$username" /home/"$username"/media/Archived-Storage
+chown "$username":"$username" /home/"$username"/media/Working-Storage
+chown "$username":"$username" /home/"$username"/.fonts
+chown "$username":"$username" /home/"$username"/.fonts/*
 
 
 echo "Installing Dependencies for DaVinci Resolve."
@@ -224,6 +238,7 @@ apt install libxml2-utils -y
 apt install podman-toolbox -y
 wait
 
+
 apt update && upgrade -y
 wait
 apt full-upgrade -y
@@ -238,49 +253,49 @@ apt update && upgrade -y
 wait
 flatpak update -y
 
+
 #Customization
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true && echo "Numlock State: True"
 sudo -u "$username" gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" && echo "Caps Lock: Backspace"
-sleep 1
+wait
 sudo -u "$username" gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
 sudo -u "$username" gsettings set org.gnome.desktop.session idle-delay 0 && echo "Lock Screen Idle: 20"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing' && echo "Sleep Inactive AC: Nothing"
 sudo -u "$username" gsettings set org.gnome.desktop.interface show-battery-percentage true && echo "Show Battery Percentage: True"
-sleep 1
+wait
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false && echo "Ambient Enabled: False"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power idle-dim false && echo "Idle Dim: False"
 sudo -u "$username" gsettings set org.gnome.desktop.interface enable-hot-corners false && echo "Enable Hot Corners: False"
 sudo -u "$username" gsettings set org.gnome.desktop.background picture-options 'spanned' && echo "Background Options: Spanned"
-sleep 1
+wait
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true && echo "Night Light Enabled: True"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-automatic false && echo "Night Light Schedule Automatic: False"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 20 && echo "Night Light Schedule From: 20"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 04 && echo "Night Light Schedule To: 04"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 2500 && echo "Night Light Temperature: 2500"
-sleep 1
+wait
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']" && echo "Custom Keybindings: None"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "kitty" && echo "Kitty: Name"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "kitty" && echo "Kitty: Command"
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Primary><Alt>T" && echo "Kitty: Binding"
-sleep 1
+wait
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true && echo "Tap to Click: True"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true && echo "Natural Scroll: True"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true && echo "Edge Scrolling: True"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false && echo "Two Finger Scrolling: False"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.touchpad click-method 'areas' && echo "Click Method: Areas"
-sleep 1
+wait
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive' && echo "Power Button Action: Interactive"
 sudo -u "$username" gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark && echo "GTK Theme: Adwaita-dark"
 sudo -u "$username" gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors' && echo "Cursor Theme: Nordzy"
 sudo -u "$username" gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
 sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop', 'org.gimp.GIMP.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, VSCode, Discord, Gimp"
-sleep 1
+wait
 
 
 # Enable Gnome Extensions
-
 sudo -u "$username" gnome-extensions enable ubuntu-appindicators@ubuntu.com && echo "App Indicator: Enabled"
 wait
 sudo -u "$username" gnome-extensions enable gsconnect@andyholmes.github.io && echo "GSConnect: Enabled"
@@ -311,12 +326,11 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/bright
 wait
 
 
-
-
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
 sleep 5 && echo "Rebooting"
 sudo reboot
+
 
 # If this is your first time using VSCode, create an account and set it up with extensions.
 # This is a great place to start. This is my setup for Lua, Bash, and Nix.
