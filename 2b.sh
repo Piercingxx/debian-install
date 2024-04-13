@@ -105,15 +105,6 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/bright
 wait
 sleep 1
 
-# Beautiful Bash
-unzip mybash.zip
-chmod -R 777 mybash
-cd mybash || exit
-sudo -u "username" ./setup.sh
-wait
-cd "$builddir" || exit
-rm -rf mybash
-
 
 echo "Skip 3.sh if you are not using Nvidia hardware."
 sleep 3 && echo "Rebooting"
