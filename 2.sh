@@ -33,10 +33,7 @@ mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 mkdir -p /root/.icons
 cp -R dotconf/* /home/"$username"/.config/
 wait
-chmod -R 777 /home/"$username"/.config/
-chmod -R 777 /home/"$username"/.fonts/
-chmod -R 777 /home/"$username"/.local/share/gnome-shell/extensions/
-chmod -R 777 /root/.icons/
+
 
 
 
@@ -167,36 +164,24 @@ wait
 echo "Gnome Extensions"
 sleep 2
 
-chown -R 777 /home/"$username"/debian-install || exit
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
 # App Icons Taskbar
 cd dotconf/extensions || exit
 unzip aztask.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
-wait
-cd "$builddir" || exit
-wait
+
 # Awesome Tiles
 cd dotconf/extensions || exit
 unzip awesome-tiles.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
-wait
-chown -R 777 /home/"$username"/.local/share/gnome-shell/extensions
-cd "$builddir" || exit
 wait
 # Blur My Shell
 cd dotconf/extensions || exit
 unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
-cd /home/"$username"/.local/share/gnome-shell/extensions || exit
-chown -R 777 *
 cd "$builddir" || exit
-wait
-
 
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
-wait
+
 
 #Nautilus Customization
 apt install gnome-sushi -y
@@ -218,11 +203,10 @@ rm -r scripts
 rm -rf FiraCode.zip
 rm -rf Meslo.zip
 
+
 # Used in fstab
 mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
-chmod -R 777 /media/Working-Storage
-chmod -R 777 /media/Archived-Storage
 
 
 echo "Installing Dependencies for DaVinci Resolve."
@@ -326,9 +310,7 @@ wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 wait
 
-cd /home/"$username"/
-chown -R 777 debian-install || exit
-cd "$builddir" || exit
+
 
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
