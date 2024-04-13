@@ -36,12 +36,7 @@ This is divided into sections so you can install only what you need.
 
 1. Boot into your headless system and login with the user name and password you just created. Then:
 
-``` sudo su ```
-
-
-2. Install Git:
-
-``` apt install git -y ```
+``` sudo apt install git -y ```
 
 
 3. After Git installs:
@@ -51,7 +46,7 @@ This is divided into sections so you can install only what you need.
 
 4. Change Mod:
 
-``` chmod -R 777 debian-install ```
+``` sudo chmod -R u+x debian-install/ ```
 
 
 5. cd into install folder:
@@ -61,14 +56,16 @@ This is divided into sections so you can install only what you need.
 
 6. Run the first script:
 
+``` sudo su ```
+
 ``` ./1.sh ```
 
 
   7.1 After the system reboots open Terminal (not kitty):
 
-``` sudo su ```
-
 ``` cd debian-install ```
+
+``` sudo su ```
 
 ``` ./2.sh ```
 
