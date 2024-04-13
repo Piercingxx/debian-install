@@ -78,6 +78,12 @@ This is divided into sections so you can install only what you need.
 
 ``` 2b.sh ```
 
+7.3 Beautiful Bash:
+
+``` git clone https://github.com/christitustech/mybash
+cd mybash
+./setup.sh ```
+
 8. Now you can open Steam and login (dont forget to change compatability settings). You can install games now or after you finish the install, not both.
    You can also feel free to apt purge gnome-terminal and just use Kitty as your main terminal CTRL+ALT+T will launch this.
 
