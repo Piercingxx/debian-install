@@ -95,6 +95,6 @@ This is divided into sections so you can install only what you need.
 
 12. Run:
 
-``` rm -R /home/$USERNAME/debian-install ```
+``` rm -r /home/$USERNAME/debian-install ```
 
 If you come across any issues please let me know!
