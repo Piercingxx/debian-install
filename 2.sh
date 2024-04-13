@@ -165,7 +165,6 @@ wait
 # Extensions
 echo "Gnome Extensions"
 sleep 2
-
 # App Icons Taskbar
 cd dotconf/extensions || exit
 unzip aztask.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
@@ -181,13 +180,7 @@ cd dotconf/extensions || exit
 unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
 wait
 cd "$builddir" || exit
-
-
-chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extenstions
-chown -f "$username":"$username" /home/"$username"/.local/share/gnome-shell/extenstions/*
-cd "$builddir" || exit
-
-
+chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
 
