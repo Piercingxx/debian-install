@@ -80,7 +80,7 @@ This is divided into sections so you can install only what you need.
 
 8. Now you can open Steam and login (dont forget to change compatability settings). You can install games now or after you finish the install, not both.
    You can also feel free to apt purge gnome-terminal and just use Kitty as your main terminal CTRL+ALT+T will launch this.
-   
+
 9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device skip this and do right to #10):
    
 ``` ./3.sh ```
