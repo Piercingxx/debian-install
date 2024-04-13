@@ -25,19 +25,19 @@ sleep 2
 apt update && upgrade -y
 wait
 
+
 # Making .config and.fonts Directories
 cd "$builddir" || exit
 mkdir -p /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 mkdir -p /root/.icons
-cp -R dotconf/* /home/"$username"/.config/
+cp -R dotconf/kitty /home/"$username"/.config/
+chown -R "$username":"$username" /home/"$username"/.config/kitty
 wait
 
 
-
-
-# Installing important stuff and some dependancies first
+# Installing important things && stuff && some dependancies
 echo "Installing Programs and Drivers"
 sleep 2
 apt install dbus-x11 -y
@@ -115,9 +115,10 @@ sudo dpkg --add-architecture i386
 # VPN
 wget https://installers.privateinternetaccess.com/download/pia-linux-3.5.5-08091.run
 wait
-chmod 777 pia-linux-3.5.5-08091.run
+chown -R "$username":"$username" pia-linux-3.5.5-08091.run
 #FlashForge
 wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
+chown -R "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
 wait
 
 
@@ -146,13 +147,13 @@ sleep 2
 cd "$builddir" || exit
 apt install fonts-font-awesome fonts-noto-color-emoji -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-chown -R 777 FiraCode.zip
+chmod -R 777 FiraCode.zip
 unzip FiraCode.zip -d /home/"$username"/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
-chown -R 777 Meslo.zip
+chmod -R 777 Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
-chown "$username":"$username" /home/"$username"/.fonts
+chown -R "$username":"$username" /home/"$username"/.fonts
 chown "$username":"$username" /home/"$username"/.fonts/*
 apt install ttf-mscorefonts-installer -y
 
@@ -182,10 +183,8 @@ wait
 cd "$builddir" || exit
 
 
-cd /home/"$username"/.local/share/gnome-shell || exit
-chown -f ["$username":"$username"] extenstions
-cd extensions || exit
-chown -f ["$username":"$username"] *
+chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extenstions
+chown -f "$username":"$username" /home/"$username"/.local/share/gnome-shell/extenstions/*
 cd "$builddir" || exit
 
 
@@ -219,8 +218,6 @@ mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
 chown "$username":"$username" /home/"$username"/media/Archived-Storage
 chown "$username":"$username" /home/"$username"/media/Working-Storage
-chown "$username":"$username" /home/"$username"/.fonts
-chown "$username":"$username" /home/"$username"/.fonts/*
 
 
 echo "Installing Dependencies for DaVinci Resolve."
