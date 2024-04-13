@@ -15,7 +15,7 @@ This is divided into sections so you can install only what you need.
   
 - "2.sh" will install applications, fonts, cursors, and customize settings (it takes several minutes to run).
 
-- "2b.sh" well modify all the installed extensions and gsettings.
+- "2b.sh" will modify all the installed extensions and gsettings.
 
 - If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install 3.sh. If you install Steam after 3.sh it is a headache.
   
