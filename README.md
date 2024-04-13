@@ -38,27 +38,33 @@ This is divided into sections so you can install only what you need.
 
 ``` sudo su ```
 
+
 2. Install Git:
 
 ``` apt install git -y ```
+
 
 3. After Git installs:
 
 ``` git clone https://github.com/Piercing666/debian-install ```
 
+
 4. Change Mod:
 
 ``` chmod -R 777 debian-install ```
+
 
 5. cd into install folder:
 
 ``` cd debian-install ```
 
+
 6. Run the first script:
 
 ``` ./1.sh ```
 
- 7.1 After the system reboots open Terminal (not kitty):
+
+  7.1 After the system reboots open Terminal (not kitty):
 
 ``` sudo su ```
 
@@ -66,7 +72,8 @@ This is divided into sections so you can install only what you need.
 
 ``` ./2.sh ```
 
- 7.2 After the reboot if the top left of your screen looks like this : ![image](https://github.com/Piercing666/debian-install/assets/155384428/d0a4372f-f2d7-430d-b0d2-108407b9db40) Then run:
+
+  7.2 After the reboot if the top left of your screen looks like this : ![image](https://github.com/Piercing666/debian-install/assets/155384428/d0a4372f-f2d7-430d-b0d2-108407b9db40) Then run:
 
 ``` sudo su ```
 
@@ -78,7 +85,8 @@ This is divided into sections so you can install only what you need.
 
 ``` 2b.sh ```
 
- 7.3 Beautiful Bash:
+
+  7.3 Beautiful Bash:
 
 ``` git clone https://github.com/christitustech/mybash ```
 
@@ -87,23 +95,29 @@ This is divided into sections so you can install only what you need.
 ``` ./setup.sh ```
 
 
+
 8. Now you can open Steam and login (dont forget to change compatability settings). You can install games now or after you finish the install, not both.
     You can also feel free to apt purge gnome-terminal and just use Kitty as your main terminal CTRL+ALT+T will launch this.
+
 
 9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device skip this and do right to #10):
    
 ``` ./3.sh ```
 
+
  10. If you are using a Microsoft Surface device you can now run the script:
 
 ``` ./Surface.sh ```
+
 
  11. On the newest hardware you will want to change into the Testing branch of Debian, use:
 
 ``` ./testing.sh ```
 
+
  12. Run:
 
 ``` rm -r /home/$USERNAME/debian-install ```
+
 
 If you come across any issues please let me know!
