@@ -330,15 +330,6 @@ cd /home/"$username"/
 chown -R 777 debian-install || exit
 cd "$builddir" || exit
 
-# Beautiful Bash
-unzip mybash.zip
-chmod -R 777 mybash
-cd mybash || exit
-sudo -u "username" ./setup.sh
-wait
-cd "$builddir" || exit
-rm -rf mybash
-
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
 echo "Skip 3.sh if you are not using Nvidia hardware."
