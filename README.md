@@ -70,20 +70,7 @@ This is divided into sections so you can install only what you need.
 ``` ./2.sh ```
 
 
-  7.2 After the reboot if the top left of your screen looks like this : ![image](https://github.com/Piercing666/debian-install/assets/155384428/d0a4372f-f2d7-430d-b0d2-108407b9db40) Then run:
-
-``` sudo su ```
-
-``` chmod -R 777 /home/$USERNAME/.local/share/gnome-shell/extensions/* ```
-
-``` chmod -R 777 debian-install ```
-
-``` cd debian-install ```
-
-``` 2b.sh ```
-
-
-  7.3 Beautiful Bash:
+  7.2 Beautiful Bash:
 
 ``` git clone https://github.com/christitustech/mybash ```
 
