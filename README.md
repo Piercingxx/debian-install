@@ -84,7 +84,7 @@ This is divided into sections so you can install only what you need.
     You can also feel free to apt purge gnome-terminal and just use Kitty as your main terminal CTRL+ALT+T will launch this.
 
 
-9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device skip this and do right to #10):
+9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device you can skip this unless you also want to game or edit videos on the device):
    
 ``` ./3.sh ```
 
