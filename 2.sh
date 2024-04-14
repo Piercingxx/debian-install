@@ -22,7 +22,7 @@ fi
 
 echo "Updating Repositiories"
 sleep 2
-apt update && upgrade -y
+sudo apt update && upgrade -y
 wait
 
 
@@ -122,9 +122,9 @@ chown -R "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
 wait
 
 
-apt update
+sudo apt update
 wait
-apt upgrade -y
+sudo apt upgrade -y
 wait
 
 
@@ -228,7 +228,7 @@ apt install podman-toolbox -y
 wait
 
 
-apt update && upgrade -y
+sudo apt update && upgrade -y
 wait
 apt full-upgrade -y
 wait
@@ -238,7 +238,7 @@ dpkg --configure -a
 apt install --fix-broken
 wait
 apt autoremove -y
-apt update && upgrade -y
+sudo apt update && upgrade -y
 wait
 flatpak update -y
 
