@@ -154,7 +154,6 @@ chmod -R 777 Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
 chown -R "$username":"$username" /home/"$username"/.fonts
-chown "$username":"$username" /home/"$username"/.fonts/*
 apt install ttf-mscorefonts-installer -y
 
 # Reloading Font
