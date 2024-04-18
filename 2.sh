@@ -189,6 +189,7 @@ cd "$builddir" || exit
 chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
+apt install gnome-shell-extension-caffeine -y
 
 
 #Nautilus Customization
@@ -327,6 +328,7 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/sear
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/theme "true" && echo "Just Perfection Theme: True"
 wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/caffeine/duration-timer "4" && echo "Caffeine Duration Timer: 4"
 
 sudo -u "$username" dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
 wait
