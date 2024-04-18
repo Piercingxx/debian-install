@@ -44,6 +44,7 @@ apt install dbus-x11 -y
 apt install cups -y
 apt install util-linux -y
 apt install xdg-utils -y
+apt install libnvidia-egl-wayland -y
 apt install build-essential -y
 apt install gnome-tweaks -y
 apt install nautilus -y
@@ -180,6 +181,12 @@ unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions
 wait
 cd "$builddir" || exit
 chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
+# Just Perfection
+cd dotconf/extensions || exit
+unzip just-perfection-desktop@just-perfection.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
+wait
+cd "$builddir" || exit
+chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
 
@@ -301,6 +308,26 @@ sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-term
 wait
 sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
 wait
+
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/dash-icon-size "48" && echo "Just Perfection Dash Icon Size: 48"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/animation "3" && echo "Just Perfection Animation: 3"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/startup-status "0" && echo "Just Perfection Startup Status: 0"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/app-menu-icon "false" && echo "Just Perfection App Menu Icon: False"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/activities-button "false" && echo "Just Perfection Activities Button: False"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/app-menu "false" && echo "Just Perfection App Menu: False"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/app-menu-label "false" && echo "Just Perfection App Menu Label: False"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/search "false" && echo "Just Perfection Search: False"
+wait
+sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/theme "true" && echo "Just Perfection Theme: True"
+wait
+
 sudo -u "$username" dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
@@ -313,6 +340,8 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 wait
+
+
 
 
 echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
