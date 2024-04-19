@@ -303,6 +303,10 @@ sudo -u "$username" gnome-extensions enable aztaskbar@aztaskbar.gitlab.com && ec
 wait
 sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur My Shell: Enabled"
 wait
+sudo -u "$username" gnome-extensions enable caffeine@patapon.info && echo "Caffeine: Enabled"
+wait
+sudo -u "$username" gnome-extensions enable just-perfection-desktop@just-perfection && echo "Just Perfection: Enabled"
+wait
 sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
 wait
 sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
