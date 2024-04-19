@@ -117,7 +117,7 @@ wait
 sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt update
 wait
 rm protonvpn-stable-release_1.0.3-3_all.deb
-sudo apt install proton-vpn-gnome-desktop
+sudo apt install proton-vpn-gnome-desktop -y
 
 # Things to download, install only if you need them
 #FlashForge
