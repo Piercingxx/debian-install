@@ -57,7 +57,6 @@ apt install dh-dkms -y
 apt install devscripts -y
 apt install papirus-icon-theme -y
 apt install fonts-noto-color-emoji -y
-apt install font-manager -y
 apt install zip unzip gzip tar -y
 apt install make -y
 apt install linux-headers-generic -y
@@ -67,7 +66,7 @@ apt install rename -y
 apt install neofetch -y
 apt install mpv -y
 apt install gparted -y
-apt install btop -y
+# apt install btop -y
 apt install curl -y
 apt install gh -y
 apt install lua5.4 -y
@@ -82,10 +81,11 @@ flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.blender.Blender -y
 flatpak install flathub org.inkscape.Inkscape -y
 flatpak install flathub net.scribus.Scribus -y
-flatpak install flathub org.gnome.gThumb -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
+flatpak install flathub io.missioncenter.MissionCenter -y
+
 
 
 # VSCode
@@ -111,6 +111,13 @@ rm steam.deb
 # i386 is needed for steam to launch
 sudo dpkg --add-architecture i386
 
+# VPN
+wget https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb
+wait
+sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt update
+wait
+rm protonvpn-stable-release_1.0.3-3_all.deb
+sudo apt install proton-vpn-gnome-desktop
 
 # Things to download, install only if you need them
 #FlashForge
@@ -287,6 +294,9 @@ sudo -u "$username" gsettings set org.gnome.desktop.interface icon-theme 'Papiru
 sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop', 'org.gimp.GIMP.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, VSCode, Discord, Gimp"
 wait
 
+/org/gnome/settings-daemon/plugins/media-keys/logout
+  ['<Shift><Control><Alt>Delete']
+  
 
 # Enable Gnome Extensions
 sudo -u "$username" gnome-extensions enable ubuntu-appindicators@ubuntu.com && echo "App Indicator: Enabled"
