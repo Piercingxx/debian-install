@@ -70,6 +70,7 @@ apt install gparted -y
 apt install curl -y
 apt install gh -y
 apt install lua5.4 -y
+apt install gnome-disk-utility -y
 sleep 2
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
@@ -89,7 +90,7 @@ flatpak install flathub io.missioncenter.MissionCenter -y
 
 
 # VSCode
-wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/code_1.88.1-1712771838_amd64.deb
+wget "https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/code_1.88.1-1712771838_amd64.deb"
 wait
 dpkg -i code_1.88.1-1712771838_amd64.deb
 wait
@@ -102,8 +103,22 @@ sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
 rm synology-drive-client-15724.x86_64.deb
 
+# Synology Assistant
+wget "https://global.synologydownload.com/download/Utility/Assistant/7.0.4-50051/Ubuntu/x86_64/synology-assistant_7.0.4-50051_amd64.deb"
+wait
+dpkg -i synology-assistant_7.0.4-50051_amd64.deb
+wait
+rm synology-assistant_7.0.4-50051_amd64.deb
+
+# Synology Chat
+wget "https://global.synologydownload.com/download/Utility/ChatClient/1.2.2-0222/Ubuntu/x86_64/Synology%20Chat%20Client-1.2.2-0222.deb"
+wait
+dpkg -i Synology%20Chat%20Client-1.2.2-0222.deb
+wait
+rm Synology%20Chat%20Client-1.2.2-0222.deb
+
 # steam
-wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+wget "https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
 wait
 sudo dpkg -i steam.deb
 wait
@@ -112,7 +127,7 @@ rm steam.deb
 sudo dpkg --add-architecture i386
 
 # VPN
-wget https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb
+wget "https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb"
 wait
 sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt update
 wait
@@ -121,7 +136,7 @@ sudo apt install proton-vpn-gnome-desktop -y
 
 # Things to download, install only if you need them
 #FlashForge
-wget https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb
+wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
 chown -R "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
 wait
 
