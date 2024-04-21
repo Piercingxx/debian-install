@@ -19,25 +19,31 @@ wait
 
 wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc \
     | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
+wait
 
 echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
 	| sudo tee /etc/apt/sources.list.d/linux-surface.list
-        
+
 apt update && upgrade -y
 wait
 
-apt install linux-image-surface linux-headers-surface libwacom-surface iptsd -y
+echo "Installing the kernel"
+apt install linux-image-surface linux-headers-surface surface-ath10k-firmware-override -y
 
+echo "Enabling touch screen"
+apt install iptsd libwacom-surface && systemctl enable iptsd -y
+
+echo "Enabling secure boot"
 apt install linux-surface-secureboot-mok -y
 
+echo "Update-grub"
 update-grub
 
 #battery optimization software
 nala install tlp tlp-rdw smartmontools vainfo -y
 #open tlp.conf in /etc and unhash DEVICES_TO_DISABLE_ON_STARTUP="bluetooth" 
 
-
 echo "After reboot run vainfo and fix any errors"
-sleep 5
+sleep 5 && echo "Rebooting"
 
 reboot
