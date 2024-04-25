@@ -32,8 +32,10 @@ mkdir -p /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 mkdir -p /root/.icons
+mkdir -p /home/$username/Pictures/backgrounds
 cp -R dotconf/kitty /home/"$username"/.config/
 chown -R "$username":"$username" /home/"$username"/.config/kitty
+cp dotconf/bg.jpg /home/$username/Pictures/backgrounds/
 wait
 
 
@@ -66,12 +68,12 @@ apt install rename -y
 apt install neofetch -y
 apt install mpv -y
 apt install gparted -y
-# apt install btop -y
 apt install curl -y
 apt install gh -y
 apt install lua5.4 -y
 apt install gnome-disk-utility -y
 sleep 2
+
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
@@ -180,6 +182,14 @@ fc-cache -vf
 wait
 
 
+
+# Gimp Config
+rm -r /home/"username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
+cd dotconf/gimp || exit
+unzip gimp.zip -d /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
+cd "$builddir" || exit
+
+
 # Extensions
 echo "Gnome Extensions"
 sleep 2
@@ -270,6 +280,7 @@ flatpak update -y
 
 
 #Customization
+
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h && echo "Clock Format: 24h"
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true && echo "Numlock State: True"
@@ -281,7 +292,7 @@ sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power sleep-
 sudo -u "$username" gsettings set org.gnome.desktop.interface show-battery-percentage true && echo "Show Battery Percentage: True"
 wait
 sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power ambient-enabled false && echo "Ambient Enabled: False"
-sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power idle-dim false && echo "Idle Dim: False"
+sudo -u "$username" gsettings set org.gnome.settings-daemon.plugins.power idle-delay "unit32 900" && echo "Idle Delay: 15 minutes"
 sudo -u "$username" gsettings set org.gnome.desktop.interface enable-hot-corners false && echo "Enable Hot Corners: False"
 sudo -u "$username" gsettings set org.gnome.desktop.background picture-options 'spanned' && echo "Background Options: Spanned"
 wait
@@ -308,8 +319,10 @@ sudo -u "$username" gsettings set org.gnome.desktop.interface cursor-theme 'Nord
 sudo -u "$username" gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark' && echo "Icon Theme: Papirus-Dark"
 sudo -u "$username" gsettings set org.gnome.shell favorite-apps "['com.google.Chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.libreoffice.LibreOffice.writer.desktop', 'org.gnome.Calculator.desktop', 'md.obsidian.Obsidian.desktop', 'com.visualstudio.code.desktop', 'code.desktop', 'com.discordapp.Discord.desktop', 'org.gimp.GIMP.desktop']" && echo "Favorite Apps: Chrome, Nautilus, LibreOffice, Calculator, Obsidian, VSCode, Discord, Gimp"
 wait
-  
-
+sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
+sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
+sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
+wait
 # Enable Gnome Extensions
 sudo -u "$username" gnome-extensions enable ubuntu-appindicators@ubuntu.com && echo "App Indicator: Enabled"
 wait
@@ -323,15 +336,9 @@ sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur M
 wait
 sudo -u "$username" gnome-extensions enable caffeine@patapon.info && echo "Caffeine: Enabled"
 wait
+# Modify Gnome Extensions
 sudo -u "$username" gnome-extensions enable just-perfection-desktop@just-perfection && echo "Just Perfection: Enabled"
 wait
-sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
-wait
-sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
-wait
-sudo -u "$username" gsettings set com.github.stunkymonkey.nautilus-open-any-terminal flatpak system
-wait
-
 sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/dash-icon-size "48" && echo "Just Perfection Dash Icon Size: 48"
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/animation "3" && echo "Just Perfection Animation: 3"
@@ -351,7 +358,7 @@ wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/just-perfection/theme "true" && echo "Just Perfection Theme: True"
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/caffeine/duration-timer "4" && echo "Caffeine Duration Timer: 4"
-
+wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/awesome-tiles/gap-size-increments "1" && echo "Awesome Tiles Gap Size Increments: 1"
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/favorites "false" && echo "AzTaskbar Favorites: False"
@@ -364,7 +371,17 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 wait
+sleep 2
 
+
+# Beautiful bash
+git clone https://github.com/ChrisTitusTech/mybash
+cd mybash
+bash setup.sh
+cd $builddir
+rm /home/"$username"/.bashrc
+cp dotconf/.bashrc /home/"$username"/.bashrc
+chown "$username":"$username" /home/"$username"/.bashrc
 
 
 
