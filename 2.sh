@@ -32,10 +32,10 @@ mkdir -p /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
 mkdir -p /root/.icons
-mkdir -p /home/$username/Pictures/backgrounds
+mkdir -p /home/"$username"/Pictures/backgrounds
 cp -R dotconf/kitty /home/"$username"/.config/
 chown -R "$username":"$username" /home/"$username"/.config/kitty
-cp dotconf/bg.jpg /home/$username/Pictures/backgrounds/
+cp dotconf/bg.jpg /home/"$username"/Pictures/backgrounds/
 wait
 
 
@@ -103,21 +103,19 @@ wget "https://global.download.synology.com/download/Utility/SynologyDriveClient/
 wait
 sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
-rm synology-drive-client-15724.x86_64.deb
 
 # Synology Assistant
 wget "https://global.synologydownload.com/download/Utility/Assistant/7.0.4-50051/Ubuntu/x86_64/synology-assistant_7.0.4-50051_amd64.deb"
 wait
 dpkg -i synology-assistant_7.0.4-50051_amd64.deb
 wait
-rm synology-assistant_7.0.4-50051_amd64.deb
 
 # Synology Chat
+apt install gir1.2-ayatanaappindicator3-0.1 -y
 wget "https://global.synologydownload.com/download/Utility/ChatClient/1.2.2-0222/Ubuntu/x86_64/Synology%20Chat%20Client-1.2.2-0222.deb"
 wait
 dpkg -i Synology%20Chat%20Client-1.2.2-0222.deb
 wait
-rm Synology%20Chat%20Client-1.2.2-0222.deb
 
 # steam
 wget "https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
@@ -181,6 +179,15 @@ apt install ttf-mscorefonts-installer -y
 fc-cache -vf
 wait
 
+
+# Cannon Printer Driver
+cd dotconf || exit
+sudo dpkg -i Cannon-Printer-us_5.80-1.05_amd64.zip
+unzip Cannon-Printer-us_5.80-1.05_amd64.zip
+dpkg -i Cannon-Printer-us_5.80-1.05_amd64.deb
+wait
+rm Cannon-Printer-us_5.80-1.05_amd64.zip
+cd "$builddir" || exit
 
 
 # Gimp Config
@@ -376,9 +383,9 @@ sleep 2
 
 # Beautiful bash
 git clone https://github.com/ChrisTitusTech/mybash
-cd mybash
+cd mybash || exit
 bash setup.sh
-cd $builddir
+cd "$builddir" || exit
 rm /home/"$username"/.bashrc
 cp dotconf/.bashrc /home/"$username"/.bashrc
 chown "$username":"$username" /home/"$username"/.bashrc
