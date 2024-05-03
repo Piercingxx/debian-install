@@ -89,7 +89,11 @@ flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub io.missioncenter.MissionCenter -y
 
-
+# Gimp Config
+rm -r /home/"username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
+cd dotconf/Gimp || exit
+unzip 2.99.zip -d /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP
+cd "$builddir" || exit
 
 # VSCode
 wget "https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/code_1.88.1-1712771838_amd64.deb"
@@ -134,10 +138,10 @@ wait
 rm protonvpn-stable-release_1.0.3-3_all.deb
 sudo apt install proton-vpn-gnome-desktop -y
 
-# Things to download, install only if you need them
-#FlashForge
+# FlashForge
 wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
-chown -R "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
+chown "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
+dpkg -i e02d016281d06012ea71a671d1e1fdb7.deb
 wait
 
 
@@ -189,12 +193,6 @@ wait
 rm Cannon-Printer-us_5.80-1.05_amd64.zip
 cd "$builddir" || exit
 
-
-# Gimp Config
-rm -r /home/"username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
-cd dotconf/gimp || exit
-unzip gimp.zip -d /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
-cd "$builddir" || exit
 
 
 # Extensions
