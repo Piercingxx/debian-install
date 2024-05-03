@@ -141,8 +141,6 @@ sudo apt install proton-vpn-gnome-desktop -y
 # FlashForge
 wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
 chown "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
-dpkg -i e02d016281d06012ea71a671d1e1fdb7.deb
-wait
 
 
 sudo apt update
