@@ -182,17 +182,6 @@ fc-cache -vf
 wait
 
 
-# Cannon Printer Driver
-cd dotconf || exit
-sudo dpkg -i Cannon-Printer-us_5.80-1.05_amd64.zip
-unzip Cannon-Printer-us_5.80-1.05_amd64.zip
-dpkg -i Cannon-Printer-us_5.80-1.05_amd64.deb
-wait
-rm Cannon-Printer-us_5.80-1.05_amd64.zip
-cd "$builddir" || exit
-
-
-
 # Extensions
 echo "Gnome Extensions"
 sleep 2
