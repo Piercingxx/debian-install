@@ -26,28 +26,17 @@ wait
 echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
 	| sudo tee /etc/apt/sources.list.d/linux-surface.list
 
-apt update && upgrade -y
+apt update
 wait
 
-echo "Installing the kernel"
-apt install linux-image-surface linux-headers-surface surface-ath10k-firmware-override -y
+apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
+wait
 
-echo "Enabling touch screen"
-apt install iptsd libwacom-surface -y && systemctl enable iptsd
+apt install linux-surface-secureboot-mok
+wait
 
-echo "Enabling secure boot"
-apt install linux-surface-secureboot-mok -y
-
-echo "Update-grub"
-update-grub
-
-echo "Enabling DTX Daemon"
-systemctl enable surface-dtx-daemon.service
-systemctl enable --"$username" surface-dtx-userd.service
-
-#battery optimization software
-apt install tlp tlp-rdw smartmontools vainfo -y
-#open tlp.conf in /etc and unhash DEVICES_TO_DISABLE_ON_STARTUP="bluetooth" 
+sudo update-grub
+wait
 
 echo "After reboot run vainfo and fix any errors"
 sleep 5 && echo "Rebooting"
