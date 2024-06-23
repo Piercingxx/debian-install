@@ -73,7 +73,6 @@ apt install gh -y
 apt install lua5.4 -y
 apt install gnome-disk-utility -y
 sleep 2
-
 flatpak install flathub com.google.Chrome -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub md.obsidian.Obsidian -y
@@ -176,6 +175,7 @@ unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
 chown -R "$username":"$username" /home/"$username"/.fonts
 apt install ttf-mscorefonts-installer -y
+apt install fonts-terminus -y
 
 # Reloading Font
 fc-cache -vf
@@ -207,6 +207,8 @@ unzip just-perfection-desktop@just-perfection.zip -d /home/"$username"/.local/sh
 wait
 cd "$builddir" || exit
 chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
+# Open Bar
+
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
 apt install gnome-shell-extension-caffeine -y
@@ -328,6 +330,8 @@ sudo -u "$username" gnome-extensions enable blur-my-shell@aunetx && echo "Blur M
 wait
 sudo -u "$username" gnome-extensions enable caffeine@patapon.info && echo "Caffeine: Enabled"
 wait
+sudo -u "$username" gnome-extensions enable openbar@openbar.github.io && echo "OpenBar: Enabled"
+wait
 # Modify Gnome Extensions
 sudo -u "$username" gnome-extensions enable just-perfection-desktop@just-perfection && echo "Just Perfection: Enabled"
 wait
@@ -363,8 +367,71 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/icon-size 
 wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 wait
-sleep 2
 
+# OpenBar
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/bg-opacity '0.8'
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent1 "['49', '60', '43']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent2 "['196', '216', '182']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent3 "['105', '138', '96']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent4 "['142', '181', '127']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent5 "['113', '108', '101']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent6 "['137', '155', '163']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette1 "['105', '138', '96']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/bg-change "true"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette10 "['50', '75', '40']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette11 "['61', '68', '72']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette12 "['164', '140', '123']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette2 "['196', '216', '182']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette3 "['33', '36', '29']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette4 "['142', '181', '127']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette5 "['71', '102', '61']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette6 "['113', '108', '101']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette7 "['137', '155', '163']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette8 "['89', '102', '105']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/palette9 "['81', '76', '71']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/default-font "'Sans 12'"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/height "33.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/margin "5.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/margin-wmax "2.3"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/fgcolor "['0.6352940797805786', '0.46666669845581055', '1']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/font "'FiraCode Nerd Font Mono 11'"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/isalpha "0.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/bgcolor2 "['0.9647058844566345', '0.5803921818733215', '1']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/candyalpha "0.3"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/shalpha "0.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/hcolor "['0.6352940797805786', '0.46666669845581055', '1']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/halpha "1.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/heffect "true"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle "true"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/hpad "0.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/vpad "0.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/bcolor "['0.3803921937942505', '1', '0.7921568751335144']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/autofg-menu "true"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/mfgcolor "['0.9647058844566345', '0.5803921818733215', '1']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/mbgcolor "['0.2392157018184662', '0.21568627655506134', '0.3686274588108063']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/smbgcolor "['0.6352940797805786', '0.46666669845581055', '1']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/mbcolor "['0.3803921937942505', '1', '0.7921568751335144']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/mhcolor "['0.9647058844566345', '0.5803921818733215', '1']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/mscolor "['0.3803921937942505', '1', '0.7921568751335144']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/mshcolor "['0.2392157018184662', '0.21568627655506134', '0.3686274588108063']"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle "false"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/extend-menu-shell "true"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/trigger-reload "false"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle "true"
+wait
+
+sudo -u "$username" dconf write /org/gnome/desktop/sound/theme-name 'Piercing' && echo "Sound Theme Enabled"
+wait
+sudo -u "$username" dconf write /org/gnome/desktop/interface/font-name 'MesloLGSDZ Nerd Font 11'
+wait
+sudo -u "$username" dconf write /org/gnome/desktop/interface/document-font-name 'FiraCode Nerd Font 11'
+wait
+sudo -u "$username" dconf write /org/gnome/desktop/interface/monospace-font-name 'Terminus (TTF) Medium 12'
+wait
+sudo -u "$username" dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:minimize,close'
+wait
+sudo -u "$username" dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:close'
+sleep 2
 
 # Beautiful bash
 git clone https://github.com/ChrisTitusTech/mybash
@@ -373,7 +440,7 @@ bash setup.sh
 cd "$builddir" || exit
 rm /home/"$username"/.bashrc
 cp dotconf/.bashrc /home/"$username"/.bashrc
-chown "$username":"$username" /home/"$username"/.bashrc
+chown -R "$username":"$username" /home/"$username"/.bashrc
 
 
 
