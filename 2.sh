@@ -393,6 +393,7 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/default-font
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/height "33.0"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/margin "5.0"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/margin-wmax "2.3"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/dark-bgcolor "'0.2392157018184662', '0.21568627655506134', '0.3686274588108063']"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/fgcolor "['0.6352940797805786', '0.46666669845581055', '1']"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/font "'FiraCode Nerd Font Mono 11'"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/isalpha "0.0"
@@ -420,8 +421,6 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/trigger-relo
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle "true"
 wait
 
-sudo -u "$username" dconf write /org/gnome/desktop/sound/theme-name 'Piercing' && echo "Sound Theme Enabled"
-wait
 sudo -u "$username" dconf write /org/gnome/desktop/interface/font-name 'MesloLGSDZ Nerd Font 11'
 wait
 sudo -u "$username" dconf write /org/gnome/desktop/interface/document-font-name 'FiraCode Nerd Font 11'
