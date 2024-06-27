@@ -368,7 +368,7 @@ wait
 sudo -u "$username" dconf write /org/gnome/shell/extensions/blur-my-shell/brightness "1.0" && echo "Blur My Shell Brightness: 1.0"
 wait
 
-# OpenBar
+# OpenBar Aura theme
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/bg-opacity '0.8'
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent1 "['49', '60', '43']"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/prominent2 "['196', '216', '182']"
@@ -419,6 +419,9 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle 
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/extend-menu-shell "true"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/trigger-reload "false"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle "true"
+sudo -u "$username" dconf write /gnome/shell/extensions/openbar/dashdock-style "'Bar'"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/indicator-color-focused "'rgb(246,148,255)'"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/indicator-color-running "'rgb(130,226,255)'"
 wait
 
 sudo -u "$username" dconf write /org/gnome/desktop/interface/font-name 'MesloLGSDZ Nerd Font 11'
