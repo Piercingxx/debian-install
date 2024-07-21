@@ -41,7 +41,7 @@ This is divided into sections so you can install only what you need.
 
 3. After Git installs:
 
-``` git clone https://github.com/Piercing666/debian-install ```
+``` git clone https://github.com/PiercingXX/debian-install ```
 
 
 4. Change Mod:
@@ -94,7 +94,7 @@ This is divided into sections so you can install only what you need.
 ``` ./Surface.sh ```
 
 
- 11. On the newest hardware you will want to change into the Testing branch of Debian, use:
+ 11. On the newest hardware you will want to change into the Testing branch of Debian (note, you can not change back without a full reinstall), use:
 
 ``` ./testing.sh ```
 
