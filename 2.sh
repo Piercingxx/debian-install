@@ -20,7 +20,7 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
   exit
 fi
 
-echo "Updating Repositiories"gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" 
+echo "Updating Repositiories"
 sleep 2
 sudo apt update && upgrade -y
 wait
@@ -91,7 +91,7 @@ flatpak install flathub com.tomjwatson.Emote -y
 
 # Gimp Config
 rm -r /home/"username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
-cd dotconf/Gimp || exitgsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" 
+cd dotconf/Gimp || exit
 cd "$builddir" || exit
 
 # VSCode
@@ -132,7 +132,15 @@ sudo dpkg --add-architecture i386
 # VPN
 wget "https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb"
 wait
-sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt updategsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" 
+sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt update
+wait
+rm protonvpn-stable-release_1.0.3-3_all.deb
+sudo apt install proton-vpn-gnome-desktop -y
+
+# FlashForge
+wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
+chown "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
+
 
 # Zoneminder
 # apt install apache2 mariadb-server php libapache2-mod-php php-mysql lsb-release gnupg2 -y
