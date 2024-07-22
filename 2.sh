@@ -20,7 +20,7 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
   exit
 fi
 
-echo "Updating Repositiories"
+echo "Updating Repositiories"gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" 
 sleep 2
 sudo apt update && upgrade -y
 wait
@@ -87,11 +87,11 @@ flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub io.missioncenter.MissionCenter -y
+flatpak install flathub com.tomjwatson.Emote -y
 
 # Gimp Config
 rm -r /home/"username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
-cd dotconf/Gimp || exit
-unzip 2.99.zip -d /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP
+cd dotconf/Gimp || exitgsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" 
 cd "$builddir" || exit
 
 # VSCode
@@ -132,14 +132,27 @@ sudo dpkg --add-architecture i386
 # VPN
 wget "https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb"
 wait
-sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt update
-wait
-rm protonvpn-stable-release_1.0.3-3_all.deb
-sudo apt install proton-vpn-gnome-desktop -y
+sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt updategsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" 
 
-# FlashForge
-wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
-chown "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
+# Zoneminder
+# apt install apache2 mariadb-server php libapache2-mod-php php-mysql lsb-release gnupg2 -y
+# apt install zoneminder -y
+# apt install -y lsb-release gnupg2
+# echo "deb https://zmrepo.zoneminder.com/debian/master "`lsb_release  -c -s`"/" | sudo tee /etc/apt/sources.list.d/zoneminder.list
+# wget -O - https://zmrepo.zoneminder.com/debian/archive-keyring.gpg | sudo apt-key add -
+# read -p "Warning! Check above to insure the line says OK. If not the GPG signing key was not installed and you will need to figure out why before continuing. 
+# Press enter to continue" nothing
+# apt update
+# apt install -y zoneminder
+# systemctl enable zoneminder
+# service zoneminder start
+# adduser www-data video
+# a2enconf zoneminder
+# a2enmod rewrite
+# a2enmod headers
+# a2enmod expires
+# service apache2 reload
+# read -p "Install complete. Open Zoneminder/Options and set the timezone. Press enter to continue" nothing
 
 
 sudo apt update
@@ -279,6 +292,8 @@ sudo -u "$username" gsettings set org.gnome.desktop.interface clock-format 24h &
 sudo -u "$username" gsettings set org.gnome.desktop.interface clock-show-weekday true && echo "Clock Show Weekday: True"
 sudo -u "$username" gsettings set org.gnome.desktop.peripherals.keyboard numlock-state true && echo "Numlock State: True"
 sudo -u "$username" gsettings set org.gnome.desktop.input-sources xkb-options "['caps:backspace']" && echo "Caps Lock: Backspace"
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.mouse.speed "0.11790393013100431"
+sudo -u "$username" gsettings set org.gnome.desktop.peripherals.mouse.accel-profile "'flat'"
 wait
 sudo -u "$username" gsettings set org.gnome.desktop.interface color-scheme prefer-dark && echo "Color Scheme: Dark"
 sudo -u "$username" gsettings set org.gnome.desktop.session idle-delay 0 && echo "Lock Screen Idle: 20"
@@ -446,9 +461,7 @@ chown -R "$username":"$username" /home/"$username"/.bashrc
 
 
 
-echo "After rebooting, install Steam then run Script 3.sh for Nvidia drivers."
-echo "Skip 3.sh if you are not using Nvidia hardware."
-sleep 5 && echo "Rebooting"
+read -r -p "2.sh complete. Reboot and install Steam. Then run Script 3.sh for Nvidia drivers, skip 3.sh if you are not using Nvidia hardware. Press enter to reboot"
 sudo reboot
 
 
