@@ -394,7 +394,7 @@ sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/bgcolor2 "['
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/candyalpha "0.3"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/shalpha "0.0"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/hcolor "['0.6352940797805786', '0.46666669845581055', '1']"
-sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/halpha "1.0"
+sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/halpha "0.0"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/heffect "true"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/reloadstyle "true"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/openbar/hpad "0.0"
