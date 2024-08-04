@@ -89,6 +89,9 @@ flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub com.tomjwatson.Emote -y
 
+# Install Gnome-extensions-cli
+pipx install gnome-extensions-cli --system-site-packages
+
 # Gimp Config
 rm -r /home/"username"/.var/app/org.gimp.GIMP/config/GIMP/2.99
 cd dotconf/Gimp || exit
@@ -142,27 +145,6 @@ wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1f
 chown "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
 
 
-# Zoneminder
-# apt install apache2 mariadb-server php libapache2-mod-php php-mysql lsb-release gnupg2 -y
-# apt install zoneminder -y
-# apt install -y lsb-release gnupg2
-# echo "deb https://zmrepo.zoneminder.com/debian/master "`lsb_release  -c -s`"/" | sudo tee /etc/apt/sources.list.d/zoneminder.list
-# wget -O - https://zmrepo.zoneminder.com/debian/archive-keyring.gpg | sudo apt-key add -
-# read -p "Warning! Check above to insure the line says OK. If not the GPG signing key was not installed and you will need to figure out why before continuing. 
-# Press enter to continue" nothing
-# apt update
-# apt install -y zoneminder
-# systemctl enable zoneminder
-# service zoneminder start
-# adduser www-data video
-# a2enconf zoneminder
-# a2enmod rewrite
-# a2enmod headers
-# a2enmod expires
-# service apache2 reload
-# read -p "Install complete. Open Zoneminder/Options and set the timezone. Press enter to continue" nothing
-
-
 sudo apt update
 wait
 sudo apt upgrade -y
@@ -207,28 +189,16 @@ wait
 echo "Gnome Extensions"
 sleep 2
 # App Icons Taskbar
-cd dotconf/extensions || exit
-unzip aztask.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
-wait
-cd "$builddir" || exit
+sudo -u "$username" gext install aztaskbar@aztaskbar.gitlab.com
 # Awesome Tiles
-cd dotconf/extensions || exit
-unzip awesome-tiles.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
-wait
-cd "$builddir" || exit
+sudo -u "$username" gext install awesome-tiles@velitasali.com
 # Blur My Shell
-cd dotconf/extensions || exit
-unzip blur-my-shell.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
-wait
-cd "$builddir" || exit
-chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
+sudo -u "$username" gext install blur-my-shell@aunetx
 # Just Perfection
-cd dotconf/extensions || exit
-unzip just-perfection-desktop@just-perfection.zip -d /home/"$username"/.local/share/gnome-shell/extensions/
-wait
-cd "$builddir" || exit
-chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions
+sudo -u "$username" gext install just-perfection-desktop@just-perfection
 # Open Bar
+sudo -u "$username" gext install openbar@neuromorph
+
 
 apt install gnome-shell-extension-appindicator -y
 apt install gnome-shell-extension-gsconnect -y
