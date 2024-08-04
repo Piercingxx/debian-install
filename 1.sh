@@ -34,11 +34,15 @@ deb-src https://deb.debian.org/debian/ stable-updates main contrib non-free non-
 sudo add-apt-repository ppa:graphics-drivers/ppa -y
 
 # Update packages list and update system
+echo "Updating with non-free drivers"
+sleep 2
 apt update 
-apt upgrade -y
+apt upgrade -y && echo "Upgrading"
 wait
 
 # Making dir
+echo "Adding directories"
+sleep 2
 cd "$builddir" || exit
 mkdir -p /home/"$username"/.fonts
 mkdir -p /var/lib/usbmux/.config
@@ -61,6 +65,7 @@ nala install kitty -y
 nala install gnome-terminal -y
 nala install gnome-text-editor -y
 nala install dconf* -y
+nala install pipx -y
 wait
 
 echo "Changing Graphical Login"
