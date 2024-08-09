@@ -29,14 +29,17 @@ wait
 # Making .config and.fonts Directories
 cd "$builddir" || exit
 mkdir -p /home/"$username"/.config
+chown -R "$username":"$username" /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
+chown -R "$username":"$username" /home/"$username"/.fonts
 mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
+chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions/
 mkdir -p /root/.icons
+chown -R root:root /root/.icons
 mkdir -p /home/"$username"/Pictures/backgrounds
+chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
 cp -R dotconf/kitty /home/"$username"/.config/
 chown -R "$username":"$username" /home/"$username"/.config/kitty
-cp dotconf/bg.jpg /home/"$username"/Pictures/backgrounds/
-wait
 
 
 # Installing important things && stuff && some dependancies
@@ -416,7 +419,6 @@ sudo -u "$username" dconf write /gnome/shell/extensions/openbar/dashdock-style "
 sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/indicator-color-focused "'rgb(246,148,255)'"
 sudo -u "$username" dconf write /org/gnome/shell/extensions/aztaskbar/indicator-color-running "'rgb(130,226,255)'"
 wait
-
 sudo -u "$username" dconf write /org/gnome/desktop/interface/font-name 'MesloLGSDZ Nerd Font 11'
 wait
 sudo -u "$username" dconf write /org/gnome/desktop/interface/document-font-name 'FiraCode Nerd Font 11'
