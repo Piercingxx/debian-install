@@ -84,8 +84,6 @@ flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.blender.Blender -y
-flatpak install flathub org.inkscape.Inkscape -y
-flatpak install flathub net.scribus.Scribus -y
 flatpak install flathub com.usebottles.bottles -y
 flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
@@ -113,12 +111,6 @@ wait
 sudo dpkg -i synology-drive-client-15724.x86_64.deb
 wait
 
-# Synology Assistant
-wget "https://global.synologydownload.com/download/Utility/Assistant/7.0.4-50051/Ubuntu/x86_64/synology-assistant_7.0.4-50051_amd64.deb"
-wait
-dpkg -i synology-assistant_7.0.4-50051_amd64.deb
-wait
-
 # Synology Chat
 wget "https://global.synologydownload.com/download/Utility/ChatClient/1.2.2-0222/Ubuntu/x86_64/Synology%20Chat%20Client-1.2.2-0222.deb"
 wait
@@ -134,24 +126,14 @@ rm steam.deb
 # i386 is needed for steam to launch
 sudo dpkg --add-architecture i386
 
-# VPN
-wget "https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb"
-wait
-sudo dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb && sudo apt update
-wait
-rm protonvpn-stable-release_1.0.3-3_all.deb
-sudo apt install proton-vpn-gnome-desktop -y
-
 # FlashForge
 wget "https://en.fss.flashforge.com/10000/software/e02d016281d06012ea71a671d1e1fdb7.deb"
 chown "$username":"$username" e02d016281d06012ea71a671d1e1fdb7.deb
-
 
 sudo apt update
 wait
 sudo apt upgrade -y
 wait
-
 
 echo "Installing Cursors & Icons"
 sleep 2
@@ -164,7 +146,6 @@ cd Nordzy-cursors || exit
 ./install.sh
 cd "$builddir" || exit
 rm -rf Nordzy-cursors
-
 
 echo "Installing Fonts"
 sleep 2
@@ -187,6 +168,9 @@ fc-cache -vf
 wait
 
 
+
+
+### KNOWN ISSUES WITH INSTALLING THESE EXTENSIONS. ATTEMPTING TO FIND WORK AROUND.
 # Extensions
 echo "Gnome Extensions"
 sleep 2
@@ -200,6 +184,7 @@ sudo -u "$username" gext install blur-my-shell@aunetx
 sudo -u "$username" gext install just-perfection-desktop@just-perfection
 # Open Bar
 sudo -u "$username" gext install openbar@neuromorph
+
 
 
 apt install gnome-shell-extension-appindicator -y
@@ -428,15 +413,6 @@ sudo -u "$username" dconf write /org/gnome/desktop/wm/preferences/button-layout 
 wait
 sudo -u "$username" dconf write /org/gnome/desktop/wm/preferences/button-layout 'appmenu:close'
 sleep 2
-
-# Beautiful bash
-git clone https://github.com/ChrisTitusTech/mybash
-cd mybash || exit
-bash setup.sh
-cd "$builddir" || exit
-rm /home/"$username"/.bashrc
-cp dotconf/.bashrc /home/"$username"/.bashrc
-chown -R "$username":"$username" /home/"$username"/.bashrc
 
 
 
