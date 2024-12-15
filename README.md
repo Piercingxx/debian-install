@@ -6,7 +6,7 @@ This is divided into sections so you can install only what you need.
 ### Notes:
 - I recommend an up-to-date copy of the netinst.iso from Debian's website.
 - Install Debian as a headless system, no DE at all.
-- Do install the GRUB.
+- Do install GRUB.
 - Reboot and follow the To install instructions
 
 #### *** These scrips must be ran in order. Any deviation will break your system. The "3.sh" "Surface.sh" and "testing.sh" scripts are hardware based/optional. ***
@@ -14,8 +14,6 @@ This is divided into sections so you can install only what you need.
 - "1.sh" to install Gnome-shell and a few adjustments.
   
 - "2.sh" will install applications, fonts, cursors, and customize settings (it takes several minutes to run).
-
-- "2b.sh" will modify all the installed extensions and gsettings.
 
 - If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install 3.sh. If you install Steam after 3.sh it is a headache.
   
