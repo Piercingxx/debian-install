@@ -10,7 +10,7 @@ sleep 2
 # You will still need to install:
 # Just Perfection
 # Blur My Shell
-# Block Caribou 36
+
 
 
 
