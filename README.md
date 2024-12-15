@@ -37,29 +37,29 @@ This is divided into sections so you can install only what you need.
 ``` sudo apt install git -y ```
 
 
-3. After Git installs:
+2. After Git installs:
 
 ``` git clone https://github.com/PiercingXX/debian-install ```
 
 
-4. Change Mod:
+3. Change Mod:
 
 ``` sudo chmod -R u+x debian-install/ ```
 
 
-5. cd into install folder:
+4. cd into install folder:
 
 ``` cd debian-install ```
 
 
-6. Run the first script:
+5. Run the first script:
 
 ``` sudo su ```
 
 ``` ./1.sh ```
 
 
-  7.1 After the system reboots open Terminal (not kitty):
+6. After the system reboots open Terminal:
 
 ``` cd debian-install ```
 
@@ -68,7 +68,7 @@ This is divided into sections so you can install only what you need.
 ``` ./2.sh ```
 
 
-  7.2 Beautiful Bash:
+7. Beautiful Bash:
 
 ``` git clone https://github.com/christitustech/mybash ```
 
@@ -82,22 +82,26 @@ This is divided into sections so you can install only what you need.
     You can also feel free to apt purge gnome-terminal and just use Kitty as your main terminal CTRL+ALT+T will launch this.
 
 
+
+**Optional** 
+
+
 9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device you can skip this unless you also want to game or edit videos on the device):
    
 ``` ./3.sh ```
 
 
- 10. If you are using a Microsoft Surface device you can now run the script:
+10. If you are using a Microsoft Surface device you can now run the script:
 
 ``` ./Surface.sh ```
 
 
- 11. On the newest hardware you will want to change into the Testing branch of Debian (note, you can not change back without a full reinstall), use:
+11. On the newest hardware you will want to change into the Testing branch of Debian (note, you can not change back without a full reinstall), use:
 
 ``` ./testing.sh ```
 
 
- 12. Run:
+12. Run:
 
 ``` rm -r /home/$USERNAME/debian-install ```
 
