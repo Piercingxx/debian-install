@@ -9,15 +9,15 @@ This is divided into sections so you can install only what you need.
 - Do install GRUB.
 - Reboot and follow the To install instructions
 
-#### *** These scrips must be ran in order. Any deviation will break your system. The "3.sh" "Surface.sh" and "testing.sh" scripts are hardware based/optional. ***
+#### *** These scrips must be ran in order. Any deviation will break your system. The "nvidia.sh" "Surface.sh" and "testing.sh" scripts are hardware based/optional. ***
   
 - "1.sh" to install Gnome-shell and a few adjustments.
   
 - "2.sh" will install applications, fonts, cursors, and customize settings (it takes several minutes to run).
 
-- If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install 3.sh. If you install Steam after 3.sh it is a headache.
+- If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install nvidia.sh. If you install Steam after nvidia.sh it is a headache.
   
-- "3.sh" will install Nvidia drivers (if you don't have a Nvidia GPU skip this one).
+- "nvidia.sh" will install Nvidia drivers (if you don't have a Nvidia GPU skip this one).
   
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Surface).
   
@@ -25,9 +25,6 @@ This is divided into sections so you can install only what you need.
   
 - If you have multiple hard drives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
 
-### Credits:
-- The "usenala" script and "Beautiful Bash" are from https://github.com/ChrisTitusTech/Debian-titus
-- The surface bits are from: https://github.com/linux-surface/linux-surface/wiki but compiled into this script by me.
 
  
 ### To install:
@@ -68,7 +65,29 @@ This is divided into sections so you can install only what you need.
 ``` ./2.sh ```
 
 
-7. Beautiful Bash:
+7. After the system reboots open Terminal (do not sudo su this one):
+
+``` cd debian-install ```
+
+``` ./3.sh ```
+
+
+8. Now you open Steam and allow to update BEFORE running "nvidia.sh". You can also login (don't forget to change compatibility settings). You can install games now or after you finish the install, not both.
+
+
+9. Open Kitty and run:
+``` sudo apt purge gnome-terminal -y ```
+
+
+### **Optional** 
+
+
+9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device you can skip this unless you also want to game or edit videos on the device):
+
+``` ./nvidia.sh ```
+
+
+9. Beautiful Bash:
 
 ``` git clone https://github.com/christitustech/mybash ```
 
@@ -77,33 +96,29 @@ This is divided into sections so you can install only what you need.
 ``` ./setup.sh ```
 
 
-
-8. Now you can open Steam and login (dont forget to change compatability settings). You can install games now or after you finish the install, not both.
-    You can also feel free to apt purge gnome-terminal and just use Kitty as your main terminal CTRL+ALT+T will launch this.
-
-
-
-**Optional** 
-
-
-9. Install Nvidia drivers if you want/need them. (If you are running a Microsoft Surface device you can skip this unless you also want to game or edit videos on the device):
-   
-``` ./3.sh ```
-
-
-10. If you are using a Microsoft Surface device you can now run the script:
+11. If you are using a Microsoft Surface device you can now run the script:
 
 ``` ./Surface.sh ```
 
 
-11. On the newest hardware you will want to change into the Testing branch of Debian (note, you can not change back without a full reinstall), use:
+12. On the newest hardware you will want to change into the Testing branch of Debian (note, you can not change back without a full reinstall), use:
 
 ``` ./testing.sh ```
 
 
-12. Run:
+13. Run:
 
 ``` rm -r /home/$USERNAME/debian-install ```
 
 
 If you come across any issues please let me know!
+
+
+
+
+
+
+
+### Credits:
+- The "usenala" script and "Beautiful Bash" are from https://github.com/ChrisTitusTech/Debian-titus
+- The surface bits are from: https://github.com/linux-surface/linux-surface/wiki but compiled into this script by me.
