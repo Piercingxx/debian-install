@@ -20,7 +20,7 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
   exit
 fi
 
-echo "Updating Repositiories"
+echo "Updating Repositories"
 sleep 2
 sudo apt update && upgrade -y
 wait
@@ -42,7 +42,7 @@ cp -R dotconf/kitty /home/"$username"/.config/
 chown -R "$username":"$username" /home/"$username"/.config/kitty
 
 
-# Installing important things && stuff && some dependancies
+# Installing important things && stuff && some dependencies
 echo "Installing Programs and Drivers"
 sleep 2
 apt install dbus-x11 -y
@@ -177,14 +177,14 @@ gnome-extensions install aztaskbar-main.tar
 # Awesome Tiles
 git clone https://github.com/velitasali/gnome-shell-extension-awesome-tiles.git
 chmod -R u+x gnome-shell-extension-awesome-tiles
-cd gnome-shell-extension-awesome-tiles
+cd gnome-shell-extension-awesome-tiles || exit
 ./install.sh local-install
 cd ..
 rm -rf gnome-shell-extension-awesome-tiles
 # Worthless Gaps
 git clone https://github.com/mipmip/gnome-shell-extensions-useless-gaps.git
 chmod -R u+x nome-shell-extensions-useless-gaps
-cd gnome-shell-extensions-useless-gaps
+cd gnome-shell-extensions-useless-gaps || exit
 ./install.sh local-install
 # Just Perfection
 # Blur My Shell
