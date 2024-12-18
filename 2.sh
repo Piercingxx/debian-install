@@ -73,7 +73,6 @@ apt install gh -y
 apt install lua5.4 -y
 apt install gnome-disk-utility -y
 sleep 2
-flatpak install flathub com.google.Chrome -y
 flatpak install flathub dev.vencord.Vesktop -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub org.libreoffice.LibreOffice -y
@@ -87,6 +86,10 @@ flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub com.tomjwatson.Emote -y
 flatpak install flathub io.github.lunarequest.NightPDF -y
 
+# Brave Browser-Beta
+curl -fsSLo /usr/share/keyrings/brave-browser-beta-archive-keyring.gpg https://brave-browser-apt-beta.s3.brave.com/brave-browser-beta-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-beta-archive-keyring.gpg] https://brave-browser-apt-beta.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-beta.list
+apt install brave-browser-beta -y
 
 # Gimp dotfiles
 rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
