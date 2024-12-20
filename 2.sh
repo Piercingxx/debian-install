@@ -142,7 +142,6 @@ echo "Installing Fonts"
 sleep 2
 # Installing fonts
 cd "$builddir" || exit
-apt install fonts-font-awesome fonts-noto-color-emoji -y
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 chmod -R 777 FiraCode.zip
 unzip FiraCode.zip -d /home/"$username"/.fonts
@@ -151,6 +150,7 @@ chmod -R 777 Meslo.zip
 unzip Meslo.zip -d /home/"$username"/.fonts
 mv dotfonts/fontawesome/otfs/*.otf /home/"$username"/.fonts/
 chown -R "$username":"$username" /home/"$username"/.fonts
+apt install fonts-font-awesome fonts-noto-color-emoji -y
 apt install ttf-mscorefonts-installer -y
 apt install fonts-terminus -y
 
