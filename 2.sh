@@ -32,10 +32,6 @@ mkdir -p /home/"$username"/.config
 chown -R "$username":"$username" /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 chown -R "$username":"$username" /home/"$username"/.fonts
-mkdir -p /home/"$username"/.local/share/gnome-shell/extensions/
-chown -R "$username":"$username" /home/"$username"/.local/share/gnome-shell/extensions/
-mkdir -p /root/.icons
-chown -R root:root /root/.icons
 mkdir -p /home/"$username"/Pictures/backgrounds
 chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
 cp -R dotconf/kitty /home/"$username"/.config/
