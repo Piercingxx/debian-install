@@ -32,6 +32,8 @@ mkdir -p /home/"$username"/.config
 chown -R "$username":"$username" /home/"$username"/.config
 mkdir -p /home/"$username"/.fonts
 chown -R "$username":"$username" /home/"$username"/.fonts
+mkdir -p /home/"$username"/.icons
+chown -R "$username":"$username" /home/"$username"/.icons
 mkdir -p /home/"$username"/Pictures/backgrounds
 chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
 cp -R dotconf/kitty /home/"$username"/.config/
