@@ -73,7 +73,7 @@ apt install gh -y
 apt install lua5.4 -y
 apt install gnome-disk-utility -y
 sleep 2
-flatpak install flathub one.ablaze.floorp -y
+flatpak install flathub net.waterfox.waterfox -y
 flatpak install flathub dev.vencord.Vesktop -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub org.libreoffice.LibreOffice -y
