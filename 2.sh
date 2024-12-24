@@ -202,8 +202,6 @@ rm -rf nautilus-open-any-terminal
 
 
 # Removing zip files and stuff
-rm -r dotconf
-rm -r scripts
 rm -rf FiraCode.zip
 rm -rf Meslo.zip
 
