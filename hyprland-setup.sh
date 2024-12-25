@@ -17,35 +17,35 @@ sudo apt update
 sudo apt upgrade -y
 
 # Dependancies for hyprlock/idle
-apt install libsdbus-c++-dev -y
-apt install libhyprlang-dev -y
-apt install libpam0g-dev -y
-apt install libgbm-dev -y
-apt install libdrm-dev -y
-apt install libmagic-dev -y
-apt install libhyprutils0 -y
-apt install libhyprutils-dev -y
-apt install hyprland-protocols -y
-apt install hyprwayland-scanner -y
+sudo apt install libsdbus-c++-dev -y
+sudo apt install libhyprlang-dev -y
+sudo apt install libpam0g-dev -y
+sudo apt install libgbm-dev -y
+sudo apt install libdrm-dev -y
+sudo apt install libmagic-dev -y
+sudo apt install libhyprutils0 -y
+sudo apt install libhyprutils-dev -y
+sudo apt install hyprland-protocols -y
+sudo apt install hyprwayland-scanner -y
 
 
 # Installing main shit
-apt install hyprland -y
-apt install hyprpaper -y
-apt install rofi -y
-apt install fuzzel -y
-apt install waybar -y
-apt install wayland-protocols -y
-apt install wl-clipboard -y
-apt install wlogout -y
-apt install pavucontrol -y
-apt install grim -y 
-apt install slurp -y
-apt install cliphist -y
+sudo apt install hyprland -y
+sudo apt install hyprpaper -y
+sudo apt install rofi -y
+sudo apt install fuzzel -y
+sudo apt install waybar -y
+sudo apt install wayland-protocols -y
+sudo apt install wl-clipboard -y
+sudo apt install wlogout -y
+sudo apt install pavucontrol -y
+sudo apt install grim -y 
+sudo apt install slurp -y
+sudo apt install cliphist -y
 
 # Bluetooth
-apt install bluez -y
-apt install blueman -y
+sudo apt install bluez -y
+sudo apt install blueman -y
 
 
 # Clone and build hyprlock
