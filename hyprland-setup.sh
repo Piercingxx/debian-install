@@ -11,7 +11,7 @@ if [[ $EUID -eq 0 ]]; then
     exit 1
 fi
 
-clear
+
 
 sudo apt update
 sudo apt upgrade -y
@@ -65,7 +65,7 @@ if git clone --recursive -b $lock_tag https://github.com/hyprwm/hyprlock.git; th
 else
     echo -e "${ERROR} Download failed for hyprlock." 2>&1 | tee -a "$LOG"
 fi
-clear
+
 
 # hypridle
 printf "${NOTE} Installing hypridle...\n"
@@ -84,7 +84,7 @@ if git clone --recursive -b $idle_tag https://github.com/hyprwm/hypridle.git; th
 else
     echo -e "${ERROR} Download failed for hypridle." 2>&1 | tee -a "$LOG"
 fi
-clear
+
 
 
 git clone https://github.com/Piercingxx/Hyprland-Waybar
