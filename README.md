@@ -19,7 +19,7 @@ This is divided into sections so you can install only what you need.
   
 - "nvidia.sh" will install Nvidia drivers (if you don't have a Nvidia GPU skip this one).
   
-- "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Surface).
+- "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Microsoft Surface Device).
   
 - "testing.sh" will change your Source.list to test branch.
 
@@ -77,10 +77,6 @@ This is divided into sections so you can install only what you need.
 8. Now you open Steam and allow to update BEFORE running "nvidia.sh". You can also login (don't forget to change compatibility settings). You can install games now or after you finish the install, not both.
 
 
-9. Open Kitty and run:
-``` sudo apt purge gnome-terminal -y ```
-
-
 ### **Optional** 
 
 
@@ -109,7 +105,7 @@ This is divided into sections so you can install only what you need.
 
 13. If you want to run Hyprland on Debian you must first run scripts 1, 2, 3, & testing.sh. You can then run:
 
-``` ./hyprland-setup.sh '''
+``` ./hyprland-setup.sh ```
 
 14. Run:
 
