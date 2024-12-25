@@ -14,14 +14,8 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
     exit
 fi
 
-sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf "deb https://ftp.debian.org/debian/ testing contrib main non-free non-free-firmware
-deb-src https://ftp.debian.org/debian/ testing contrib main non-free non-free-firmware
-
-deb https://ftp.debian.org/debian/ testing-updates contrib main non-free non-free-firmware
-deb-src https://ftp.debian.org/debian/ testing-updates contrib main non-free non-free-firmware
-
-deb https://security.debian.org/debian-security/ testing-security contrib main non-free non-free-firmware
-deb-src https://security.debian.org/debian-security/ testing-security contrib main non-free non-free-firmware" | sudo tee -a /etc/apt/sources.list
+sudo rm /etc/apt/sources.list && sudo touch /etc/apt/sources.list && sudo chmod +rwx /etc/apt/sources.list && sudo printf " deb http://deb.debian.org/debian/ testing main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security testing-security main contrib non-free non-free-firmware " | sudo tee -a /etc/apt/sources.list
 
 
 
