@@ -22,6 +22,8 @@ This is divided into sections so you can install only what you need.
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Surface).
   
 - "testing.sh" will change your Source.list to test branch.
+
+- "hyprland-setup" will install hyprland on your Debian Testing with Gnome system.
   
 - If you have multiple hard drives in your system, after you run all the scripts, edit your fstab to auto-mount your drives on boot.
 
@@ -105,8 +107,11 @@ This is divided into sections so you can install only what you need.
 
 ``` ./testing.sh ```
 
+13. If you want to run Hyprland on Debian you must first run scripts 1, 2, 3, & testing.sh. You can then run:
 
-13. Run:
+``` ./hyprland-setup.sh '''
+
+14. Run:
 
 ``` rm -r /home/$USERNAME/debian-install ```
 
