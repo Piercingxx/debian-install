@@ -87,7 +87,7 @@ flatpak install flathub io.github.lunarequest.NightPDF -y
 
 # Gimp dotfiles
 git clone https://github.com/Piercingxx/gimp-dots.git
-chmod u+x gimp-dots
+chmod -R u+x gimp-dots
 chown -R "$username":"$username" gimp-dots
 rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
 rm -rf /home/"$username"/.config/GIMP/*

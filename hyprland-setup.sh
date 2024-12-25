@@ -2,6 +2,8 @@
 
 # https://github.com/piercingxx
 
+username=$(id -u -n 1000)
+builddir=$(pwd)
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -85,3 +87,8 @@ fi
 clear
 
 
+git clone https://github.com/Piercingxx/Hyprland-Waybar
+chmod -R u+x Hyprland-Waybar
+cp -Rf Hyprland-Waybar/dots/* /home/"$username"/.config/
+cd "$builddir" || exit
+rm -Rf Hyprland-Waybar
