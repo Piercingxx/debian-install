@@ -133,18 +133,6 @@ wait
 sudo apt upgrade -y
 wait
 
-echo "Installing Cursors & Icons"
-sleep 2
-# Cursor
-wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C /home/"$username"/.icons
-
-
-# Install Nordzy cursor
-git clone https://github.com/alvatip/Nordzy-cursors
-cd Nordzy-cursors || exit
-./install.sh
-cd "$builddir" || exit
-rm -rf Nordzy-cursors
 
 echo "Installing Fonts"
 sleep 2
