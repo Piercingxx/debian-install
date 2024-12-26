@@ -27,11 +27,8 @@ apt update && upgrade -y
 wait
 
 
-echo "Installing Several Nvidia Drivers, be patient this will take a while"
-sleep 2
+echo "Installing Nvidia Drivers, be patient this will take a while"
 
-# GreenWithEnvy used to control Nvidia fans and overclocking
-flatpak install flathub com.leinardi.gwe -y
 
 # Video card drivers
 wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-debian12-12-3-local_12.3.1-545.23.08-1_amd64.deb
@@ -42,8 +39,7 @@ apt update && upgrade -y
 wait
 
 echo "About half way there..."
-sleep 2
-nala install nvidia-kernel-open-dkms nvidia-driver nvidia-opencl-icd linux-headers-amd64 libnvidia-gl-535 libvulkan1 libvulkan1:i386 libnvidia-gl-535:i386 firmware-misc-nonfree nvidia-installer-cleanup -y
+apt install nvidia-kernel-open-dkms nvidia-driver nvidia-opencl-icd linux-headers-amd64 libnvidia-gl-535 libvulkan1 libvulkan1:i386 libnvidia-gl-535:i386 firmware-misc-nonfree nvidia-installer-cleanup -y
 
 apt update && upgrade -y
 wait
