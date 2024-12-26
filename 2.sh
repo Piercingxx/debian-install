@@ -80,6 +80,7 @@ flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.blender.Blender -y
 #flatpak install flathub com.usebottles.bottles -y
 #flatpak install flathub com.github.tchx84.Flatseal -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub com.tomjwatson.Emote -y
