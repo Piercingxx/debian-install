@@ -78,22 +78,21 @@ flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.blender.Blender -y
-flatpak install flathub com.usebottles.bottles -y
-flatpak install flathub com.github.tchx84.Flatseal -y
+#flatpak install flathub com.usebottles.bottles -y
+#flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub com.tomjwatson.Emote -y
-flatpak install flathub io.github.lunarequest.NightPDF -y
 
 # Gimp dotfiles
 git clone https://github.com/Piercingxx/gimp-dots.git
+wait
 chmod -R u+x gimp-dots
 chown -R "$username":"$username" gimp-dots
 rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
 rm -rf /home/"$username"/.config/GIMP/*
 cd gimp-dots/Gimp || exit
-cp -R 3.0 /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/
-cp -R 3.0 /home/"$username"/.config/GIMP/
+cp -R "3.0" /home/"$username"/.config/GIMP/
 cd "$builddir" || exit
 
 # VSCode
@@ -136,7 +135,8 @@ wait
 echo "Installing Cursors & Icons"
 sleep 2
 # Cursor
-wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C ~/.icons
+wget -cO- https://github.com/phisch/phinger-cursors/releases/latest/download/phinger-cursors-variants.tar.bz2 | tar xfj - -C /home/"$username"/.icons
+
 
 # Install Nordzy cursor
 git clone https://github.com/alvatip/Nordzy-cursors
