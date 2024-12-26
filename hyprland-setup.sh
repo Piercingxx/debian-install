@@ -44,8 +44,8 @@ sudo apt install slurp -y
 sudo apt install cliphist -y
 
 # Bluetooth
-sudo apt install bluez -y
-sudo apt install blueman -y
+#sudo apt install bluez -y
+#sudo apt install blueman -y
 
 
 # Clone and build hyprlock
