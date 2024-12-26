@@ -60,13 +60,25 @@ sudo apt install -f
 wait
 flatpak update
 wait
-nala install gnome-shell -y
-nala install kitty -y
-nala install gnome-terminal -y
-nala install gnome-text-editor -y
-nala install dconf* -y
-nala install pipx -y
+apt install gnome-shell -y
+apt install kitty -y
+apt install gnome-terminal -y
+apt install gnome-text-editor -y
+apt install dconf* -y
+apt install pipx -y
+apt install gnome-tweaks -y
+apt install gnome-shell-extension-manager -y
+apt install papirus-icon-theme -y
 wait
+pipx install gnome-extensions-cli --system-site-packages
+
+
+
+
+
+
+
+
 
 echo "Changing Graphical Login"
 sleep 2
