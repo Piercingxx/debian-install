@@ -43,7 +43,7 @@ This is divided into sections so you can install only what you need.
 
 3. Change Mod:
 
-``` sudo chmod -R u+x debian-install/ ```
+``` chmod -R u+x debian-install/ ```
 
 
 4. cd into install folder:
@@ -53,21 +53,17 @@ This is divided into sections so you can install only what you need.
 
 5. Run the first script:
 
-``` sudo su ```
-
-``` ./1.sh ```
+``` sudo ./1.sh ```
 
 
 6. After the system reboots open Terminal:
 
 ``` cd debian-install ```
 
-``` sudo su ```
-
-``` ./2.sh ```
+``` sudo ./2.sh ```
 
 
-7. After the system reboots open Terminal (do not sudo su this one):
+7. After the system reboots open Terminal (do not run as sudo):
 
 ``` cd debian-install ```
 
@@ -96,23 +92,23 @@ This is divided into sections so you can install only what you need.
 
 11. If you are using a Microsoft Surface device you can now run the script:
 
-``` ./Surface.sh ```
+``` sudo ./Surface.sh ```
 
 
 12. On the newest hardware you will want to change into the Testing branch of Debian (note, you can not change back without a full reinstall), use:
 
-``` ./testing.sh ```
+``` sudo ./testing.sh ```
 
 13. If you want to run Hyprland on Debian you must first run scripts 1, 2, 3, & testing.sh. You can then run:
 
-``` ./hyprland-setup.sh ```
+``` sudo ./hyprland-setup.sh ```
 
-14. Run:
+14. Run (replace "$USERNAME" with your username:
 
-``` rm -r /home/$USERNAME/debian-install ```
+``` rm -Rf /home/$USERNAME/debian-install ```
 
 
-If you come across any issues please let me know!
+If you come across any issues please let me know.
 
 
 
