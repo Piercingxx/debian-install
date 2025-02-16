@@ -71,8 +71,7 @@ apt install gh -y
 apt install lua5.4 -y
 apt install gnome-disk-utility -y
 sleep 2
-flatpak install flathub app.zen_browser.zen -y
-#flatpak install flathub net.waterfox.waterfox -y
+flatpak install flathub net.waterfox.waterfox -y
 flatpak install flathub md.obsidian.Obsidian -y
 flatpak install flathub org.libreoffice.LibreOffice -y
 flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref -y
