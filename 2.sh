@@ -86,13 +86,14 @@ flatpak install flathub com.tomjwatson.Emote -y
 
 # Gimp dotfiles
 git clone https://github.com/Piercingxx/gimp-dots.git
-wait
 chmod -R u+x gimp-dots
 chown -R "$username":"$username" gimp-dots
 rm -rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
 rm -rf /home/"$username"/.config/GIMP/*
+chown -R "$username":"$username" /home/"$username"/.config/GIMP
 cd gimp-dots/Gimp || exit
-cp -R "3.0" /home/"$username"/.config/GIMP/
+cp -R 3.0 /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/
+cp -R 3.0 /home/"$username"/.config/GIMP/
 cd "$builddir" || exit
 
 # VSCode
