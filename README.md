@@ -17,7 +17,7 @@ This is divided into sections so you can install only what you need.
 
 - If you plan on using Steam then you need to open Steam at this point and fully install it BEFORE you install nvidia.sh. If you install Steam after nvidia.sh it is a headache.
   
-- "nvidia.sh" will install Nvidia drivers (if you don't have a Nvidia GPU skip this one).
+- "nvidia.sh" will install Nvidia drivers (if you don't have a Nvidia GPU skip this one, if you are installing on a Surface with the "Surface.sh" do not install these propritary drivers).
   
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Microsoft Surface Device).
   
