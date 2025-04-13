@@ -1,4 +1,4 @@
-# Debian-install
+# Debian-mod
 This script will automate the install of a very vanilla Gnome Core and all the drivers fonts and programs that I use on my Daily Driver/Gaming rig/Tablets.
 This is divided into sections so you can install only what you need.
 
@@ -38,17 +38,17 @@ This is divided into sections so you can install only what you need.
 
 2. After Git installs:
 
-``` git clone https://github.com/PiercingXX/debian-install ```
+``` git clone https://github.com/PiercingXX/debian-mod ```
 
 
 3. Change Mod:
 
-``` chmod -R u+x debian-install/ ```
+``` chmod -R u+x debian-mod/ ```
 
 
 4. cd into install folder:
 
-``` cd debian-install ```
+``` cd debian-mod ```
 
 
 5. Run the first script:
@@ -58,14 +58,14 @@ This is divided into sections so you can install only what you need.
 
 6. After the system reboots open Terminal:
 
-``` cd debian-install ```
+``` cd debian-mod ```
 
 ``` sudo ./2.sh ```
 
 
 7. After the system reboots open Terminal (do not run as sudo):
 
-``` cd debian-install ```
+``` cd debian-mod ```
 
 ``` ./3.sh ```
 
