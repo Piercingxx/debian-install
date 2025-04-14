@@ -101,6 +101,8 @@ gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
 gnome-extensions enable forge@jmmaranan.com
 gnome-extensions enable pop-shell@system76.com
 gnome-extensions enable space-bar@luchrioh
+gnome-extensions enable useless-gaps@pimsnel.com
+dconf wrote /org/gnome/shell/extensions/useless-gaps/gap-size "20"
 dconf write /org/gnome/shell/extensions/just-perfection/dash-icon-size "48"
 dconf write /org/gnome/shell/extensions/just-perfection/animation "3"
 dconf write /org/gnome/shell/extensions/just-perfection/startup-status "0"
