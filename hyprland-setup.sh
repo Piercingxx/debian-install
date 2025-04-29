@@ -87,8 +87,9 @@ fi
 
 
 
-git clone https://github.com/Piercingxx/Hyprland-Waybar
-chmod -R u+x Hyprland-Waybar
-cp -Rf Hyprland-Waybar/dots/* /home/"$username"/.config/
-cd "$builddir" || exit
-rm -Rf Hyprland-Waybar
+# .config Dot Files
+    git clone https://github.com/Piercingxx/piercing-dots.git
+        chmod -R u+x piercing-dots
+        chown -R "$username":"$username" piercing-dots
+        cp -Rf "piercing-dots" /home/"$username"/.config/
+        chown "$username":"$username" -R /home/"$username"/.config/*

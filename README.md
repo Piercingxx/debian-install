@@ -21,7 +21,7 @@ This is divided into sections so you can install only what you need.
   
 - "Surface.sh" will install the necessary drivers to get a Microsoft Surface running on Debian (skip if not a Microsoft Surface Device).
   
-- "testing.sh" will change your Source.list to test branch.
+- "testing.sh" will change your Source.list to test branch. You can not change back without a full reinstall.
 
 - "hyprland-setup" will install hyprland on your Debian Testing with Gnome system.
   
