@@ -21,7 +21,6 @@ if [[ -n "$(command -v nmcli)" && "$(nmcli -t -f STATE g)" != connected ]]; then
 fi
 
 echo "Updating Repositories"
-sleep 2
 sudo apt update && upgrade -y
 wait
 
@@ -42,7 +41,6 @@ chown -R "$username":"$username" /home/"$username"/.config/kitty
 
 # Installing important things && stuff && some dependencies
 echo "Installing Programs and Drivers"
-sleep 2
 apt install dbus-x11 -y
 apt install cups -y
 apt install util-linux -y
@@ -78,25 +76,10 @@ flatpak install https://flathub.org/beta-repo/appstream/org.gimp.GIMP.flatpakref
 flatpak install flathub org.darktable.Darktable -y
 flatpak install flathub org.gnome.SimpleScan -y
 flatpak install flathub org.blender.Blender -y
-#flatpak install flathub com.usebottles.bottles -y
-#flatpak install flathub com.github.tchx84.Flatseal -y
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub org.qbittorrent.qBittorrent -y
 flatpak install flathub io.missioncenter.MissionCenter -y
 flatpak install flathub com.tomjwatson.Emote -y
-
-# Gimp dotfiles
-git clone https://github.com/Piercingxx/gimp-dots.git
-chmod -R u+x gimp-dots
-chown -R "$username":"$username" gimp-dots
-rm -Rf /home/"$username"/.var/app/org.gimp.GIMP/config/GIMP/*
-rm -Rf /home/"$username"/.config/GIMP/*
-mkdir /home/"$username"/.config/GIMP/3.0
-chown -R "$username":"$username" /home/"$username"/.config/GIMP
-cd gimp-dots/Gimp || exit
-cp -R "3.0" /home/"$username"/.config/GIMP/
-chown "$username":"$username" -R /home/"$username"/.config/GIMP
-cd "$builddir" || exit
 
 # VSCode
 wget "https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/code_1.88.1-1712771838_amd64.deb"
@@ -156,8 +139,6 @@ apt install fonts-terminus -y
 fc-cache -vf
 wait
 
-
-
 # Extensions
 echo "Gnome Extensions"
 sleep 2
@@ -182,7 +163,6 @@ cd gnome-shell-extensions-useless-gaps || exit
 # Just Perfection
 # Blur My Shell
 
-
 #Nautilus Customization
 apt install gnome-sushi -y
 apt install imagemagick nautilus-image-converter -y
@@ -196,19 +176,15 @@ glib-compile-schemas /usr/share/glib-2.0/schemas
 cd "$builddir" || exit
 rm -rf nautilus-open-any-terminal
 
-
 # Removing zip files and stuff
 rm -rf FiraCode.zip
 rm -rf Meslo.zip
-
 
 # Used for fstab
 mkdir -p /media/Working-Storage
 mkdir -p /media/Archived-Storage
 chown "$username":"$username" /home/"$username"/media/Archived-Storage
 chown "$username":"$username" /home/"$username"/media/Working-Storage
-
-
 
 sudo apt update && upgrade -y
 wait
@@ -223,9 +199,6 @@ apt autoremove -y
 sudo apt update && upgrade -y
 wait
 flatpak update -y
-
-
-
 
 read -r -p "2.sh complete. Reboot and install Steam and run 3.sh. After steam is installed and opened to be updated you can then run Script nvidia.sh for Nvidia drivers, skip 3.sh if you are not using Nvidia hardware. Press enter to reboot"
 sudo reboot

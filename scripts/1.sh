@@ -60,15 +60,15 @@ sudo apt install -f
 wait
 flatpak update
 wait
-apt install gnome-shell -y
-apt install kitty -y
-apt install gnome-terminal -y
-apt install gnome-text-editor -y
-apt install dconf* -y
-apt install pipx -y
-apt install gnome-tweaks -y
-apt install gnome-shell-extension-manager -y
-apt install papirus-icon-theme -y
+sudo apt install gnome-shell -y
+sudo apt install kitty -y
+sudo apt install gnome-terminal -y
+sudo apt install gnome-text-editor -y
+sudo apt install dconf* -y
+sudo apt install pipx -y
+sudo apt install gnome-tweaks -y
+sudo apt install gnome-shell-extension-manager -y
+sudo apt install papirus-icon-theme -y
 wait
 pipx install gnome-extensions-cli --system-site-packages
 

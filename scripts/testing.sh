@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # https://github.com/Piercing666
 
 # Check if Script is Run as Root
