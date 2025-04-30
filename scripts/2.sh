@@ -27,8 +27,6 @@ mkdir -p /home/"$username"/.icons
 chown -R "$username":"$username" /home/"$username"/.icons
 mkdir -p /home/"$username"/Pictures/backgrounds
 chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
-cp -R dotconf/kitty /home/"$username"/.config/
-chown -R "$username":"$username" /home/"$username"/.config/kitty
 
 # Installing important things && stuff && some dependencies
 echo "Installing Programs and Drivers"

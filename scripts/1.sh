@@ -66,13 +66,6 @@ wait
 pipx install gnome-extensions-cli --system-site-packages
 
 
-
-
-
-
-
-
-
 echo "Changing Graphical Login"
 sleep 2
 # Enable graphical login and change target from CLI to GUI
