@@ -5,14 +5,6 @@
 username=$(id -u -n 1000)
 builddir=$(pwd)
 
-# Check if running as root. If root, script will exit
-if [[ $EUID -eq 0 ]]; then
-    echo "This script should not be executed as root! Exiting......."
-    exit 1
-fi
-
-
-
 sudo apt update
 sudo apt upgrade -y
 
@@ -84,7 +76,6 @@ if git clone --recursive -b $idle_tag https://github.com/hyprwm/hypridle.git; th
 else
     echo -e "${ERROR} Download failed for hypridle." 2>&1 | tee -a "$LOG"
 fi
-
 
 
 # .config Dot Files

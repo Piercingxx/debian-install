@@ -26,7 +26,6 @@ echo "Updating Repositiories"
 apt update && upgrade -y
 wait
 
-
 echo "Installing Nvidia Drivers, be patient this will take a while"
 
 

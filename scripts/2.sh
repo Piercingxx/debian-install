@@ -1,12 +1,5 @@
 #!/bin/bash
-
 # https://github.com/Piercing666
-
-# Check if Script is Run as Root
-if [[ $EUID -ne 0 ]]; then
-  echo "You must be a root user to run this script, please run sudo su then try again" 2>&1
-  exit 1
-fi
 
 username=$(id -u -n 1000)
 builddir=$(pwd)
@@ -24,7 +17,6 @@ echo "Updating Repositories"
 sudo apt update && upgrade -y
 wait
 
-
 # Making .config and.fonts Directories
 cd "$builddir" || exit
 mkdir -p /home/"$username"/.config
@@ -37,7 +29,6 @@ mkdir -p /home/"$username"/Pictures/backgrounds
 chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
 cp -R dotconf/kitty /home/"$username"/.config/
 chown -R "$username":"$username" /home/"$username"/.config/kitty
-
 
 # Installing important things && stuff && some dependencies
 echo "Installing Programs and Drivers"
@@ -117,7 +108,6 @@ sudo apt update
 wait
 sudo apt upgrade -y
 wait
-
 
 echo "Installing Fonts"
 sleep 2

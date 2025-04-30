@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # https://github.com/Piercing666
 
 username=$(id -u -n 1000)
@@ -38,7 +37,7 @@ wait
 sudo update-grub
 wait
 
-echo "After reboot run vainfo and fix any errors"
-sleep 5 && echo "Rebooting"
+echo "After reboot run vainfo"
+echo "Rebooting"
 
 # reboot
