@@ -29,8 +29,8 @@ sudo add-apt-repository ppa:graphics-drivers/ppa -y
 # Update packages list and update system
 echo "Updating with non-free drivers"
 sleep 2
-apt update 
-apt upgrade -y && echo "Upgrading"
+sudo apt update 
+sudo apt upgrade -y && echo "Upgrading"
 wait
 
 # Making dir
@@ -210,14 +210,14 @@ systemctl enable gdm3 --now
 bash scripts/usenala
 
 
-apt update && upgrade -y
+sudo apt update && upgrade -y
 wait
 flatpak update -y
 wait
-apt full-upgrade -y
+sudo apt full-upgrade -y
 wait
-apt install -f
+sudo apt install -f
 dpkg --configure -a
 echo "After reboot run 2.sh"
 sleep 3 && echo "Rebooting"
-reboot
+sudo reboot

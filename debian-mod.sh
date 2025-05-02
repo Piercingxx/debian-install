@@ -86,7 +86,7 @@ while true; do
             echo -e "${YELLOW}Installing Gnome...${NC}"
             cd scripts || exit
             chmod u+x 1.sh
-            ./1.sh
+            sudo ./1.sh
             cd "$builddir" || exit
             ;;
         "Applications")

@@ -30,33 +30,33 @@ chown -R "$username":"$username" /home/"$username"/Pictures/backgrounds
 
 # Installing important things && stuff && some dependencies
 echo "Installing Programs and Drivers"
-apt install dbus-x11 -y
-apt install cups -y
-apt install util-linux -y
-apt install xdg-utils -y
-apt install libnvidia-egl-wayland -y
-apt install build-essential -y
-apt install nautilus -y
-apt install gdebi -y
-apt install fuse -y
-apt install libfuse2 -y
-apt install x11-xserver-utils -y
-apt install dh-dkms -y
-apt install devscripts -y
-apt install fonts-noto-color-emoji -y
-apt install zip unzip gzip tar -y
-apt install make -y
-apt install linux-headers-generic -y
-apt install seahorse -y
-apt install gnome-calculator -y
-apt install rename -y
-apt install neofetch -y
-apt install mpv -y
-apt install gparted -y
-apt install curl -y
-apt install gh -y
-apt install lua5.4 -y
-apt install gnome-disk-utility -y
+sudo apt install dbus-x11 -y
+sudo apt install cups -y
+sudo apt install util-linux -y
+sudo apt install xdg-utils -y
+sudo apt install libnvidia-egl-wayland -y
+sudo apt install build-essential -y
+sudo apt install nautilus -y
+sudo apt install gdebi -y
+sudo apt install fuse -y
+sudo apt install libfuse2 -y
+sudo apt install x11-xserver-utils -y
+sudo apt install dh-dkms -y
+sudo apt install devscripts -y
+sudo apt install fonts-noto-color-emoji -y
+sudo apt install zip unzip gzip tar -y
+sudo apt install make -y
+sudo apt install linux-headers-generic -y
+sudo apt install seahorse -y
+sudo apt install gnome-calculator -y
+sudo apt install rename -y
+sudo apt install neofetch -y
+sudo apt install mpv -y
+sudo apt install gparted -y
+sudo apt install curl -y
+sudo apt install gh -y
+sudo apt install lua5.4 -y
+sudo apt install gnome-disk-utility -y
 sleep 2
 flatpak install flathub net.waterfox.waterfox -y
 flatpak install flathub md.obsidian.Obsidian -y
@@ -130,9 +130,9 @@ wait
 # Extensions
 echo "Gnome Extensions"
 sleep 2
-apt install gnome-shell-extension-appindicator -y
-apt install gnome-shell-extension-gsconnect -y
-apt install gnome-shell-extension-caffeine -y
+sudo apt install gnome-shell-extension-appindicator -y
+sudo apt install gnome-shell-extension-gsconnect -y
+sudo apt install gnome-shell-extension-caffeine -y
 # App Icons Taskbar
 wget https://gitlab.com/AndrewZaech/aztaskbar/-/archive/main/aztaskbar-main.tar
 gnome-extensions install aztaskbar-main.tar
@@ -152,10 +152,10 @@ cd gnome-shell-extensions-useless-gaps || exit
 # Blur My Shell
 
 #Nautilus Customization
-apt install gnome-sushi -y
-apt install imagemagick nautilus-image-converter -y
-apt install nautilus-admin -y
-apt install gir1.2-gtk-4.0 -y
+sudo apt install gnome-sushi -y
+sudo apt install imagemagick nautilus-image-converter -y
+sudo apt install nautilus-admin -y
+sudo apt install gir1.2-gtk-4.0 -y
 git clone https://github.com/Stunkymonkey/nautilus-open-any-terminal.git
 cd nautilus-open-any-terminal || exit
 make
@@ -176,19 +176,19 @@ chown "$username":"$username" /home/"$username"/media/Working-Storage
 
 sudo apt update && upgrade -y
 wait
-apt full-upgrade -y
+sudo apt full-upgrade -y
 wait
-apt install -f
+sudo apt install -f
 wait
 dpkg --configure -a
-apt install --fix-broken
+sudo apt install --fix-broken
 wait
-apt autoremove -y
+sudo apt autoremove -y
 sudo apt update && upgrade -y
 wait
 flatpak update -y
 
-read -r -p "2.sh complete. Reboot and install Steam and run 3.sh. After steam is installed and opened to be updated you can then run Script nvidia.sh for Nvidia drivers, skip 3.sh if you are not using Nvidia hardware. Press enter to reboot"
-sudo reboot
+read -r -p "2.sh complete. Reboot and run Steam and run 3.sh. After steam is installed and opened to be updated you can then run Script nvidia.sh for Nvidia drivers, skip 3.sh if you are not using Nvidia hardware. Press enter to reboot"
+
 
 
