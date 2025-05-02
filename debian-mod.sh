@@ -86,7 +86,7 @@ while true; do
             echo -e "${YELLOW}Installing Gnome...${NC}"
                 cd scripts || exit
                 chmod u+x 1.sh
-                sudo -v ./1.sh
+                sudo ./1.sh
                 cd "$builddir" || exit
             echo -e "${GREEN}Gnome Installed Successfully!${NC}"
             ;;
@@ -94,7 +94,7 @@ while true; do
             echo -e "${YELLOW}Installing Core Applications...${NC}"
                 cd scripts || exit
                 chmod u+x 2.sh
-                sudo -v ./2.sh
+                sudo ./2.sh
                 cd "$builddir" || exit
             echo -e "${GREEN}Core Apps Installed successfully!${NC}"
             ;;
@@ -143,14 +143,14 @@ while true; do
             echo -e "${YELLOW}Microsoft Surface Kernel...${NC}"            
                 cd scripts || exit
                 chmod u+x Surface.sh
-                sudo -v ./Surface.sh
+                sudo ./Surface.sh
                 cd "$builddir" || exit
             ;;
         "Testing")
             echo -e "${YELLOW}Installing Testing Branch...${NC}"
                 cd scripts || exit
                 chmod u+x testing.sh
-                sudo -v ./testing.sh
+                sudo ./testing.sh
                 cd "$builddir" || exit
             msg_box "Testing Branch Installed Successfully, Enter to Reboot!"
             ;;     
@@ -175,7 +175,7 @@ while true; do
         "Reboot System")
             echo -e "${YELLOW}Rebooting system in 3 seconds...${NC}"
             sleep 2
-            sudo -v reboot
+            sudo reboot
             ;;
         "Exit")
             clear
