@@ -84,16 +84,17 @@ while true; do
             ;;
         "Install Gnome")
             echo -e "${YELLOW}Installing Gnome...${NC}"
-            cd scripts || exit
-            chmod u+x 1.sh
-            sudo ./1.sh
-            cd "$builddir" || exit
+                cd scripts || exit
+                chmod u+x 1.sh
+                sudo ./1.sh
+                cd "$builddir" || exit
+            echo -e "${GREEN}Gnome Installed Successfully!${NC}"
             ;;
         "Applications")
             echo -e "${YELLOW}Installing Core Applications...${NC}"
                 cd scripts || exit
                 chmod u+x 2.sh
-                ./2.sh
+                sudo ./2.sh
                 cd "$builddir" || exit
             echo -e "${GREEN}Core Apps Installed successfully!${NC}"
             ;;
@@ -142,14 +143,14 @@ while true; do
             echo -e "${YELLOW}Microsoft Surface Kernel...${NC}"            
                 cd scripts || exit
                 chmod u+x Surface.sh
-                ./Surface.sh
+                sudo ./Surface.sh
                 cd "$builddir" || exit
             ;;
         "Testing")
             echo -e "${YELLOW}Installing Testing Branch...${NC}"
                 cd scripts || exit
                 chmod u+x testing.sh
-                ./testing.sh
+                sudo ./testing.sh
                 cd "$builddir" || exit
             echo -e "${GREEN}Installed successfully!${NC}"
             ;;     
