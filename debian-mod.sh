@@ -168,7 +168,7 @@ while true; do
                     chmod -R u+x mybash
                     chown -R "$username":"$username" mybash
                     cd mybash || exit
-                    /setup.sh
+                    ./setup.sh
                     cd "$builddir" || exit
                     rm -rf mybash
             ;;
