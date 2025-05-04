@@ -28,16 +28,17 @@ echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" \
 apt update
 wait
 
-apt install linux-image-surface linux-headers-surface libwacom-surface iptsd
+apt install linux-image-surface linux-headers-surface libwacom-surface iptsd -y
 wait
 
-apt install linux-surface-secureboot-mok
+apt install linux-surface-secureboot-mok -y
 wait
 
 sudo update-grub
 wait
 
 echo "After reboot run vainfo"
-echo "Rebooting"
+
+sudo reboot
 
 # reboot
