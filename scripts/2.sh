@@ -188,7 +188,7 @@ sudo apt update && upgrade -y
 wait
 flatpak update -y
 
-read -r -p "2.sh complete. Reboot and run Steam and run 3.sh. After steam is installed and opened to be updated you can then run Script nvidia.sh for Nvidia drivers, skip 3.sh if you are not using Nvidia hardware. Press enter to reboot"
+read -r -p "2.sh complete. Reboot and run Steam, after you can install Nvidia drivers (Do not install Nvidia Proprietary Drivers if using the Surface Kernal)"
 
 
 
